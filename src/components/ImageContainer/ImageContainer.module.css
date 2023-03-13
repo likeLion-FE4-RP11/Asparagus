@@ -1,0 +1,26 @@
+.srcImageBox {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+}
+
+.srcImageBox img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.baseImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(147, 155, 155);
+}
+
+.baseImage img {
+  display: block;
+}
