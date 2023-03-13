@@ -10,7 +10,7 @@ export function ImageContainer({ isLoading, src, alt, width, height }) {
         <BaseImage width={width} height={height} />
       ) : (
         <div
-          className={classes.srcImageBox}
+          className={classes.SrcImageBox}
           style={{
             width: width,
             height: height,

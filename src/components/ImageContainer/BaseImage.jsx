@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 export function BaseImage({ width, height }) {
   return (
     <div
-      className={classes.baseImage}
+      className={classes.BaseImage}
       style={{
         width: width,
         height: height,
