@@ -5,14 +5,16 @@ import { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-// import '@/components/Swiper/Pagination.module.css';
+import styles from '@/components/Swiper/Pagination.module.css';
 
 export function AllSwiper() {
   return (
     <Swiper
+      className={styles.Swiper}
       pagination={{
         dynamicBullets: true,
         clickable: true,
+        bulletElement: 'button',
       }}
       modules={[Pagination]}
       spaceBetween={20}
@@ -20,13 +22,13 @@ export function AllSwiper() {
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
     >
-      <SwiperSlide>Test 1</SwiperSlide>
-      <SwiperSlide>Slide 2</SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
-      <SwiperSlide>Slide 5</SwiperSlide>
-      <SwiperSlide>Slide 6</SwiperSlide>
-      <SwiperSlide>Slide 7</SwiperSlide>
+      <SwiperSlide className={styles.SwiperSlide}>Test 1</SwiperSlide>
+      <SwiperSlide className={styles.SwiperSlide}>Slide 2</SwiperSlide>
+      <SwiperSlide className={styles.SwiperSlide}>Slide 3</SwiperSlide>
+      <SwiperSlide className={styles.SwiperSlide}>Slide 4</SwiperSlide>
+      <SwiperSlide className={styles.SwiperSlide}>Slide 5</SwiperSlide>
+      <SwiperSlide className={styles.SwiperSlide}>Slide 6</SwiperSlide>
+      <SwiperSlide className={styles.SwiperSlide}>Slide 7</SwiperSlide>
     </Swiper>
   );
 }
