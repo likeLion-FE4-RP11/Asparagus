@@ -1,7 +1,15 @@
-import './App.css'
+import React, { useState } from 'react';
+import ButtonToggle from '@/components/Button/ButtonToggle';
 
 function App() {
-  return <div className="App"></div>
+  const [isToggled, setIsToggled] = useState(false);
+
+  return (
+    <ButtonToggle
+      isToggled={isToggled}
+      onToggle={() => setIsToggled(!isToggled)}
+    />
+  );
 }
 
-export default App
+export default App;
