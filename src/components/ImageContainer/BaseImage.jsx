@@ -19,7 +19,14 @@ export function BaseImage({ width, height }) {
   );
 }
 
+BaseImage.defaultProps = {
+  width: '1097px',
+  height: '633px',
+};
+
 BaseImage.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
 };
+
+

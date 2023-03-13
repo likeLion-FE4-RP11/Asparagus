@@ -1,30 +1,22 @@
-import testImg from '@/assets/test.png';
+import testImg from '@/assets/test.jpg';
 import Styles from './ImageContainer.module.css';
-import { BaseImage } from './BaseImage';
 import PropTypes from 'prop-types';
 
-export function ImageContainer({ isLoading, src, alt, width, height }) {
+export function ImageContainer({ src, alt, width, height }) {
   return (
-    <section>
-      {isLoading ? (
-        <BaseImage width={width} height={height} />
-      ) : (
-        <div
-          className={Styles.SrcImageBox}
-          style={{
-            width: width,
-            height: height,
-          }}
-        >
-          <img src={src} alt={alt}></img>
-        </div>
-      )}
-    </section>
+    <div
+      className={Styles.SrcImageBox}
+      style={{
+        width: width,
+        height: height,
+      }}
+    >
+      <img src={src} alt={alt}></img>
+    </div>
   );
 }
 
 ImageContainer.defaultProps = {
-  isLoading: true,
   src: testImg,
   alt: '테스트 이미지',
   width: '1097px',
