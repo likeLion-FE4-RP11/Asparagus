@@ -1,5 +1,5 @@
 import testImg from '@/assets/test.png';
-import classes from './ImageContainer.module.css';
+import Styles from './ImageContainer.module.css';
 import { BaseImage } from './BaseImage';
 import PropTypes from 'prop-types';
 
@@ -10,7 +10,7 @@ export function ImageContainer({ isLoading, src, alt, width, height }) {
         <BaseImage width={width} height={height} />
       ) : (
         <div
-          className={classes.SrcImageBox}
+          className={Styles.SrcImageBox}
           style={{
             width: width,
             height: height,

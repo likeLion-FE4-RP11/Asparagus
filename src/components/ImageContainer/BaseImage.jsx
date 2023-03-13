@@ -1,5 +1,5 @@
 import baseSrc from '../../assets/gallery-icon.png';
-import classes from './ImageContainer.module.css';
+import Styles from './ImageContainer.module.css';
 import { getColor } from '@/theme/utils';
 import PropTypes from 'prop-types';
 
@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 export function BaseImage({ width, height }) {
   return (
     <div
-      className={classes.BaseImage}
+      className={Styles.BaseImage}
       style={{
         width: width,
         height: height,
