@@ -15,6 +15,7 @@
 }
 
 .NavList a {
+  text-decoration: none;
   font-size: 37.9px;
   font-weight: 700;
   color: #4e4c4c;

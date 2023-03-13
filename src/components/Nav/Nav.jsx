@@ -5,9 +5,7 @@ import { A11yHidden } from '@/components/A11yHidden/A11yHidden';
 export default function Nav() {
   return (
     <nav className={Style.Nav}>
-      <A11yHidden as="h2" className="srOnly">
-        메인 메뉴
-      </A11yHidden>
+      <A11yHidden as="h2">메인 메뉴</A11yHidden>
       <ul className={Style.NavList}>
         <li>
           <a href="/">Upload</a>
