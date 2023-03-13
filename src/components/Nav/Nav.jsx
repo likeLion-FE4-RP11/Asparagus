@@ -1,12 +1,12 @@
 import React from 'react';
-import Style from './Nav.module.css';
+import Styles from './Nav.module.css';
 import { A11yHidden } from '@/components/A11yHidden/A11yHidden';
 
-export default function Nav() {
+export default function Nav({}) {
   return (
-    <nav className={Style.Nav}>
+    <nav className={Styles.Nav}>
       <A11yHidden as="h2">메인 메뉴</A11yHidden>
-      <ul className={Style.NavList}>
+      <ul className={Styles.NavList}>
         <li>
           <a href="/">Upload</a>
         </li>
