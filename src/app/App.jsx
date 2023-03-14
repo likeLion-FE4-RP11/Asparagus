@@ -1,7 +1,12 @@
-import './App.css'
+import './App.css';
+import UseHover from '@/components/UseHover/UseHover';
 
 function App() {
-  return <div className="App"></div>
+  return (
+    <div>
+      <UseHover />
+    </div>
+  );
 }
 
-export default App
+export default App;
