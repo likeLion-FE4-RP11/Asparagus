@@ -1,32 +1,29 @@
 import React from 'react';
-import style from './Footer.css';
+import Styles from './Footer.module.css';
 import '@/styles/normarlize.css'
 import '@/styles/reset.css'
 import Logo from './Logo.png';
 
 const Footer = () => {
   return (
-    <div className="Footer">
-      <div className="FooterInner">
-        <div className="Info">
-         <div className="Heading">
+    <footer className={Styles.Footer}>
+      <div className={Styles.FooterInner}>
+        <section className={Styles.Info}>
+         <div className={Styles.FirstHeading}>
            <img src={Logo} alt="아이즈 갤러리 로고" />&nbsp;
-            I's gallery</div>
-          <div className="Paragraph">
-          <ul>
-            <li>Preserve your photos and leave memories.</li>
-            <li>I’s gallery is invites you to your exhibition.</li>
-            <li>&nbsp;</li>
-            <li>COPYRIGHT@2023 | I’S gallery.</li>
-          </ul>
-           </div>
-        </div>
+            I&apos;s gallery</div>
+          <p className={Styles.FirstParagraph}>
+            <span>Preserve your photos and leave memories.</span>
+            <span>I’s gallery is invites you to your exhibition.</span>
+            <span>&nbsp;</span>
+            <span>COPYRIGHT@2023 | I’S gallery.</span>
+           </p>
+        </section>
       
 
-      <div className="Member">
-        <div className="Heading1">Production team</div>
-          <div className="Paragraph1">
-            <ul>
+      <section className={Styles.Member}>
+        <h2 className={Styles.SecondHeading}>Production team</h2>
+            <ul className={Styles.SecondParagraph}>
               <li>김진섭&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <a href="https://github.com/seovee">https://github.com/seovee</a>
               </li>
@@ -43,10 +40,9 @@ const Footer = () => {
               <a href="https://github.com/to06109">https://github.com/to06109</a>
               </li>
             </ul>
-          </div>
+      </section>
       </div>
-      </div>
-    </div>
+    </footer>
         
   )
 }
