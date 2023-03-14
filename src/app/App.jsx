@@ -1,7 +1,14 @@
-import './App.css'
+import DeleteButton from '@/components/Button/DeleteButton';
 
 function App() {
-  return <div className="App"></div>
+  // const [fileImage, setFileImage] = useState('');
+  // const deleteFileImage = () => {};
+
+  return (
+    <div className="App">
+      <DeleteButton onClick={() => deleteFileImage()}>Delete</DeleteButton>
+    </div>
+  );
 }
 
-export default App
+export default App;
