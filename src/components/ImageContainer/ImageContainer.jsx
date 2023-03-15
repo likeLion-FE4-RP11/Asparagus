@@ -24,7 +24,6 @@ ImageContainer.defaultProps = {
 };
 
 ImageContainer.propTypes = {
-  isLoading: PropTypes.bool,
   src: PropTypes.string,
   alt: PropTypes.string,
   width: PropTypes.string,
