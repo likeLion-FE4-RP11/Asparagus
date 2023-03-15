@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Styles from './DeleteButton.module.css';
-import PropTypes from 'prop-types';
 
 export function DeleteButton() {
   const [data, setData] = useState([]);
