@@ -54,9 +54,7 @@ export function AllSwiper() {
     >
       {slides.map((slide, index) => {
         return (
-          <StyledSwiperSlide key={slide} className={StyledSwiperSlide}>
-            {slides[index]}
-          </StyledSwiperSlide>
+          <StyledSwiperSlide key={slide}>{slides[index]}</StyledSwiperSlide>
         );
       })}
     </StyledSwiper>
