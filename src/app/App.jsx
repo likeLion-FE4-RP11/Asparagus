@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { ButtonToggle, ImageContainer, BaseImage, TopButton, TopButtonTest, DesignParagraph, DeleteButton } from '@/components/index';
-import Header from '@/components/Header/Header';
 import '@/components/Swiper/Swiper';
-import { AllSwiper } from '@/components/Swiper/Swiper';
+import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import { AllSwiper } from '@/components/Swiper/Swiper';
+import { ButtonToggle, ImageContainer, BaseImage, TopButton, TopButtonTest, DesignParagraph, DeleteButton, CategoryTitle} from '@/components/index';
 
 function App() {
   const travelParagraph =
@@ -25,6 +25,7 @@ function App() {
       <TopButton />
       <DesignParagraph>{travelParagraph}</DesignParagraph>
       <DeleteButton>Delete</DeleteButton>
+      <CategoryTitle title="카테고리 타이틀 입력하는 곳" />
       <Footer />
     </div>
   );
