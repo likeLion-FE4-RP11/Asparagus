@@ -4,6 +4,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { AllSwiper } from '@/components/Swiper/Swiper';
 import { ButtonToggle, ImageContainer, BaseImage, TopButton, TopButtonTest, DesignParagraph, DeleteButton, CategoryTitle} from '@/components/index';
+import LikeButton from '@/components/LikeButton/LikeButton'
 
 function App() {
   const travelParagraph =
@@ -27,6 +28,7 @@ function App() {
       <DeleteButton>Delete</DeleteButton>
       <CategoryTitle title="카테고리 타이틀 입력하는 곳" />
       <Footer />
+      <LikeButton />
     </div>
   );
 }
