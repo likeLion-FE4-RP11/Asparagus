@@ -1,0 +1,12 @@
+.Header {
+  background: #f2e9e4;
+  padding: 0 180px;
+  /* width: 1560px; */
+  height: 200px;
+}
+
+.HeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
