@@ -9,7 +9,7 @@ const LikeButton = ({ item }) => {
   const [count, setCount] = useState(0);
   
   //좋아요 클릭시
-  const onClick = () => {
+  function onClick(){
     setHeart((prev) => !prev);
     if(heart){
       setCount(count-1);
