@@ -11,19 +11,19 @@ const ParagraphSection = styled.section`
   background-color: aquamarine;
 `;
 
+const Paragraph = styled.p`
+  color: ${(props) => props.color};
+`;
+
 export function DesignParagraph({ children }) {
   // toggle button state 받기
   const tempIsDark = false;
 
   return (
     <ParagraphSection>
-      <p
-        style={{
-          color: tempIsDark ? getColor('white') : getColor('secondary'),
-        }}
-      >
+      <Paragraph color={tempIsDark ? getColor('white') : getColor('secondary')}>
         {children}
-      </p>
+      </Paragraph>
     </ParagraphSection>
   );
 }
