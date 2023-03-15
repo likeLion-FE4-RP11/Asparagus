@@ -1,7 +1,12 @@
-import './App.css'
+import '@/App/App.css'
+import LikeButton from '@/components/LikeButton/LikeButton'
 
 function App() {
-  return <div className="App"></div>
+  return (
+    <div>
+      <LikeButton />
+    </div>
+  )
 }
 
 export default App
