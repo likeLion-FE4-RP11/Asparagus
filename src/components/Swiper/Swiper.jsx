@@ -1,19 +1,40 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
+import styled from 'styled-components/macro';
 
 // Import Swiper Styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import Styles from '@/components/Swiper/Pagination.module.css';
+const StyledSwiper = styled(Swiper)`
+  width: 100%;
+  height: 100%;
+`;
+
+const StyledSwiperSlide = styled(SwiperSlide)`
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  background: red;
+`;
+const StyledSwiperSlideImg = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+/* Component ---------------------------------------------------------------- */
 
 export function AllSwiper() {
   // props 로 이미지 url 받기
   const slides = ['slide1', 'slide2', 'slide3', 'slide4'];
 
   return (
-    <Swiper
-      className={Styles.Swiper}
+    <StyledSwiper
       loop={true}
       pagination={{
         dynamicBullets: true,
@@ -33,11 +54,11 @@ export function AllSwiper() {
     >
       {slides.map((slide, index) => {
         return (
-          <SwiperSlide key={slide} className={Styles.SwiperSlide}>
+          <StyledSwiperSlide key={slide} className={StyledSwiperSlide}>
             {slides[index]}
-          </SwiperSlide>
+          </StyledSwiperSlide>
         );
       })}
-    </Swiper>
+    </StyledSwiper>
   );
 }
