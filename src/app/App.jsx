@@ -5,9 +5,9 @@ function App() {
   const travelParagraph =
     '#Snapshot #Golden Gate Bridge | #phtographer #America #i want freedom';
   return (
-    <div className="App">
+    <>
       <DesignParagraph>{travelParagraph}</DesignParagraph>
-    </div>
+    </>
   );
 }
 

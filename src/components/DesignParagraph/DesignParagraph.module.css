@@ -1,7 +1,7 @@
 .DesignParagraph {
   margin: 0 auto;
   font-size: 43px;
-  word-break: break-word;
+  word-break: normal;
   width: 60%;
   text-align: center;
   background-color: aquamarine;
