@@ -3,8 +3,18 @@ import '@/components/Swiper/Swiper';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { AllSwiper } from '@/components/Swiper/Swiper';
-import { ButtonToggle, ImageContainer, BaseImage, TopButton, TopButtonTest, DesignParagraph, DeleteButton, CategoryTitle} from '@/components/index';
-import LikeButton from '@/components/LikeButton/LikeButton'
+import {
+  ButtonToggle,
+  ImageContainer,
+  BaseImage,
+  TopButton,
+  TopButtonTest,
+  DesignParagraph,
+  DeleteButton,
+  CategoryTitle,
+  SeeMoreButton,
+} from '@/components/index';
+import LikeButton from '@/components/LikeButton/LikeButton';
 
 function App() {
   const travelParagraph =
@@ -15,8 +25,9 @@ function App() {
     <div>
       <Header />
       <ButtonToggle
-      isToggled={isToggled}
-      onToggle={() => setIsToggled(!isToggled)}/>
+        isToggled={isToggled}
+        onToggle={() => setIsToggled(!isToggled)}
+      />
       <h1>Test Swiper</h1>
       <AllSwiper></AllSwiper>
       <h2>Image 컴포넌트 테스트</h2>
@@ -29,6 +40,7 @@ function App() {
       <CategoryTitle title="카테고리 타이틀 입력하는 곳" />
       <Footer />
       <LikeButton />
+      <SeeMoreButton />
     </div>
   );
 }
