@@ -1,3 +1,4 @@
+export * from './Button/DeleteButton';
 export * from './Button/ButtonToggle';
 export * from './ImageContainer/ImageContainer';
 export * from './ImageContainer/BaseImage';

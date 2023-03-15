@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ButtonToggle, ImageContainer, BaseImage, TopButton, TopButtonTest, DesignParagraph } from '@/components/index';
+import { ButtonToggle, ImageContainer, BaseImage, TopButton, TopButtonTest, DesignParagraph, DeleteButton } from '@/components/index';
 import Header from '@/components/Header/Header';
 import '@/components/Swiper/Swiper';
 import { AllSwiper } from '@/components/Swiper/Swiper';
@@ -24,6 +24,7 @@ function App() {
       <TopButtonTest />
       <TopButton />
       <DesignParagraph>{travelParagraph}</DesignParagraph>
+      <DeleteButton>Delete</DeleteButton>
       <Footer />
     </div>
   );
