@@ -7,7 +7,6 @@ import Logo from './Logo.png';
 const Footer = () => {
   return (
     <footer className={Styles.Footer}>
-      <div className={Styles.FooterInner}>
         <section className={Styles.Info}>
          <div className={Styles.FirstHeading}>
            <img src={Logo} alt="아이즈 갤러리 로고" />&nbsp;
@@ -41,7 +40,6 @@ const Footer = () => {
               </li>
             </ul>
       </section>
-      </div>
     </footer>
         
   )

@@ -6,14 +6,12 @@
   width: 1920px;
   height: 460px;
   margin: 0 auto;
-}
-
-.FooterInner{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
+
 
 /*I's gallery*/
 
