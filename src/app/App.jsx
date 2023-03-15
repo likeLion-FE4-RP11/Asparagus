@@ -1,5 +1,4 @@
-import './App.css';
-import CategoryTitle from '@/components/CategoryTitle/CategoryTitle';
+import { CategoryTitle } from '@/components/index';
 
 function App() {
   return (
