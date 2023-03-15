@@ -1,4 +1,4 @@
-import baseSrc from '../../assets/gallery-icon.png';
+import baseSrc from '@/assets/gallery-icon.png';
 import Styles from './ImageContainer.module.css';
 import { getColor } from '@/theme/utils';
 import PropTypes from 'prop-types';
@@ -28,5 +28,3 @@ BaseImage.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
 };
-
-

@@ -1,4 +1,3 @@
-import './App.css';
 import { ImageContainer, BaseImage } from '@/components/index';
 
 function App() {
