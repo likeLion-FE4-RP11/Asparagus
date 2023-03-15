@@ -1,4 +1,4 @@
-export * from './Button/Button';
+export * from './Button/ButtonToggle';
 export * from './ImageContainer/ImageContainer';
 export * from './ImageContainer/BaseImage';
 export * from './Swiper/Swiper';
