@@ -11,8 +11,8 @@ import {
   DeleteButton,
   CategoryTitle,
   Header,
+  LikeButton
 } from '@/components/index';
-import LikeButton from '@/components/LikeButton/LikeButton';
 
 function App() {
   const travelParagraph =
