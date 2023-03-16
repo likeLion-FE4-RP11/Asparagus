@@ -1,5 +1,4 @@
 import '@/components/Swiper/Swiper';
-import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { AllSwiper } from '@/components/Swiper/Swiper';
 import {
@@ -11,6 +10,7 @@ import {
   DesignParagraph,
   DeleteButton,
   CategoryTitle,
+  Header,
 } from '@/components/index';
 import LikeButton from '@/components/LikeButton/LikeButton';
 

@@ -1,5 +1,4 @@
-import React from 'react';
-import Nav from '@/components/index';
+import { Nav } from '@/components/index';
 import Logo from '@/assets/Logo.svg';
 import styled from 'styled-components/macro';
 
