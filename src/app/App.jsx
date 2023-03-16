@@ -18,15 +18,11 @@ import LikeButton from '@/components/LikeButton/LikeButton';
 function App() {
   const travelParagraph =
     '#Snapshot #Golden Gate Bridge | #phtographer #America #i want freedom';
-  const [isToggled, setIsToggled] = useState(false);
 
   return (
     <div>
       <Header />
-      <ButtonToggle
-        isToggled={isToggled}
-        onToggle={() => setIsToggled(!isToggled)}
-      />
+      <ButtonToggle />
       <h1>Test Swiper</h1>
       <AllSwiper></AllSwiper>
       <h2>Image 컴포넌트 테스트</h2>
