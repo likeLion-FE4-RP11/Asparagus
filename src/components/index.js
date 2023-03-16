@@ -1,5 +1,5 @@
 export * from './Button/DeleteButton';
-export * from './Button/ButtonToggle';
+export * from './Button/ToggleButton';
 export * from './ImageContainer/ImageContainer';
 export * from './ImageContainer/BaseImage';
 export * from './Swiper/Swiper';

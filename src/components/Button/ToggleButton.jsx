@@ -33,26 +33,26 @@ const Toggle = styled.div`
   }
 `;
 
-export function ButtonToggle() {
+export function ToggleButton() {
   const [isToggled, setIsToggled] = useState(false);
   const handleToggle = () => setIsToggled((prev) => !prev);
   return (
     <div>
-      <ToggleButton isOn={isToggled} handle={handleToggle} />
+      <Button isOn={isToggled} handle={handleToggle} />
     </div>
   );
 }
 
-export const ToggleButton = ({ isOn, handle }) => {
+export const Button = ({ isOn, handle }) => {
   return <Toggle isOn={isOn} onClick={handle} />;
 };
 
-ButtonToggle.propTypes = {
+ToggleButton.propTypes = {
   isToggled: PropTypes.bool,
   onToggle: PropTypes.func,
 };
 
-ToggleButton.propTypes = {
+Button.propTypes = {
   isOn: PropTypes.bool,
   handle: PropTypes.bool,
 };
