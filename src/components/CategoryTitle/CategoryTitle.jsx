@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
 
 const CategoryTitleContainer = styled.div`
   background: #f2e9e4;
@@ -26,3 +27,7 @@ export function CategoryTitle({ title }) {
     </CategoryTitleContainer>
   );
 }
+
+CategoryTitle.propTypes = {
+  title: PropTypes.string,
+};
