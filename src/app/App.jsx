@@ -1,10 +1,10 @@
 import '@/App/App.css'
-import LikeButton from '@/components/LikeButton/LikeButton'
+import LikeBtn from '@/components/LikeButton/LikeButton'
 
 function App() {
   return (
     <div>
-      <LikeButton />
+      <LikeBtn />
     </div>
   )
 }
