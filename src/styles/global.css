@@ -1,27 +1,18 @@
 body {
   margin: 0;
-  font: 1rem/1.5 "Pretendard", sans-serif;
+  font: 1rem/1.5 'Pretendard', sans-serif;
   background: #fff;
   color: #000;
   cursor: default;
-
   box-sizing: border-box;
-
-  &::before,
-  &::after {
-    box-sizing: inherit;
-  }
-
-  * {
-    box-sizing: inherit;
-    &::before,
-    &::after {
-      box-sizing: inherit;
-    }
-  }
 }
 
-/* 이미지크기 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -31,4 +22,8 @@ button {
   font-family: inherit;
 }
 
------------------CDN 
+/* 링크 스타일 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
