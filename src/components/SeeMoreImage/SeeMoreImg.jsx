@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { getColor } from '@/theme/utils';
+import { BaseImage } from '@/components';
 
 const ImageContainer = styled.div`
   margin-top: 20px;
@@ -11,8 +12,7 @@ const ImageContainer = styled.div`
 export function SeeMoreImg() {
   return (
     <ImageContainer bgColor={getColor('primary')}>
-      <h4>테스트</h4>
-      <p>테스트1</p>
+      <BaseImage />
     </ImageContainer>
   );
 }

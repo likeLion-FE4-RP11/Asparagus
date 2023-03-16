@@ -7,5 +7,5 @@ export * from './Button/TopButton';
 export * from './Button/TopButtonTest';
 export * from './DesignParagraph/DesignParagraph';
 export * from './CategoryTitle/CategoryTitle';
-export * from './SeeMoreImage/SeeMore';
+export * from './SeeMoreImage/SeeMoreImg';
 export * from './Button/SeeMoreButton';

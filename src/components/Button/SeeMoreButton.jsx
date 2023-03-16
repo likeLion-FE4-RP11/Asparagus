@@ -23,7 +23,9 @@ export function SeeMoreButton() {
 
   return (
     <div>
-      <MoreButton onClick={handleSeeMore}>S E E M O R E</MoreButton>
+      <MoreButton type="button" onClick={handleSeeMore}>
+        S E E M O R E
+      </MoreButton>
       {modal == true ? <SeeMoreImg /> : null}
     </div>
   );
