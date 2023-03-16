@@ -1,5 +1,24 @@
 import { useState } from 'react';
-import Styles from './DeleteButton.module.css';
+import styled from 'styled-components/macro';
+
+const Btn = styled.button`
+  width: 214px;
+  height: 77px;
+  font-size: 2.36rem;
+  align-items: center;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Pretendard';
+  font-weight: 600;
+  background-color: #f59d6c;
+
+  &:hover {
+    border-color: #ffffff;
+    background-color: #b2673c;
+  }
+`;
 
 export function DeleteButton() {
   const [data, setData] = useState([]);
@@ -12,14 +31,13 @@ export function DeleteButton() {
     setData(NewImageList);
   };
   return (
-    <button
+    <Btn
       type="button"
       onClick={() => {
         OnRemove;
       }}
-      className={Styles.Delete}
     >
       Delete
-    </button>
+    </Btn>
   );
 }
