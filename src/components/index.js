@@ -9,4 +9,5 @@ export * from './DesignParagraph/DesignParagraph';
 export * from './CategoryTitle/CategoryTitle';
 export * from './Nav/Nav';
 export * from './A11yHidden/A11yHidden';
+export * from './Header/Header';
 export * from './UseHover/UseHover';
