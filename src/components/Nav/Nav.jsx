@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './Nav.module.css';
-import { A11yHidden } from '@/components/A11yHidden/A11yHidden';
+import { A11yHidden } from '@/components/index';
 
 export function Nav({}) {
   return (

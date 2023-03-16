@@ -1,21 +1,29 @@
 import baseSrc from '@/assets/gallery-icon.png';
-import Styles from './ImageContainer.module.css';
 import { getColor } from '@/theme/utils';
 import PropTypes from 'prop-types';
+import styled from 'styled-components/macro';
+
+const BaseImageBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(147, 155, 155);
+  border-radius: 20px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  background-color: ${(props) => props.bgColor};
+
+  img {
+    display: block;
+  }
+`;
 
 // 이미지 로딩 중에 띄울 컴포넌트
 export function BaseImage({ width, height }) {
   return (
-    <div
-      className={Styles.BaseImage}
-      style={{
-        width: width,
-        height: height,
-        backgroundColor: getColor('gray/100'),
-      }}
-    >
+    <BaseImageBox width={width} height={height} bgColor={getColor('gray/100')}>
       <img src={baseSrc} alt="기본 이미지" />
-    </div>
+    </BaseImageBox>
   );
 }
 
