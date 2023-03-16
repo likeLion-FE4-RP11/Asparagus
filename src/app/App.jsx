@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import '@/components/Swiper/Swiper';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';

@@ -15,7 +15,6 @@ const Button = styled.button`
   font-family: 'Pretendard';
   font-weight: 600;
   background-color: ${(props) => props.bgColor};
-
   &:hover {
     border-color: #ffffff;
     background-color: #b2673c;
