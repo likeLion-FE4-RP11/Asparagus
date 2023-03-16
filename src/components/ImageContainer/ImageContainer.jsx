@@ -1,18 +1,29 @@
 import testImg from '@/assets/test.jpg';
-import Styles from './ImageContainer.module.css';
 import PropTypes from 'prop-types';
+import styled from 'styled-components/macro';
+
+const SrcImageBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+`;
 
 export function ImageContainer({ src, alt, width, height }) {
   return (
-    <div
-      className={Styles.SrcImageBox}
-      style={{
-        width: width,
-        height: height,
-      }}
-    >
+    <SrcImageBox width={width} height={height}>
       <img src={src} alt={alt}></img>
-    </div>
+    </SrcImageBox>
   );
 }
 
