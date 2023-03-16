@@ -10,4 +10,4 @@ export * from './CategoryTitle/CategoryTitle';
 export * from './Nav/Nav';
 export * from './A11yHidden/A11yHidden';
 export * from './Header/Header';
-export * from './Input/UploadInput';
+export * from './Input/ImageUploadInput';

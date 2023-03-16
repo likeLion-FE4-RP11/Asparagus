@@ -10,14 +10,18 @@ import {
   DesignParagraph,
   DeleteButton,
   CategoryTitle,
-  UploadInput,
+  ImageUploadInput,
   Header,
 } from '@/components/index';
-import LikeButton from '@/components/LikeButton/LikeButton';;
+import LikeButton from '@/components/LikeButton/LikeButton';
 
 function App() {
   const travelParagraph =
     '#Snapshot #Golden Gate Bridge | #phtographer #America #i want freedom';
+
+  const onFileChange = (file) => {
+    console.log(file);
+  };
 
   return (
     <div>
@@ -33,7 +37,7 @@ function App() {
       <DesignParagraph>{travelParagraph}</DesignParagraph>
       <DeleteButton>Delete</DeleteButton>
       <CategoryTitle title="카테고리 타이틀 입력하는 곳" />
-      <UploadInput />
+      <ImageUploadInput onFileChange={(file) => onFileChange(file)} />
       <Footer />
       <LikeButton />
     </div>
