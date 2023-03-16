@@ -43,16 +43,11 @@ export function ToggleButton() {
   );
 }
 
-export const Button = ({ isOn, handle }) => {
+export function Button({ isOn, handle }) {
   return <Toggle isOn={isOn} onClick={handle} />;
-};
-
-ToggleButton.propTypes = {
-  isToggled: PropTypes.bool,
-  onToggle: PropTypes.func,
-};
+}
 
 Button.propTypes = {
   isOn: PropTypes.bool,
-  handle: PropTypes.bool,
+  handle: PropTypes.func,
 };
