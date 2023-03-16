@@ -19,10 +19,6 @@ function App() {
   const travelParagraph =
     '#Snapshot #Golden Gate Bridge | #phtographer #America #i want freedom';
 
-  const onFileChange = (file) => {
-    console.log(file);
-  };
-
   return (
     <div>
       <Header />
@@ -37,7 +33,7 @@ function App() {
       <DesignParagraph>{travelParagraph}</DesignParagraph>
       <DeleteButton>Delete</DeleteButton>
       <CategoryTitle title="카테고리 타이틀 입력하는 곳" />
-      <ImageUploadInput onFileChange={(file) => onFileChange(file)} />
+      <ImageUploadInput />
       <Footer />
       <LikeButton />
     </div>
