@@ -15,3 +15,5 @@ export function SeeMoreImg() {
     </ImageContainer>
   );
 }
+
+ImageContainer.displayName = 'ImageContainer';
