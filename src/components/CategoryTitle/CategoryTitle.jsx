@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const CategoryTitleContainer = styled.div`
   background: #f2e9e4;
