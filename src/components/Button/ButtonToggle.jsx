@@ -17,7 +17,6 @@ const Toggle = styled.div`
   background-color: ${(props) =>
     props.isOn === true ? getColor('primary') : getColor('gray/200')};
   transition: background-color 250ms linear;
-
   &:before {
     content: '';
     height: 66px;
