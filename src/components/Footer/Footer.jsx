@@ -1,10 +1,8 @@
 import React from 'react';
-import Styles from './Footer.module.css';
-import '@/styles/normarlize.css'
-import '@/styles/reset.css'
-import Logo from './Logo.png';
-
-/*footer*/
+import styled from 'styled-components/macro';
+import '@/styles/normarlize.css';
+import '@/styles/reset.css';
+import Logo from '@/assets/Logo.png';
 
 const FooterArea = styled.footer`
   background: #F2E9E4;
@@ -18,38 +16,25 @@ const FooterArea = styled.footer`
   align-items: center;
 `;
 
-
-/*I's gallery*/
-
-.Info{
+const Info = styled.section`
   width: auto;
- /*width: 733px;*/
   height: 270px;
   transform:translate(182px,44px);
   display: absolute;
-}
+`
 
-.Logo{
-  /* Logo */
-  width: 74px;
-  height: 61px;
-}
-
-.FirstHeading{
-  /* I's gallery */
+const FirstHeading = styled.div`
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 700;
   font-size: 50px;
   line-height: 140px;
-  /* identical to box height, or 280% */
-
   display: flex;
   align-items: center;
   color: #4E4C4C;
-}
+`
 
-.FirstParagraph{
+const FirstParagraph = styled.p`
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
@@ -57,78 +42,56 @@ const FooterArea = styled.footer`
   line-height: 160%;
   text-align: left;
   color: #333333;
-}
+  span{
+    display: block;
+  }
+`
 
-.FirstParagraph span{
-  display: block;
-}
-
-
-/*Product team*/
-.Member{
+const Member = styled.section`
   width: 733px;
   height: 270px;  
   text-align: left;
   transform:translate(0px,76px);
   display: absolute;
-}
-
-.SecondHeading{
-  /* Production team */
-  /* Heading/XXL */
-
+`
+const SecondHeading = styled.h2`
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 700;
   font-size: 37.897px;
   line-height: 140%;
-  /* identical to box height, or 53px */
-
   color: #4E4C4C;
-  }
+`
 
-.SecondParagraph{
-    /* Paragraph/Large */
-
+const SecondParagraph = styled.ul`
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
   font-size: 21.328px;
   line-height: 160%;
-  /* or 34px */
-
   color: #676464;
-  }
+`
 
-
-a{
-  text-decoration: none;
-  color: #676464
-}
-
-li{
-  list-style:none;
-}
 
 const Footer = () => {
   return (
     <FooterArea>
-        <section className={Styles.Info}>
-         <div className={Styles.FirstHeading}>
+        <Info>
+         <FirstHeading>
            <img src={Logo} alt="아이즈 갤러리 로고" />&nbsp;
-            I&apos;s gallery</div>
-          <p className={Styles.FirstParagraph}>
+            I&apos;s gallery</FirstHeading>
+          <FirstParagraph>
             <span>Preserve your photos and leave memories.</span>
             <span>I’s gallery is invites you to your exhibition.</span>
             <span>&nbsp;</span>
             <span>COPYRIGHT@2023 | I’S gallery.</span>
-           </p>
-        </section>
+           </FirstParagraph>
+        </Info>
       
 
-      <section className={Styles.Member}>
-        <h2 className={Styles.SecondHeading}>Production team</h2>
-            <ul className={Styles.SecondParagraph}>
+      <Member>
+        <SecondHeading>Production team</SecondHeading>
+            <SecondParagraph>
               <li>김진섭&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <a href="https://github.com/seovee">https://github.com/seovee</a>
               </li>
@@ -144,8 +107,8 @@ const Footer = () => {
               <li>최예송&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <a href="https://github.com/to06109">https://github.com/to06109</a>
               </li>
-            </ul>
-      </section>
+            </SecondParagraph>
+      </Member>
     </FooterArea>
         
   )
