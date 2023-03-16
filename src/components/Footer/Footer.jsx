@@ -4,9 +4,115 @@ import '@/styles/normarlize.css'
 import '@/styles/reset.css'
 import Logo from './Logo.png';
 
+/*footer*/
+
+const FooterArea = styled.footer`
+  background: #F2E9E4;
+  padding: 64px 0px;
+  width: 1920px;
+  height: 460px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+
+/*I's gallery*/
+
+.Info{
+  width: auto;
+ /*width: 733px;*/
+  height: 270px;
+  transform:translate(182px,44px);
+  display: absolute;
+}
+
+.Logo{
+  /* Logo */
+  width: 74px;
+  height: 61px;
+}
+
+.FirstHeading{
+  /* I's gallery */
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 140px;
+  /* identical to box height, or 280% */
+
+  display: flex;
+  align-items: center;
+  color: #4E4C4C;
+}
+
+.FirstParagraph{
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21.328px;
+  line-height: 160%;
+  text-align: left;
+  color: #333333;
+}
+
+.FirstParagraph span{
+  display: block;
+}
+
+
+/*Product team*/
+.Member{
+  width: 733px;
+  height: 270px;  
+  text-align: left;
+  transform:translate(0px,76px);
+  display: absolute;
+}
+
+.SecondHeading{
+  /* Production team */
+  /* Heading/XXL */
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 37.897px;
+  line-height: 140%;
+  /* identical to box height, or 53px */
+
+  color: #4E4C4C;
+  }
+
+.SecondParagraph{
+    /* Paragraph/Large */
+
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21.328px;
+  line-height: 160%;
+  /* or 34px */
+
+  color: #676464;
+  }
+
+
+a{
+  text-decoration: none;
+  color: #676464
+}
+
+li{
+  list-style:none;
+}
+
 const Footer = () => {
   return (
-    <footer className={Styles.Footer}>
+    <FooterArea>
         <section className={Styles.Info}>
          <div className={Styles.FirstHeading}>
            <img src={Logo} alt="아이즈 갤러리 로고" />&nbsp;
@@ -40,7 +146,7 @@ const Footer = () => {
               </li>
             </ul>
       </section>
-    </footer>
+    </FooterArea>
         
   )
 }

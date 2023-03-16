@@ -15,10 +15,10 @@ const LikeButtonArea = styled.button`
   align-items: center;
 `;
 
-function LikeButton(){
+export function LikeButton(){
   const [heart, setHeart] = useState(false);
   const [count, setCount] = useState(0);
-  
+
   //좋아요 클릭시
 const handleLikeButton =() =>{
     setHeart((prev) => !prev);
@@ -27,7 +27,6 @@ const handleLikeButton =() =>{
     }else{
       setCount(count+1);
     }
-    
   };
 
   return (
