@@ -16,7 +16,7 @@ const Toggle = styled.div`
   position: relative;
   background-color: ${(props) =>
     props.isOn === true ? getColor('primary') : getColor('gray/200')};
-  transition: background-color 300ms linear;
+  transition: background-color 250ms linear;
   &:before {
     content: '';
     height: 66px;
@@ -29,25 +29,30 @@ const Toggle = styled.div`
     justify-content: center;
     position: absolute;
     left: ${(props) => (props.isOn === true ? '80px' : '0')};
-    transition: left 300ms linear;
+    transition: left 250ms linear;
   }
 `;
 
-export function ButtonToggle() {
+export function ToggleButton() {
   const [isToggled, setIsToggled] = useState(false);
   const handleToggle = () => setIsToggled((prev) => !prev);
   return (
     <div>
-      <ToggleButton isOn={isToggled} handle={handleToggle} />
+      <Button isOn={isToggled} handle={handleToggle} />
     </div>
   );
 }
 
-export const ToggleButton = ({ isOn, handle }) => {
+export const Button = ({ isOn, handle }) => {
   return <Toggle isOn={isOn} onClick={handle} />;
 };
 
-ButtonToggle.propTypes = {
+ToggleButton.propTypes = {
   isToggled: PropTypes.bool,
   onToggle: PropTypes.func,
+};
+
+Button.propTypes = {
+  isOn: PropTypes.bool,
+  handle: PropTypes.bool,
 };

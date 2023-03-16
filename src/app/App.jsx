@@ -4,7 +4,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { AllSwiper } from '@/components/Swiper/Swiper';
 import {
-  ButtonToggle,
+  ToggleButton,
   ImageContainer,
   BaseImage,
   TopButton,
@@ -22,7 +22,7 @@ function App() {
   return (
     <div>
       <Header />
-      <ButtonToggle />
+      <ToggleButton />
       <h1>Test Swiper</h1>
       <AllSwiper></AllSwiper>
       <h2>Image 컴포넌트 테스트</h2>

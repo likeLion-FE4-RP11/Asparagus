@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
+import { getColor } from '@/theme/utils';
 // 추후 page 폴더의 메인과 카테고리 페이지들 안에 버튼컴포넌트가 나가야 함
 
 const Button = styled.button`
@@ -13,7 +14,7 @@ const Button = styled.button`
   color: #ffffff;
   font-family: 'Pretendard';
   font-weight: 600;
-  background-color: #f59d6c;
+  background-color: ${(props) => props.bgColor};
 
   &:hover {
     border-color: #ffffff;
@@ -35,7 +36,11 @@ export function DeleteButton() {
   };
 
   return (
-    <Button type="button" onClick={handleDeleteImage()}>
+    <Button
+      type="button"
+      bgColor={getColor('delete')}
+      onClick={handleDeleteImage()}
+    >
       Delete
     </Button>
   );
