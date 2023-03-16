@@ -1,7 +1,7 @@
 import React from 'react';
 import Nav from '@/components/Nav/Nav';
 import Logo from '@/assets/Logo.svg';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const HeaderSection = styled.div`
   background: #f2e9e4;
