@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
 
-const Btn = styled.button`
+const Button = styled.button`
   width: 214px;
   height: 77px;
   font-size: 2.36rem;
@@ -21,23 +22,24 @@ const Btn = styled.button`
 `;
 
 export function DeleteButton() {
-  const [data, setData] = useState([]);
-  const OnRemove = (targetId) => {
-    console.log(`${targetId}가 삭제되었습니다.`);
+  const [data, setData] = useState(false);
+
+  const OnRemove = (children) => {
+    console.log(`${children}가 삭제되었습니다.`);
 
     const NewImageList = data.filter((data) => {
-      return data.id !== targetId;
+      return data.id !== children;
     });
     setData(NewImageList);
   };
   return (
-    <Btn
-      type="button"
-      onClick={() => {
-        OnRemove;
-      }}
-    >
+    <Button type="button" onClick={OnRemove}>
       Delete
-    </Btn>
+    </Button>
   );
 }
+
+DeleteButton.propTypes = {
+  data: PropTypes.bool,
+  setData: PropTypes.bool,
+};
