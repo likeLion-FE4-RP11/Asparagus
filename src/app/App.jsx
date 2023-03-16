@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import '@/components/Swiper/Swiper';
-import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { AllSwiper } from '@/components/Swiper/Swiper';
 import {
-  ButtonToggle,
+  ToggleButton,
   ImageContainer,
   BaseImage,
   TopButton,
@@ -13,21 +11,18 @@ import {
   DeleteButton,
   CategoryTitle,
   UploadInput,
+  Header,
 } from '@/components/index';
-import LikeButton from '@/components/LikeButton/LikeButton';
+import LikeButton from '@/components/LikeButton/LikeButton';;
 
 function App() {
   const travelParagraph =
     '#Snapshot #Golden Gate Bridge | #phtographer #America #i want freedom';
-  const [isToggled, setIsToggled] = useState(false);
 
   return (
     <div>
       <Header />
-      <ButtonToggle
-        isToggled={isToggled}
-        onToggle={() => setIsToggled(!isToggled)}
-      />
+      <ToggleButton />
       <h1>Test Swiper</h1>
       <AllSwiper></AllSwiper>
       <h2>Image 컴포넌트 테스트</h2>

@@ -1,21 +1,30 @@
 import PropTypes from 'prop-types';
-import Styles from './DesignParagraph.module.css';
 import { getColor } from '@/theme/utils';
+import styled from 'styled-components/macro';
+
+const ParagraphSection = styled.section`
+  margin: 0 auto;
+  font-size: 43px;
+  word-break: normal;
+  width: 60%;
+  text-align: center;
+  background-color: aquamarine;
+`;
+
+const Paragraph = styled.p`
+  color: ${(props) => props.color};
+`;
 
 export function DesignParagraph({ children }) {
   // toggle button state 받기
   const tempIsDark = false;
 
   return (
-    <section className={Styles.DesignParagraph}>
-      <p
-        style={{
-          color: tempIsDark ? getColor('white') : getColor('secondary'),
-        }}
-      >
+    <ParagraphSection>
+      <Paragraph color={tempIsDark ? getColor('white') : getColor('secondary')}>
         {children}
-      </p>
-    </section>
+      </Paragraph>
+    </ParagraphSection>
   );
 }
 
