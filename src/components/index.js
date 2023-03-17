@@ -9,3 +9,6 @@ export * from './DesignParagraph/DesignParagraph';
 export * from './CategoryTitle/CategoryTitle';
 export * from './SeeMoreImage/SeeMoreImg';
 export * from './Button/SeeMoreButton';
+export * from './Header/Header';
+export * from './LikeButton/LikeButton';
+export * from './Footer/Footer';

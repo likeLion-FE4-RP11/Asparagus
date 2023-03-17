@@ -1,9 +1,8 @@
-import React from 'react';
 import Nav from '@/components/Nav/Nav';
 import Styles from './Header.module.css';
 import Logo from '@/assets/Logo.svg';
 
-export default function Header() {
+export function Header() {
   return (
     <header className={Styles.Header}>
       <div className={Styles.HeaderContainer}>

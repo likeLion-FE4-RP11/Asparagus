@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import '@/components/Swiper/Swiper';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
-import { AllSwiper } from '@/components/Swiper/Swiper';
 import {
+  Footer,
+  Header,
+  AllSwiper,
   ButtonToggle,
   ImageContainer,
   BaseImage,
@@ -13,8 +12,8 @@ import {
   DeleteButton,
   CategoryTitle,
   SeeMoreButton,
+  LikeButton,
 } from '@/components/index';
-import LikeButton from '@/components/LikeButton/LikeButton';
 
 function App() {
   const travelParagraph =
