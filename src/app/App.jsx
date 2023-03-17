@@ -1,7 +1,9 @@
-import '@/components/Swiper/Swiper';
-import Footer from '@/components/Footer/Footer';
-import { AllSwiper } from '@/components/Swiper/Swiper';
+
+import { useState } from 'react';
 import {
+  Footer,
+  Header,
+  AllSwiper,
   ToggleButton,
   ImageContainer,
   BaseImage,
@@ -10,10 +12,10 @@ import {
   DesignParagraph,
   DeleteButton,
   CategoryTitle,
+  SeeMoreButton,
+  LikeButton,
   ImageUploadInput,
-  Header,
 } from '@/components/index';
-import LikeButton from '@/components/LikeButton/LikeButton';
 
 function App() {
   const travelParagraph =
@@ -36,6 +38,7 @@ function App() {
       <ImageUploadInput />
       <Footer />
       <LikeButton />
+      <SeeMoreButton />
     </div>
   );
 }

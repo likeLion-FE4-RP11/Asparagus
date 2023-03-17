@@ -1,6 +1,8 @@
-import { Nav } from '@/components/index';
+import { Nav } from '@/components/index'
 import Logo from '@/assets/Logo.svg';
 import styled from 'styled-components/macro';
+
+
 
 const HeaderSection = styled.div`
   background: #f2e9e4;
