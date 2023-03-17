@@ -1,9 +1,20 @@
-import { useState } from 'react';
-import Styles from './LikeButton.module.css';
+import styled from 'styled-components/macro';
 import HeartImg from '@/assets/Heart.png';
 import EmptyHeartImg from '@/assets/empty-heart.png';
 
-export function LikeButton() {
+const LikeBtn = styled.span`
+  color : #F9FBFD;
+  font-size: 43px;
+  font-style: normal;
+`;
+
+const LikeButtonArea = styled.button`
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+`;
+
+export function LikeButton(){
   const [heart, setHeart] = useState(false);
   const [count, setCount] = useState(0);
 
@@ -18,13 +29,15 @@ export function LikeButton() {
   };
 
   return (
-    <button type="button" className="LikeButtonArea" onClick={handleLikeButton}>
+    <LikeButtonArea type="button" onClick={handleLikeButton}>
       {heart ? (
         <img src={HeartImg} alt="꽉찬하트" /> // true (꽉찬하트)>
       ) : (
         <img src={EmptyHeartImg} alt="빈하트" /> // false (빈 하트)
       )}
-      <span className={Styles.LikeButton}>{count}</span>
-    </button>
+      <LikeBtn>{count}</LikeBtn>
+
+</LikeButtonArea>
   );
-}
+};
+
