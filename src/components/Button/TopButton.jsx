@@ -1,6 +1,6 @@
 import topButtonIcon from '@/assets/topbutton-icon.svg';
 import { getColor } from '@/theme/utils';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components/macro';
 
