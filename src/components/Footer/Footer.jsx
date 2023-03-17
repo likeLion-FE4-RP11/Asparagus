@@ -4,7 +4,7 @@ import '@/styles/reset.css';
 import Logo from '@/assets/Logo.png';
 import * as S from './Footer.styled'
 
-function Footer(){
+export function Footer(){
   return (
     <S.FooterArea>
         <S.Info>
@@ -43,6 +43,4 @@ function Footer(){
     </S.FooterArea>
         
   )
-}
-
-export default Footer;
+};
