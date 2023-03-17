@@ -20,6 +20,7 @@ const SrcImageBox = styled.div`
 `;
 
 export function ImageContainer({ src, alt, width, height }) {
+  console.log('예송님꺼');
   return (
     <SrcImageBox width={width} height={height}>
       <img src={src} alt={alt}></img>

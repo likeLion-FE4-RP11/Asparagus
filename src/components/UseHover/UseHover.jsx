@@ -1,49 +1,29 @@
 import { useCallback, useState, useEffect } from 'react';
 import { ImageContainer } from '@/components/ImageContainer/ImageContainer';
-import styled, { keyframes } from 'styled-components/macro';
+import styled from 'styled-components/macro';
+import { motion } from 'framer-motion';
 
-export function UseHover() {
-  const [isHovering, setIsHovering] = useState(false);
-
-  // useEffect(() => {}, [isHovering]);
-
-  const handleMouseOver = useCallback(() => {
-    setIsHovering(true);
-    console.log('호버');
-  }, []);
-
-  const handleMouseOut = useCallback(() => {
-    setIsHovering(false);
-    console.log('호버 해제');
-  }, []);
-
+export function UseHover(props) {
   return (
-    <HoverWarpper onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-      <ImageContainer width="300px" height="300px" />
-    </HoverWarpper>
+    <motion.div
+      style={{
+        width: 100,
+        height: 100,
+        margin: 0,
+        background: '#666',
+        borderRadius: 5,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      {...props}
+    >
+      <p>아래에 글자가 나오나요?</p>
+    </motion.div>
   );
 }
 
-const rotate = keyframes` 
-0%{
-    transform: rotate(0deg);
-    border-radius: 0px;
-}
-50%{ 
-    border-radius: 100px;
-}
-100%{
-    transform: rotate(350deg);
-    border-radius: 0px;
-}
-`;
-
-const HoverWarpper = styled.div`
-  background-color: aqua;
-  width: 300px;
-  transition: all 1s;
-
-  &::before {
-    content: '';
-  }
+const HoverScript = styled.p`
+  font-size: 100px;
+  font-weight: 700;
 `;
