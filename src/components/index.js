@@ -7,9 +7,13 @@ export * from './Button/TopButton';
 export * from './Button/TopButtonTest';
 export * from './DesignParagraph/DesignParagraph';
 export * from './CategoryTitle/CategoryTitle';
+export * from './SeeMoreImage/SeeMoreImg';
+export * from './Button/SeeMoreButton';
+export * from './Header/Header';
+export * from './LikeButton/LikeButton';
+export * from './Footer/Footer';
 export * from './Nav/Nav';
 export * from './A11yHidden/A11yHidden';
-export * from './Header/Header';
-export * from './Button/Button';
-export * from './LikeButton/LikeButton'
-export * from './Footer/Footer'
+export * from './Input/ImageUploadInput';
+
+

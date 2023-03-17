@@ -1,6 +1,8 @@
-import '@/components/Swiper/Swiper';
-import { AllSwiper } from '@/components/Swiper/Swiper';
+import { useState } from 'react';
 import {
+  Footer,
+  Header,
+  AllSwiper,
   ToggleButton,
   ImageContainer,
   BaseImage,
@@ -9,9 +11,9 @@ import {
   DesignParagraph,
   DeleteButton,
   CategoryTitle,
-  Header,
+  SeeMoreButton,
   LikeButton,
-  Footer,
+  ImageUploadInput,
 } from '@/components/index';
 
 function App() {
@@ -32,8 +34,10 @@ function App() {
       <DesignParagraph>{travelParagraph}</DesignParagraph>
       <DeleteButton>Delete</DeleteButton>
       <CategoryTitle title="카테고리 타이틀 입력하는 곳" />
+      <ImageUploadInput />
       <Footer />
       <LikeButton />
+      <SeeMoreButton />
     </div>
   );
 }

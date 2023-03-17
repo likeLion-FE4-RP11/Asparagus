@@ -19,24 +19,25 @@ export function LikeButton(){
   const [count, setCount] = useState(0);
 
   //좋아요 클릭시
-const handleLikeButton =() =>{
+  const handleLikeButton = () => {
     setHeart((prev) => !prev);
-    if(heart){
-      setCount(count-1);
-    }else{
-      setCount(count+1);
+    if (heart) {
+      setCount(count - 1);
+    } else {
+      setCount(count + 1);
     }
   };
 
   return (
     <LikeButtonArea type="button" onClick={handleLikeButton}>
       {heart ? (
-        <img src={HeartImg} alt="꽉찬하트"/> // true (꽉찬하트)>
+        <img src={HeartImg} alt="꽉찬하트" /> // true (꽉찬하트)>
       ) : (
-        <img src={EmptyHeartImg} alt="빈하트"/> // false (빈 하트)
+        <img src={EmptyHeartImg} alt="빈하트" /> // false (빈 하트)
       )}
       <LikeBtn>{count}</LikeBtn>
 
 </LikeButtonArea>
   );
 };
+

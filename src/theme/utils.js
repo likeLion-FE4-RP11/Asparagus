@@ -8,3 +8,7 @@ export const getColor = (colorNameAndVariant) => {
     return tokens.colors[colorNameAndVariant];
   }
 };
+
+export const getFontSize = (FontSizeAndVariant) => {
+  return tokens.fontSize[FontSizeAndVariant];
+};
