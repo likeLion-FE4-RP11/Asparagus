@@ -1,18 +1,27 @@
 import { A11yHidden } from '@/components';
 import { useEffect, useId, useRef } from 'react';
+import * as S from './ImageDescription.styled';
 
 export function DescriptionInput() {
   const id = useId();
   const inputRef = useRef(null);
 
-  useEffect((e) => {
-    const input = inputRef.current;
-    const component = input.parentElement;
-    // if(e.target.value.length > 0) {
-    //   component.
-    // }
-  }, []);
+  useEffect(
+    'blur',
+    (e) => {
+      const input = inputRef.current;
+      const component = input.parentElement;
 
+      input.addEventListener((e) => {
+        if (e.target.value.length > 0) {
+          component.classList.add(S.inputed);
+        } else {
+          component.classList.remove(S.inputed);
+        }
+      });
+    },
+    []
+  );
   return (
     <section>
       <A11yHidden as="label" htmlFor={id}>
@@ -27,9 +36,3 @@ export function DescriptionInput() {
     </section>
   );
 }
-
-// function RenderLaber( ){
-//   return invisibleLabel ? (
-
-//   )
-// }
