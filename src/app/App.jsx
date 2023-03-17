@@ -1,5 +1,4 @@
 import '@/components/Swiper/Swiper';
-import Footer from '@/components/Footer/Footer';
 import { AllSwiper } from '@/components/Swiper/Swiper';
 import {
   ToggleButton,
@@ -11,7 +10,8 @@ import {
   DeleteButton,
   CategoryTitle,
   Header,
-  LikeButton
+  LikeButton,
+  Footer,
 } from '@/components/index';
 
 function App() {
