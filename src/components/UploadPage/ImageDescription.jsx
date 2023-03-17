@@ -1,27 +1,19 @@
 import { A11yHidden } from '@/components';
-import { useEffect, useId, useRef } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import * as S from './ImageDescription.styled';
 
 export function DescriptionInput() {
   const id = useId();
   const inputRef = useRef(null);
+  const [name, setName] = useState('');
 
-  useEffect(
-    'blur',
-    (e) => {
-      const input = inputRef.current;
-      const component = input.parentElement;
+  const handleInputChange = (e) => {
+    setName(e.target.value);
+  };
 
-      input.addEventListener((e) => {
-        if (e.target.value.length > 0) {
-          component.classList.add(S.inputed);
-        } else {
-          component.classList.remove(S.inputed);
-        }
-      });
-    },
-    []
-  );
+  useEffect(() => {
+    console.log('렌더링');
+  }, []);
   return (
     <section>
       <A11yHidden as="label" htmlFor={id}>
@@ -32,7 +24,11 @@ export function DescriptionInput() {
         type="text"
         id={id}
         ref={inputRef}
+        value={name}
+        onChange={handleInputChange}
       />
     </section>
   );
 }
+
+// onchange , value
