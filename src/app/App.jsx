@@ -11,6 +11,7 @@ import {
   DeleteButton,
   CategoryTitle,
   Header,
+  DescriptionInput,
 } from '@/components/index';
 import LikeButton from '@/components/LikeButton/LikeButton';
 
@@ -24,6 +25,7 @@ function App() {
       <ToggleButton />
       <h1>Test Swiper</h1>
       <AllSwiper></AllSwiper>
+      <DescriptionInput></DescriptionInput>
       <h2>Image 컴포넌트 테스트</h2>
       <BaseImage width="430px" height="633px" />
       <ImageContainer width="430px" height="633px" />
