@@ -5,11 +5,12 @@ export function DescriptionInput() {
   const id = useId();
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    console.log('컴포넌트가 화면에 나타남');
-    return () => {
-      console.log('컴포넌트가 화면에서 사라짐');
-    };
+  useEffect((e) => {
+    const input = inputRef.current;
+    const component = input.parentElement;
+    // if(e.target.value.length > 0) {
+    //   component.
+    // }
   }, []);
 
   return (
