@@ -1,9 +1,10 @@
+
 import { useState } from 'react';
 import {
   Footer,
   Header,
   AllSwiper,
-  ButtonToggle,
+  ToggleButton,
   ImageContainer,
   BaseImage,
   TopButton,
@@ -13,20 +14,17 @@ import {
   CategoryTitle,
   SeeMoreButton,
   LikeButton,
+  ImageUploadInput,
 } from '@/components/index';
 
 function App() {
   const travelParagraph =
     '#Snapshot #Golden Gate Bridge | #phtographer #America #i want freedom';
-  const [isToggled, setIsToggled] = useState(false);
 
   return (
     <div>
       <Header />
-      <ButtonToggle
-        isToggled={isToggled}
-        onToggle={() => setIsToggled(!isToggled)}
-      />
+      <ToggleButton />
       <h1>Test Swiper</h1>
       <AllSwiper></AllSwiper>
       <h2>Image 컴포넌트 테스트</h2>
@@ -37,6 +35,7 @@ function App() {
       <DesignParagraph>{travelParagraph}</DesignParagraph>
       <DeleteButton>Delete</DeleteButton>
       <CategoryTitle title="카테고리 타이틀 입력하는 곳" />
+      <ImageUploadInput />
       <Footer />
       <LikeButton />
       <SeeMoreButton />
