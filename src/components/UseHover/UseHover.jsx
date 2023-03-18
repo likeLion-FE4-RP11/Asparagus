@@ -1,18 +1,22 @@
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState, useEffect, Children } from 'react';
 import { ImageContainer } from '@/components/index';
 import styled from 'styled-components/macro';
 import { motion } from 'framer-motion';
 
-export function UseHover(props) {
+export function UseHover({ width, height, description, ...props }) {
   return (
-    <HoverContainer>
+    <HoverContainer width={width} height={height}>
       <motion.div
+        variants={Variants}
+        initial="begin"
+        whileHover="hovering"
+        transition
         style={{
-          width: 300,
-          height: 300,
+          width: '100%',
+          height: '100%',
           margin: 0,
           background: '#666',
-          borderRadius: 5,
+          borderRadius: 20,
           position: 'absolute',
           display: 'flex',
           justifyContent: 'center',
@@ -20,18 +24,38 @@ export function UseHover(props) {
         }}
         {...props}
       >
-        <HoverScript>아래에 글자가 나오나요?</HoverScript>
+        <HoverScript>{description}</HoverScript>
       </motion.div>
-      <ImageContainer />
+      <ImageContainer width={width} height={height} />
     </HoverContainer>
   );
 }
 
+const HoverContainer = styled.div`
+  position: relative;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  border-radius: 20px;
+`;
+
 const HoverScript = styled.p`
-  font-size: 100px;
+  font-size: 25px;
   font-weight: 700;
 `;
 
-const HoverContainer = styled.div`
-  position: relative;
-`;
+// variants 적용
+export const Variants = {
+  begin: {
+    opacity: 0,
+  },
+  hovering: {
+    width: '100%',
+    opacity: 0.8,
+  },
+};
+
+UseHover.defaultProps = {
+  width: '100px',
+  height: '100px',
+  description: '이곳은 설명부분 입니다.',
+};

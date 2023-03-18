@@ -12,13 +12,13 @@ import {
   CategoryTitle,
   Header,
   UseHover,
+  Variants,
 } from '@/components/index';
 import LikeButton from '@/components/LikeButton/LikeButton';
 
 function App() {
   const travelParagraph =
     '#Snapshot #Golden Gate Bridge | #phtographer #America #i want freedom';
-
   return (
     <div>
       <Header />
@@ -36,9 +36,9 @@ function App() {
       <Footer />
       <LikeButton />
       <UseHover
-        initial={{ width: '0%', opacity: 0 }}
-        whileHover={{ width: '100%', opacity: 0.8 }}
-        transition={{ type: 'spring', bounce: 0.2 }}
+        width="400px"
+        height="400px"
+        description="와 만들었다!!!!!!!!!!!!!!!!! HOVER어어어어어어어엉😊😊😊"
       />
     </div>
   );
