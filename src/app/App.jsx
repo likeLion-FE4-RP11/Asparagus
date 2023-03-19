@@ -14,6 +14,7 @@ import {
   SeeMoreButton,
   LikeButton,
   ImageUploadInput,
+  Accordion,
 } from '@/components/index';
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
       <Footer />
       <LikeButton />
       <SeeMoreButton />
+      <Accordion />
     </div>
   );
 }
