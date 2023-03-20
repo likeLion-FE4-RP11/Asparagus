@@ -2,11 +2,10 @@ import { getColor } from '@/theme/utils';
 import ImageLockIcon from '@/assets/lock-icon.svg';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import * as S from './Notification.styled';
-// import { createPortal } from 'react-dom';
 
-// 포탈 생성시 notification이 안떠서 임시중단
-// const notificationContainer = document.getElementById('notificationContainer');
+const notificationContainer = document.getElementById('notificationContainer');
 
 export function Notification() {
   // 모달창 상태 만들기
@@ -14,10 +13,8 @@ export function Notification() {
   // Ref 객체 생성
   const outside = useRef();
 
-  return (
-    <div>
-      {/* 접근하고 싶은 태그에 ref속성 주기 */}
-      {modal && (
+  return modal
+    ? createPortal(
         <S.NotificationWrap
           ref={outside}
           onClick={(e) => {
@@ -44,7 +41,7 @@ export function Notification() {
               <S.AnimateBox>
                 <S.NotificationLogo src={ImageLockIcon} alt="비공개잠금화면" />
                 <S.NotificationTitle color={getColor('content')}>
-                  It's private now
+                  It&apos;s private now
                 </S.NotificationTitle>
                 <S.NotificationContent color={getColor('content')}>
                   Press the toggle button<br></br>again to make it public
@@ -52,8 +49,8 @@ export function Notification() {
               </S.AnimateBox>
             </motion.div>
           </AnimatePresence>
-        </S.NotificationWrap>
-      )}
-    </div>
-  );
+        </S.NotificationWrap>,
+        notificationContainer
+      )
+    : null;
 }

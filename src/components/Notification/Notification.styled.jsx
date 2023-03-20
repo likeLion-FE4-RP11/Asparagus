@@ -5,6 +5,7 @@ export const NotificationWrap = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
+  top: 50%;
   z-index: 10000;
   width: 100%;
 `;
@@ -20,6 +21,7 @@ export const AnimateBox = styled.div`
   border-radius: 50px;
   backdrop-filter: blur(5px);
   box-shadow: 1px 10px 10px -4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 `;
 
 export const NotificationLogo = styled.img`
