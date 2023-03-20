@@ -18,4 +18,6 @@ export * from './Input/ImageUploadInput';
 export * from './Layout/Layout';
 export * from './Container/Container';
 export * from './Header/Header';
+export * from './UploadPage/ImageDescription';
 export * from './UseHover/UseHover';
+
