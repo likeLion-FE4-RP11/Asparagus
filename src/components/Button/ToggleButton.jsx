@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { getColor } from '@/theme/utils';
+import { Notification } from '../Notification/Notification';
 
 const Toggle = styled.div`
   width: 156px;
@@ -39,6 +40,7 @@ export function ToggleButton() {
   return (
     <div>
       <Button isOn={isToggled} handle={handleToggle} />
+      {isToggled ? <Notification /> : ''}
     </div>
   );
 }
