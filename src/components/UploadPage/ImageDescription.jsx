@@ -1,5 +1,5 @@
 import { A11yHidden } from '@/components';
-import { useEffect, useId, useRef } from 'react';
+import { useId, useRef } from 'react';
 import styled from 'styled-components/macro';
 import { getColor } from '@/theme/utils';
 
@@ -15,11 +15,6 @@ const TextArea = styled.textarea`
     color: #333333;
   }
 `;
-
-// const TextInput = styled.TextInput.attr({
-//   placeholderTextColor: 'red',
-//   textarea::
-// });
 
 export function DescriptionInput() {
   const id = useId();
@@ -38,7 +33,7 @@ export function DescriptionInput() {
   return (
     <section>
       <A11yHidden as="label" htmlFor={id}>
-        이미지 설명란
+        이미지 설명 입력란
       </A11yHidden>
       <TextArea
         placeholder="please write image description"
@@ -48,6 +43,7 @@ export function DescriptionInput() {
         onChange={handleInputChange}
         bgColor={getColor('gray/50')}
       />
+      {/* button 태그 추후 props로 받아와 onChange 함수 넣을 예정 */}
       <button onClick={submit}>전송</button>
     </section>
   );
