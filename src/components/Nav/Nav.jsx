@@ -1,5 +1,6 @@
 import Styles from './Nav.module.css';
 import { A11yHidden } from '@/components/index';
+import { NavLink } from 'react-router-dom';
 
 export function Nav() {
   return (
@@ -7,13 +8,13 @@ export function Nav() {
       <A11yHidden as="h2">메인 메뉴</A11yHidden>
       <ul className={Styles.NavList}>
         <li>
-          <a href="/">Upload</a>
+          <NavLink to="/upload">Upload</NavLink>
         </li>
         <li>
-          <a href="/">Log In</a>
+          <NavLink to="/signin">Log In</NavLink>
         </li>
         <li>
-          <a href="/">Sign Up</a>
+          <NavLink to="/signup">Sign Up</NavLink>
         </li>
       </ul>
     </nav>

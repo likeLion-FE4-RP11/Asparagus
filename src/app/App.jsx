@@ -1,46 +1,40 @@
-import { useState } from 'react';
-import {
-  Footer,
-  Header,
-  AllSwiper,
-  ToggleButton,
-  ImageContainer,
-  BaseImage,
-  TopButton,
-  TopButtonTest,
-  DesignParagraph,
-  DeleteButton,
-  CategoryTitle,
-  SeeMoreButton,
-  LikeButton,
-  ImageUploadInput,
-  Accordion,
-} from '@/components/index';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BaseLayout, Nav } from '@/components';
+import { getPathFromBaseUrl } from '@/utils';
+import styled from 'styled-components';
+
+
+/* Pages -------------------------------------------------------------------- */
+import HomePage from '@/pages/Home/HomePage';
+import SignInPage from '@/pages/SignIn/SignInPage';
+import SignUpPage from '@/pages/SignUp/SignUpPage';
+import CategoriesPage from '@/pages/Categories/CategoriesPage';
+import UploadPage from '@/pages/UploadPage/UploadPage';
+import NotFoundPage from '@/pages/NotFound/NotFoundPage';
+
+const AppStyle = styled.div`
+  display: block;
+`;
 
 function App() {
-  const travelParagraph =
-    '#Snapshot #Golden Gate Bridge | #phtographer #America #i want freedom';
-
   return (
-    <div>
-      <Header />
-      <ToggleButton />
-      <h1>Test Swiper</h1>
-      <AllSwiper></AllSwiper>
-      <h2>Image 컴포넌트 테스트</h2>
-      <BaseImage width="430px" height="633px" />
-      <ImageContainer width="430px" height="633px" />
-      <TopButtonTest />
-      <TopButton />
-      <DesignParagraph>{travelParagraph}</DesignParagraph>
-      <DeleteButton>Delete</DeleteButton>
-      <CategoryTitle title="카테고리 타이틀 입력하는 곳" />
-      <ImageUploadInput />
-      <Footer />
-      <LikeButton />
-      <SeeMoreButton />
-      <Accordion />
-    </div>
+    <Router>
+      <AppStyle>
+        {/* <Nav>
+          <Link to={getPathFromBaseUrl()}>홈페이지</Link>
+        </Nav> */}
+        <BaseLayout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/signin" element={<SignInPage />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/upload" element={<UploadPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </BaseLayout>
+      </AppStyle>
+    </Router>
   );
 }
 
