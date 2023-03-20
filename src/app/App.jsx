@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { BaseLayout, Nav } from '@/components';
 import { getPathFromBaseUrl } from '@/utils';
@@ -36,7 +35,6 @@ function App() {
         </BaseLayout>
       </AppStyle>
     </Router>
-
   );
 }
 
