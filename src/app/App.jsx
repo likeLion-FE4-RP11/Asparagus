@@ -38,7 +38,7 @@ function App() {
       <UseHover
         width="400px"
         height="400px"
-        description="와 만들었다!!!!!!!!!!!!!!!!! HOVER어어어어어어어엉😊😊😊"
+        description="이미지 호버시 script를 작성해주세요."
       />
     </div>
   );

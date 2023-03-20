@@ -1,7 +1,7 @@
-import { useCallback, useState, useEffect, Children } from 'react';
 import { ImageContainer } from '@/components/index';
 import styled from 'styled-components/macro';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 export function UseHover({ width, height, description, ...props }) {
   return (
@@ -36,6 +36,7 @@ const HoverContainer = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: 20px;
+  cursor: pointer;
 `;
 
 const HoverScript = styled.p`
@@ -58,4 +59,10 @@ UseHover.defaultProps = {
   width: '100px',
   height: '100px',
   description: '이곳은 설명부분 입니다.',
+};
+
+UseHover.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+  description: PropTypes.string,
 };
