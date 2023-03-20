@@ -1,10 +1,10 @@
 import topButtonIcon from '@/assets/topbutton-icon.svg';
 import { getColor } from '@/theme/utils';
-import { useLayoutEffect, useEffect, useState, useRef } from 'react';
-import gsap from 'gsap';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components/macro';
 
-const Button = styled.button`
+const Button = styled(motion.button)`
   width: 111px;
   height: 111px;
   display: flex;
@@ -26,7 +26,6 @@ const Button = styled.button`
 
 export function TopButton() {
   const [showButton, setShowButton] = useState(false);
-  const topButton = useRef();
 
   useEffect(() => {
     const handleTopButton = () => {
@@ -41,16 +40,6 @@ export function TopButton() {
     return () => {
       window.removeEventListener('scroll', handleTopButton);
     };
-  }, []);
-
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      if (showButton) {
-        gsap.from(topButton.current, { y: 50, opacity: 0, duration: 0.5 });
-      }
-    }, topButton);
-
-    return () => ctx.revert(); // cleanup
   }, [showButton]);
 
   const scrollToTop = () => {
@@ -62,18 +51,20 @@ export function TopButton() {
   };
 
   return (
-    <>
+    <AnimatePresence>
       {showButton && (
         <Button
-          ref={topButton}
           type="button"
           bgColor={getColor('secondary')}
           onClick={scrollToTop}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
           <img src={topButtonIcon} alt="페이지 상단으로 이동" />
           Top
         </Button>
       )}
-    </>
+    </AnimatePresence>
   );
 }
