@@ -1,9 +1,8 @@
-import React, { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import * as S from './Accordion.styled';
 import ArrowDown from '@/assets/arrow-down.svg';
 import ArrowUp from '@/assets/arrow-up.svg';
 import '@/styles/normarlize.css';
-import '@/styles/reset.css';
 
 export function Accordion() {
   const parentRef = useRef(null);
@@ -40,7 +39,7 @@ export function Accordion() {
       </S.Header>
       <S.ContentsWrapper ref={parentRef}>
         <S.Contents ref={childRef}>
-          <ul>
+        <ul>
             <li>Daily</li>
             <li>Travel</li>
             <li>Food</li>
@@ -53,5 +52,8 @@ export function Accordion() {
         </S.Contents>
       </S.ContentsWrapper>
     </S.Container>
+
+
+    
   );
 }

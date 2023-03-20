@@ -1,6 +1,6 @@
 import styled from "styled-components/macro";
 
-export const Container = styled.div`
+export const Container = styled.section`
 background: flex;
 position: relative;
 flex-direction: column;
@@ -10,7 +10,7 @@ border: 1px solid silver;
 width: 486.93px;
 `;
 
-export const Header = styled.div`
+export const Header = styled.section`
 display: flex;
 align-items: center;
 height: 106.24px;
@@ -19,29 +19,24 @@ font-size: 35.41px;
 font-weight: 600;
 `;
 
-export const Button = styled.div`
-/* top: 8px;
-right: 8px;
-font-size: 14px;
-position: absolute; */
-flex-shrink: 0;
-width: 1.25rem;
-height: 1.25rem;
-margin-left: auto;
-content: '';
-background-repeat: no-repeat;
-background-size: 1.25rem;
-transition: transform 0.2s ease-in-out;
+export const Button = styled.button`
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 35px;
 `
 
-export const ContentsWrapper = styled.div`
+export const ContentsWrapper = styled.section`
   height: 0;
   width: 100%;
   overflow: hidden;
   transition: height 0.35s ease;
 `;
 
-export const Contents = styled.div`
+export const Contents = styled.section`
   font-size: 35.41px;
   padding: 4px 8px;
 
@@ -61,7 +56,6 @@ li {
   height: 50px;
   padding-left: 10px;
   list-style: none;
-  /* border-bottom: 1px solid #999999; */
   background-color: #ffffff;
   margin: 26.56px 0;
   position: relative;
