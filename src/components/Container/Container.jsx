@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const config = {
   minWidth: '320px',
-  maxWidth: '1560px', // 우리 시안 양쪽 여백이 180px라서 계산해서 다시 넣었습니다.
+  maxWidth: '1560px',
 };
 
 export const Container = styled.div`
