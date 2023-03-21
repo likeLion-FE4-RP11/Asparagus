@@ -16,17 +16,17 @@ export default function SignInPage() {
       <FormInput
         name="email"
         type="emaail"
-        label="이메일"
+        label="Email"
         placeholder="Enter your email"
       />
       <FormInput
         name="password"
         type="password"
-        label="비밀번호"
+        label="Password"
         placeholder="Enter your password"
       />
 
-      <LoginButton type="submit">로그인버튼</LoginButton>
+      <LoginButton type="submit">Log In</LoginButton>
     </form>
   );
 }

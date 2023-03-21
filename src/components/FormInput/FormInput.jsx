@@ -6,21 +6,6 @@ import * as S from './FormInput.styled';
 export function FormInput({ label, type, invisibleLabel, ...restProps }) {
   const id = useId();
 
-  // const inputRef = useRef(null);
-
-  // useEffect(() => {
-  //   const input = inputRef.current;
-  //   const component = input.parentElement;
-
-  //   input.addEventListener('blur', (e) => {
-  //     if (e.target.value.length > 0) {
-  //       component.classList.add('inputed');
-  //     } else {
-  //       component.classList.remove('inputed');
-  //     }
-  //   });
-  // }, []);
-
   return (
     <S.FormInput>
       {renderLabel(id, label, invisibleLabel)}
