@@ -7,17 +7,22 @@ export default function SignUpPage() {
 
   return (
     <S.SignUpContainer>
-      <S.SingUpTitle>Create an acount</S.SingUpTitle>
-      <S.FormContainer>
-        <FormInput label="Name" name="이름" />
-        <FormInput label="Email" name="이메일" />
-        <FormInput label="Password" name="비밀번호" />
-        <FormInput label="Password Check" name="비밀번호 확인" />
-        <S.FormCheckBox>체크박스 들어갈 자리</S.FormCheckBox>
-        <S.SignUpButton>Sign me up!</S.SignUpButton>
-      </S.FormContainer>
+      <S.SignUpContent>
+        <S.FormContainer>
+          <S.SingUpTitle>Create an acount</S.SingUpTitle>
+          <FormInput label="Name" name="이름" />
+          <FormInput label="Email" name="이메일" />
+          <FormInput label="Password" name="비밀번호" />
+          <FormInput label="Password Check" name="비밀번호 확인" />
+          <S.FormCheckBox>
+            I agree to the Terms of Service and Privacy Notice
+          </S.FormCheckBox>
+          <S.SignUpButton>Sign me up!</S.SignUpButton>
+        </S.FormContainer>
+      </S.SignUpContent>
       <S.HalfImageContainer>
-        <ImageContainer />
+        <S.LogoImage>I's gallery</S.LogoImage>
+        <ImageContainer width="100%" height="100%" />
       </S.HalfImageContainer>
     </S.SignUpContainer>
   );

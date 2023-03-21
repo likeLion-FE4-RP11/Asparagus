@@ -9,7 +9,6 @@ export function FormInput({ type, label }) {
   useEffect(() => {
     const input = inputRef.current;
     const component = input.parentElement;
-    console.log(component);
     input.addEventListener('blur', (e) => {
       if (e.target.value.length > 0) {
         component.classList.add('inputed');
