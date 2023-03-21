@@ -20,4 +20,4 @@ export * from './Layout/Layout';
 export * from './Container/Container';
 export * from './UploadPage/ImageDescription';
 export * from './UseHover/UseHover';
-export * from './FormInput/FormInput';
+export * from './SignUpFormInput/SignUpFormInput';

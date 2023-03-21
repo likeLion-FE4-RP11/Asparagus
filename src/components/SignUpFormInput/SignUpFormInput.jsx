@@ -1,6 +1,6 @@
 import { useId, useRef, useEffect } from 'react';
 import { bool, string } from 'prop-types';
-import * as S from './FormInput.styled';
+import * as S from './SignUpFormInput.styled';
 
 export function FormInput({ type, label }) {
   const id = useId();
