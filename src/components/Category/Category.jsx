@@ -22,7 +22,6 @@ const ButtonContainer = styled.div`
 const ButtonContents = styled.button `
   weight: 367.39px;
   height: 510.51px;
-  /* border: none; */
   background-color: #FFFFFF;
   cursor: pointer;
   padding: 17.34px;
@@ -45,7 +44,6 @@ const ButtonContents = styled.button `
 
 
 export function Category() {
-  // const categories = ['Daily', 'Travel', 'Food', 'Hobby'];
   const handleSelect = (e) => {
       console.log(e.target.innerText);
   };
@@ -67,15 +65,6 @@ export function Category() {
   );
 }
 
-  // const renderCategory = (categories) => {
-  //   return (
-  //     <ul>
-  //       {categories.map((category, index) => (
-  //         <li key={index}>{category}</li>
-  //       ))}
-  //     </ul>
-  //   );
-  // };
 
 
 
