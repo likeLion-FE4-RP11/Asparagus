@@ -1,22 +1,31 @@
 import { useEffect, useId, useRef } from 'react';
-import { string } from 'prop-types';
+import { bool, string } from 'prop-types';
 import { A11yHidden } from '@/components/';
+import * as S from './FormInput.styled';
 
 export function FormInput({ label, type, invisibleLabel, ...restProps }) {
   const id = useId();
 
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    const input = inputRef.current;
-    // const component = input.parentElement;
-  });
+  // useEffect(() => {
+  //   const input = inputRef.current;
+  //   const component = input.parentElement;
+
+  //   input.addEventListener('blur', (e) => {
+  //     if (e.target.value.length > 0) {
+  //       component.classList.add('inputed');
+  //     } else {
+  //       component.classList.remove('inputed');
+  //     }
+  //   });
+  // }, []);
 
   return (
-    <div>
+    <S.FormInput>
       {renderLabel(id, label, invisibleLabel)}
       <input type={type} id={id} {...restProps} />
-    </div>
+    </S.FormInput>
   );
 }
 
@@ -28,11 +37,14 @@ FormInput.defaultProps = {
 FormInput.propTypes = {
   type: string,
   label: string.isRequired, //props가 제공되지 않았을 때 경고가 보이도록 하는것
+  invisibleLabel: bool,
 };
 
 function renderLabel(id, label, invisibleLabel) {
   return invisibleLabel ? (
-    <A11yHidden as="label" htmlFor={id}></A11yHidden>
+    <A11yHidden as="label" htmlFor={id} className="label">
+      {label}
+    </A11yHidden>
   ) : (
     <label htmlFor={id}>{label}</label>
   );
