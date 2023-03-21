@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro';
 import { getColor } from '@/theme/utils';
-import { useDeleteFile } from '@/firebase/storage/useDeleteFile';
+// import { useDeleteFile } from '@/firebase/storage/useDeleteFile';
+import PropTypes from 'prop-types';
 
 const Button = styled.button`
   width: 214px;
@@ -20,21 +21,25 @@ const Button = styled.button`
   }
 `;
 
-export function DeleteButton({ ...restProps }) {
-  const { deleteFile } = useDeleteFile();
+export function DeleteButton({ onClick, ...restProps }) {
+  // const { deleteFile } = useDeleteFile();
 
-  const HandleDeleteFile = () => {
-    deleteFile('sampleImage');
-  };
+  // const HandleDeleteFile = () => {
+  //   deleteFile('sampleImage');
+  // };
 
   return (
     <Button
       type="button"
       bgColor={getColor('delete')}
-      onClick={HandleDeleteFile}
+      onClick={onClick}
       {...restProps}
     >
       Delete
     </Button>
   );
 }
+
+DeleteButton.propTypes = {
+  onClick: PropTypes.func,
+};

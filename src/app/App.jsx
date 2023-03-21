@@ -24,12 +24,13 @@ function App() {
         </Nav> */}
         <BaseLayout>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<CategoriesPage />} />
+            {/* <Route path="/" element={<HomePage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/signin" element={<SignInPage />} />
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/upload" element={<UploadPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<NotFoundPage />} /> */}
           </Routes>
         </BaseLayout>
       </AppStyle>
