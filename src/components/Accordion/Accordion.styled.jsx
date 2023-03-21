@@ -73,4 +73,9 @@ export const Contents = styled.section`
     top: 66.56px;
     left: 0;
   }
+
+  li:hover {
+    height: 100%;
+    background-color: ${(props) => props.bgColor};
+  }
 `;
