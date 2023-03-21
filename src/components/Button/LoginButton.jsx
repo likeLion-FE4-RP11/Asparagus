@@ -12,6 +12,9 @@ const ButtonStyle = styled.button`
   margin-top: 10px;
   color: #000
   background-color: ${(props) => props.bgColor};
+  &:disabled{
+    cursor: not-allowed;
+  }
 `;
 
 export function LoginButton({ disabled, children, ...restProps }) {
