@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 import { getColor } from '@/theme/utils';
-// import { useDeleteFile } from '@/firebase/storage';
+import { useDeleteFile } from '@/firebase/storage/useDeleteFile';
 
 const Button = styled.button`
   width: 214px;
