@@ -1,6 +1,7 @@
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { Link } from 'react-router-dom';
 import { FormInput } from '@/components';
+import { LoginButton } from '@/components';
 
 const initialFormState = {
   email: '',
@@ -10,7 +11,7 @@ const initialFormState = {
 export default function SignInPage() {
   useDocumentTitle('SignInPage');
   return (
-    <div>
+    <form>
       <h2>로그인 페이지</h2>
       <FormInput
         name="email"
@@ -24,6 +25,8 @@ export default function SignInPage() {
         label="비밀번호"
         placeholder="Enter your password"
       />
-    </div>
+
+      <LoginButton type="submit">로그인버튼</LoginButton>
+    </form>
   );
 }

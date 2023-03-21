@@ -1,4 +1,4 @@
-import { useEffect, useId, useRef } from 'react';
+import { useId, useRef } from 'react';
 import { bool, string } from 'prop-types';
 import { A11yHidden } from '@/components/';
 import * as S from './FormInput.styled';
@@ -6,7 +6,7 @@ import * as S from './FormInput.styled';
 export function FormInput({ label, type, invisibleLabel, ...restProps }) {
   const id = useId();
 
-  const inputRef = useRef(null);
+  // const inputRef = useRef(null);
 
   // useEffect(() => {
   //   const input = inputRef.current;
