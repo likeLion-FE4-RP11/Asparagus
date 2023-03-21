@@ -2,7 +2,6 @@ import { useRef, useState, useCallback } from 'react';
 import * as S from './Accordion.styled';
 import ArrowDown from '@/assets/arrow-down.svg';
 import ArrowUp from '@/assets/arrow-up.svg';
-import '@/styles/normarlize.css';
 
 export function Accordion() {
   const parentRef = useRef(null);
