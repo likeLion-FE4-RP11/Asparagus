@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const config = {
   minWidth: '320px',
-  maxWidth: '1280px',
+  maxWidth: '1560px',
 };
 
 export const Container = styled.div`
