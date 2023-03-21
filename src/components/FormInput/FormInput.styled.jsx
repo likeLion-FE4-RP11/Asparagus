@@ -1,43 +1,17 @@
 import styled from 'styled-components';
 
-export const FormInput = styled.div`
-  position: relative;
+export const FormInput = styled.span`
   display: flex;
-  gap: 4px;
-  flex-flow: row nowrap;
-  margin-bottom: 4px;
-
-  &Inline {
-    display: inline-flex;
-  }
-  &:focus-within,
-  &.inputed {
-    .label {
-      translate: -10px -100%;
-      scale: 0.64;
-    }
-  }
+  flex-direction: column;
+  width: 521px;
 `;
 
-export const Styledlabel = styled.label`
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  translate: 0 -40%;
-  transition: all 0.2s ease-out;
-  color: $label-color;
-  font-size: 14px;
+export const InputStyle = styled.input`
+  padding: 16px 22px;
+  width: 100%;
+  margin-bottom: 32px;
 `;
 
-const Styledinput = styled.input`
-  border: 1px solid $border-color;
-  padding: 1.6em 1em 1em;
-  width: clamp(320px, 20vw, 500px);
-  transition: all 0.2s ease-out;
-  border-radius: 4px;
-  font-size: 14px;
-  color: $input-color;
-  &:focus {
-    outline: 4px solid rgba($border-color, 0.4);
-  }
+export const labelStyle = styled.label`
+  margin-bottom: 15px;
 `;

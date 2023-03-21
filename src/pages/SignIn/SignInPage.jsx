@@ -12,7 +12,7 @@ export default function SignInPage() {
   useDocumentTitle('SignInPage');
   return (
     <form>
-      <h2>로그인 페이지</h2>
+      <h1>Let’s get you started</h1>
       <FormInput
         name="email"
         type="emaail"

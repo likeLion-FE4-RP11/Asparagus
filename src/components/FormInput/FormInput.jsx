@@ -24,7 +24,7 @@ export function FormInput({ label, type, invisibleLabel, ...restProps }) {
   return (
     <S.FormInput>
       {renderLabel(id, label, invisibleLabel)}
-      <input type={type} id={id} {...restProps} />
+      <S.InputStyle type={type} id={id} {...restProps} />
     </S.FormInput>
   );
 }
@@ -46,6 +46,6 @@ function renderLabel(id, label, invisibleLabel) {
       {label}
     </A11yHidden>
   ) : (
-    <label htmlFor={id}>{label}</label>
+    <S.labelStyle htmlFor={id}>{label}</S.labelStyle>
   );
 }
