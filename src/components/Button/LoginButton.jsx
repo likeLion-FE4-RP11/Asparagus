@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { getColor } from '@/theme/utils';
 
 const ButtonStyle = styled.button`
-  width: 541px;
+  width: 521px;
   height: 65px;
   user-select: none;
   cursor: pointer;
   border: 0px;
   border-radius: 11px;
-
+  margin-top: 10px;
   color: #000
   background-color: ${(props) => props.bgColor};
 `;
