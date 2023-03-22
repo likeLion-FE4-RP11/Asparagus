@@ -10,7 +10,7 @@ import { getColor, getFontSize } from '@/theme/utils';
 import { useRef, useState, useEffect } from 'react';
 import * as S from './UploadPage.styled';
 import { useUploadFiles } from '@/firebase/storage';
-import { getCategoryId } from '@/utils';
+import { getCategoryId, addImageItem } from '@/utils';
 
 export default function UploadPage() {
   useDocumentTitle('UploadPage');
@@ -59,6 +59,8 @@ export default function UploadPage() {
         imageDataRef.current['description'] = textInputRef.current.value;
         imageDataRef.current['name'] = file.name;
         imageDataRef.current['user_uid'] = user_uid;
+        // console.log('업로드 return', await addImageItem(imageDataRef.current));
+        // console.log('업로드 완료!!!!!!!');
       }
     }
   };
