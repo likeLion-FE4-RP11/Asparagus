@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
-export const FormInput = styled.span`
+export const FormInput = styled.div`
   display: flex;
   flex-direction: column;
   width: 521px;
@@ -14,7 +14,7 @@ export const InputStyle = styled.input`
   border-radius: 11px;
 `;
 
-export const labelStyle = styled.label`
+export const LabelStyle = styled.label`
   color: #4e4c4c;
   font-weight: 400;
   font-size: 21px;

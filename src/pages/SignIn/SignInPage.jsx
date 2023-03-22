@@ -12,10 +12,10 @@ export default function SignInPage() {
   useDocumentTitle('SignInPage');
   return (
     <form>
-      <h1>Let’s get you started</h1>
+      <h2>Let’s get you started</h2>
       <FormInput
         name="email"
-        type="emaail"
+        type="email"
         label="Email"
         placeholder="Enter your email"
       />

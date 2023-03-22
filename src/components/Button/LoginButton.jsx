@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { getColor } from '@/theme/utils';
 
 const ButtonStyle = styled.button`
@@ -29,9 +29,6 @@ export function LoginButton({ disabled, children, ...restProps }) {
     </ButtonStyle>
   );
 }
-
-// function getClassName(disabled) {
-//   let buttonStyle = {};
 
 /* Props -------------------------------------------------------------------- */
 
