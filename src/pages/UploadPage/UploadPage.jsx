@@ -10,26 +10,7 @@ import { getColor, getFontSize } from '@/theme/utils';
 import { useRef, useState, useEffect } from 'react';
 import * as S from './UploadPage.styled';
 import { useUploadFiles } from '@/firebase/storage';
-
-const initialFormState = {
-  category_name: '',
-  description: '',
-};
-
-// imageData
-const initialImageData = {
-  catagory_uid: '',
-  description: '',
-  name: '',
-  url: '',
-  user_uid: '',
-};
-
-const deleteButtonStyle = {
-  position: 'absolute',
-  right: '0',
-  marginTop: '2.9375rem',
-};
+import { getCategoryId } from '@/utils';
 
 export default function UploadPage() {
   useDocumentTitle('UploadPage');
@@ -59,7 +40,7 @@ export default function UploadPage() {
     }
   }, [isLoading, error, urlList]);
 
-  const handelSubmit = (e) => {
+  const handelSubmit = async (e) => {
     e.preventDefault();
     formStateRef.current['description'] = textInputRef.current.value;
     if (
@@ -68,8 +49,18 @@ export default function UploadPage() {
       file
     ) {
       uploadFiles();
+      const category_uid = await getCategoryId(
+        user_uid,
+        formStateRef.current['category_name']
+      );
+      if (category_uid) console.log(category_uid);
+      // imageDataRef.current['name'] = file.name;
+      // imageDataRef.current['description'] = textInputRef.current.value;
+      // imageDataRef.current['user_uid'] = user_uid;
     }
   };
+
+  console.log(imageDataRef);
 
   const handleDeleteImage = () => {
     setFile(null);
@@ -134,4 +125,24 @@ export default function UploadPage() {
   );
 }
 
-// 데이터 가공하는 함수 만들기
+const initialFormState = {
+  category_name: '',
+  description: '',
+};
+
+// imageData
+const initialImageData = {
+  catagory_uid: '',
+  description: '',
+  name: '',
+  url: '',
+  user_uid: '',
+};
+
+const deleteButtonStyle = {
+  position: 'absolute',
+  right: '0',
+  marginTop: '2.9375rem',
+};
+
+const user_uid = 'EHSFq6SN4UfSAyGTw6UH';
