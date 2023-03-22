@@ -6,21 +6,37 @@ import {
   DescriptionInput,
   SeeMoreButton,
 } from '@/components';
-
 import { getColor, getFontSize } from '@/theme/utils';
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useEffect } from 'react';
 import * as S from './UploadPage.styled';
 import { useUploadFiles } from '@/firebase/storage';
+
+const initialFormState = {
+  category_name: '',
+  description: '',
+};
+
+// imageData
+const initialImageData = {
+  catagory_uid: '',
+  description: '',
+  name: '',
+  url: '',
+  user_uid: '',
+};
 
 export default function UploadPage() {
   useDocumentTitle('UploadPage');
 
   const { fileInputRef, uploadFiles } = useUploadFiles();
+  const formStateRef = useRef(initialFormState);
   const textInputRef = useRef(null);
 
-  const handelUpload = useCallback(() => {
-    console.log('업로드 버튼 클릭');
-  }, []);
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    formStateRef.current['description'] = textInputRef.current.value;
+    console.log(formStateRef.current);
+  };
 
   const handleDeleteImage = () => {
     fileInputRef.current.initFilePreview();
@@ -44,7 +60,10 @@ export default function UploadPage() {
         </S.ImageTitle>
         <ImageUploadInput ref={fileInputRef} />
         <DeleteButton style={deleteButtonStyle} onClick={handleDeleteImage} />
-        <Accordion style={{ margin: '2.9375rem 0 6.25rem 0' }} />
+        <Accordion
+          style={{ margin: '2.9375rem 0 6.25rem 0' }}
+          ref={formStateRef}
+        />
       </S.ImageSection>
 
       <S.DescriptionSection>
@@ -59,7 +78,7 @@ export default function UploadPage() {
       </S.DescriptionSection>
 
       <SeeMoreButton
-        onClick={handelUpload}
+        onClick={handelSubmit}
         style={{ marginBottom: '9.9375rem' }}
       >
         upload
@@ -67,3 +86,5 @@ export default function UploadPage() {
     </S.FlexContainer>
   );
 }
+
+// 데이터 가공하는 함수 만들기
