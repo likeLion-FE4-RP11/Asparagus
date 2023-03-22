@@ -5,14 +5,14 @@ import { getColor } from '@/theme/utils';
 
 const TextArea = styled.textarea`
   background-color: ${(props) => props.bgColor};
-  width: 1563px;
+  width: 100%;
   height: 500px;
   font-weight: 400;
   font-size: 43px;
   line-height: 160px;
   padding: 0 0 0 53px;
   &::placeholder {
-    color: #333333;
+    color: ${(props) => props.color};
   }
 `;
 
@@ -31,7 +31,7 @@ export function DescriptionInput() {
   };
 
   return (
-    <section>
+    <section style={{ width: '100%' }}>
       <A11yHidden as="label" htmlFor={id}>
         이미지 설명 입력란
       </A11yHidden>
@@ -42,9 +42,9 @@ export function DescriptionInput() {
         ref={inputRef}
         onChange={handleInputChange}
         bgColor={getColor('gray/50')}
+        color={getColor('gray/150')}
       />
       {/* button 태그 추후 props로 받아와 onChange 함수 넣을 예정 */}
-      <button onClick={submit}>전송</button>
     </section>
   );
 }

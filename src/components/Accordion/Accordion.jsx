@@ -2,8 +2,9 @@ import { useRef, useState, useCallback } from 'react';
 import * as S from './Accordion.styled';
 import ArrowDown from '@/assets/arrow-down.svg';
 import ArrowUp from '@/assets/arrow-up.svg';
+import { getColor } from '@/theme/utils';
 
-export function Accordion() {
+export function Accordion({ ...restProps }) {
   const parentRef = useRef(null);
   const childRef = useRef(null);
   const categories = ['Daily', 'Travel', 'Food', 'Hobby'];
@@ -40,7 +41,7 @@ export function Accordion() {
   };
 
   return (
-    <S.Container>
+    <S.Container {...restProps}>
       <S.Header>
         Category options
         <S.Button type="button" onClick={handleButtonClick}>
@@ -48,7 +49,11 @@ export function Accordion() {
         </S.Button>
       </S.Header>
       <S.ContentsWrapper ref={parentRef}>
-        <S.Contents ref={childRef} onClick={handleSelect}>
+        <S.Contents
+          bgColor={getColor('gray/100')}
+          ref={childRef}
+          onClick={handleSelect}
+        >
           {renderCategory(categories)}
         </S.Contents>
       </S.ContentsWrapper>
