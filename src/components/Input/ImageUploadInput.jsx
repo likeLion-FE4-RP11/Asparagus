@@ -3,37 +3,20 @@ import { useState, useRef, forwardRef, useId } from 'react';
 import ImageUploadIcon from '@/assets/imageUpload-icon.svg';
 import { getColor, getFontSize } from '@/theme/utils';
 import * as S from './ImageUploadInput.styled';
+import PropTypes from 'prop-types';
 
 // upload form에서 fileInputRef를 전달받아서 input에 ref를 할당해야함 (useUploadFile() 사용법)
 export const ImageUploadInput = forwardRef(function UploadInput(
-  _,
+  { file, preview, onFileDrop },
   fileInputRef
 ) {
   const id = useId();
-
-  // 이미지 파일
-  const [file, setFile] = useState(null);
-  // 미리보기 이미지
-  const [preview, setPreview] = useState(null);
-
-  const wrapperRef = useRef(null);
+  const wrapperRef = useRef('');
 
   // DOM에 접근할 때: side effect -> useEffect에서 실행하도록 리팩토링 필요
   const onDragEnter = () => wrapperRef.current.classList.add('dragover');
   const onDragLeave = () => wrapperRef.current.classList.remove('dragover');
   const onDrop = () => wrapperRef.current.classList.remove('dragover');
-
-  const onFileDrop = (e) => {
-    // 파일 확장자 유효성검사 필요함 (png, jpg만 가능하게)
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      // 파일 로드가 완료되었을 때 함수 호출
-      setPreview(reader.result);
-    };
-    setFile(file);
-  };
 
   return (
     <S.UploadSection
@@ -66,3 +49,13 @@ export const ImageUploadInput = forwardRef(function UploadInput(
     </S.UploadSection>
   );
 });
+
+// ImageUploadInput.propTypes = {
+//   deleted: PropTypes.bool,
+// };
+
+ImageUploadInput.propTypes = {
+  file: PropTypes.object,
+  preview: PropTypes.string,
+  onFileDrop: PropTypes.func,
+};

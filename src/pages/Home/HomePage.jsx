@@ -1,6 +1,11 @@
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { CategoryTitle, Category } from '@/components'
+import styled from 'styled-components/macro';
 
 export default function HomePage() {
-  useDocumentTitle('홈페이지');
-  return <div>홈페이지</div>;
+  useDocumentTitle('HomePage');
+  return <div>
+    <CategoryTitle title="C A T E G O R Y" />
+    <Category />
+  </div>;
 }
