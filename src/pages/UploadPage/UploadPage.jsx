@@ -8,7 +8,7 @@ import {
 } from '@/components';
 
 import { getColor, getFontSize } from '@/theme/utils';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef } from 'react';
 import * as S from './UploadPage.styled';
 import { useUploadFiles } from '@/firebase/storage';
 
@@ -16,13 +16,18 @@ export default function UploadPage() {
   useDocumentTitle('UploadPage');
 
   const { fileInputRef, uploadFiles } = useUploadFiles();
+  const textInputRef = useRef(null);
 
   const handelUpload = useCallback(() => {
     console.log('업로드 버튼 클릭');
   }, []);
 
-  const handleDelete = () => {
+  const handleDeleteImage = () => {
     fileInputRef.current.initFilePreview();
+  };
+
+  const handleDeleteText = () => {
+    textInputRef.current.value = '';
   };
 
   const deleteButtonStyle = {
@@ -38,7 +43,7 @@ export default function UploadPage() {
           My own exhibition
         </S.ImageTitle>
         <ImageUploadInput ref={fileInputRef} />
-        <DeleteButton style={deleteButtonStyle} onClick={handleDelete} />
+        <DeleteButton style={deleteButtonStyle} onClick={handleDeleteImage} />
         <Accordion style={{ margin: '2.9375rem 0 6.25rem 0' }} />
       </S.ImageSection>
 
@@ -49,8 +54,8 @@ export default function UploadPage() {
         >
           Enter image description
         </S.DescriptionTitle>
-        <DescriptionInput />
-        <DeleteButton style={deleteButtonStyle} />
+        <DescriptionInput ref={textInputRef} />
+        <DeleteButton style={deleteButtonStyle} onClick={handleDeleteText} />
       </S.DescriptionSection>
 
       <SeeMoreButton
