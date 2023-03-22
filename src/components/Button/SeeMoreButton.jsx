@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { SeeMoreImg } from '@/components/index';
 import styled from 'styled-components/macro';
-import { getColor } from '@/theme/utils';
+import { getColor, getFontSize } from '@/theme/utils';
+import PropTypes from 'prop-types';
 
 const MoreButton = styled.button`
   cursor: pointer;
@@ -14,26 +15,41 @@ const MoreButton = styled.button`
   border-radius: 10px;
   font-weight: 600;
   line-height: 1;
+  font-size: ${(props) => props.fontSize};
+  letter-spacing: 15px;
 `;
 // background: ${({ theme }) => theme.color['white']};  // <- 질문하기
 /* component */
-export function SeeMoreButton() {
+export function SeeMoreButton({ children, onClick, ...restProps }) {
   const [modal, setModal] = useState(false);
 
   const handleSeeMore = () => {
     setModal(!modal);
   };
 
+  if (!onClick) onClick = () => handleSeeMore();
+
   return (
-    <div>
+    <>
       <MoreButton
         type="button"
-        onClick={handleSeeMore}
+        onClick={onClick}
         color={getColor('secondary')}
+        fontSize={getFontSize('4xl')}
+        {...restProps}
       >
-        S E E M O R E
+        {children}
       </MoreButton>
       {modal == true ? <SeeMoreImg /> : null}
-    </div>
+    </>
   );
 }
+
+SeeMoreButton.defaultProps = {
+  children: 'SEEMORE',
+};
+
+SeeMoreButton.propTypes = {
+  children: PropTypes.node,
+  onClick: PropTypes.func,
+};
