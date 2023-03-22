@@ -5,13 +5,12 @@ export const FirstContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1.2rem;
-  padding: 1rem;
-  margin-top: 6rem;
+  margin-top: 8.75rem;
   margin-bottom: 8.75rem;
+
   @media screen and (max-width: 940px) {
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
-  }
 `;
 
 export const SecondContainer = styled.section`
@@ -19,9 +18,9 @@ export const SecondContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1.2rem;
-  padding: 1rem;
   margin-top: 8.75rem;
   margin-bottom: 8.75rem;
+
   @media screen and (max-width: 940px) {
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
@@ -41,8 +40,10 @@ export const BaseText = styled.h1`
   font-size: 3.125rem;
   font-weight: 600;
   left: 170px;
-  bottom: 3px;
+  bottom: 0px;
   color: ${(props) => props.color};
+  @media screen and (max-width: 940px) {
+    bottom: -50px;
 `;
 
 export const ImageLogo = styled.img`

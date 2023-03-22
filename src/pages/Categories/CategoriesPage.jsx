@@ -5,7 +5,6 @@ import {
   Container,
   ToggleButton,
   LikeButton,
-  DeleteButton,
   DesignParagraph,
   ImageContainer,
   UseHover,
@@ -55,7 +54,11 @@ export default function CategoriesPage() {
             value={text}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
-            style={{ position: 'absolute', left: '170px', bottom: '50px' }}
+            style={{
+              position: 'absolute',
+              left: '170px',
+              bottom: '50px',
+            }}
           />
         ) : (
           <S.BaseText color={getColor('white')}>{text}</S.BaseText>
@@ -64,10 +67,10 @@ export default function CategoriesPage() {
       </>
 
       <S.FirstContainer>
-        <UseHover width={'894'} height={'525'} />
-        <UseHover width={'632'} height={'525'} />
-        <UseHover width={'626'} height={'525'} />
-        <UseHover width={'900'} height={'525'} />
+        <UseHover box1 width={'894'} height={'525'} />
+        <UseHover box2 width={'632'} height={'525'} />
+        <UseHover box3 width={'626'} height={'525'} />
+        <UseHover box4 width={'900'} height={'525'} />
       </S.FirstContainer>
       <DesignParagraph>
         #Snapshot #Golden Bridge #Photographer #America #I want freedom

@@ -20,6 +20,8 @@ const LikeButtonArea = styled.button`
   appearance: none;
   background-color: transparent;
   border: none;
+  @media screen and (max-width: 940px) {
+    bottom: -110px;
 `;
 
 export function LikeButton() {
