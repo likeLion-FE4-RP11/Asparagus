@@ -1,4 +1,3 @@
-import {  useRef, useState, useCallback  } from 'react';
 import styled from 'styled-components/macro';
 import FirstMask from '@/assets/FirstMask.svg';
 import SecondMask from '@/assets/SecondMask.svg';
@@ -49,17 +48,17 @@ export function Category() {
   };
   return (
     <ButtonContainer>
-      <ButtonContents type="button" onClick={(e)=>handleSelect(e)}>
-        <img src={FirstMask} />Daily
+      <ButtonContents type="button" onClick={handleSelect}>
+        <img src={FirstMask} alt="FirstMask" />Daily
       </ButtonContents>
-      <ButtonContents type="button" onClick={(e)=>handleSelect(e)}>
-        <img src={SecondMask} />Travel
+      <ButtonContents type="button" onClick={handleSelect}>
+        <img src={SecondMask} alt="SecondMask" />Travel
       </ButtonContents>
-      <ButtonContents type="button" onClick={(e)=>handleSelect(e)}>
-        <img src={ThirdMask} />Food
+      <ButtonContents type="button" onClick={handleSelect}>
+        <img src={ThirdMask} alt="ThirdMask" />Food
       </ButtonContents>
-      <ButtonContents type="button" onClick={(e)=>handleSelect(e)}>
-        <img src={FourthMask} />Hobby
+      <ButtonContents type="button" onClick={handleSelect}>
+        <img src={FourthMask} alt="FourthMask" />Hobby
       </ButtonContents>
     </ButtonContainer>    
   );
