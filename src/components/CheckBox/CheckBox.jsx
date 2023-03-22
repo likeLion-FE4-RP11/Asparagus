@@ -1,19 +1,31 @@
-import { useState } from 'react';
+import { useState, useId } from 'react';
+import * as S from './CheckBox.styled';
 
-export function CheckBox({ children, disabled, checked }) {
-  const [isCheck, SetIsCheck] = useState(false);
+export function CheckBox() {
+  const id = useId();
+  const disabled = false;
+  const [checked, SetChecked] = useState(false);
 
-  const 
+  console.log(checked);
+  function handleCheckbox() {
+    return;
+  }
 
   return (
-    <label htmlFor="/">
+    <div>
+      <label htmlFor={id}>개인정보 동의 체크</label>
       <input
         type="checkbox"
         disabled={disabled}
         checked={checked}
-        onChange={(e) => console.log(e)}
+        id={id}
+        onChange={() => SetChecked(!checked)}
       />
-      {children}
-    </label>
+      {checked ? (
+        <S.SignUpButton>Sign me up!</S.SignUpButton>
+      ) : (
+        <S.SignUpButton>로그인해라 이자식아</S.SignUpButton>
+      )}
+    </div>
   );
 }

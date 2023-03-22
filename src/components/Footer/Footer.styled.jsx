@@ -21,18 +21,15 @@ display: absolute;
 `
 
 export const FirstHeading = styled.div`
-font-family: 'Pretendard';
 font-style: normal;
 font-weight: 700;
 font-size: 50px;
 line-height: 140px;
 display: flex;
 align-items: center;
-color: #4E4C4C;
 `
 
 export const FirstParagraph = styled.p`
-font-family: 'Pretendard';
 font-style: normal;
 font-weight: 400;
 font-size: 21.328px;
@@ -52,19 +49,15 @@ transform:translate(0px,76px);
 display: absolute;
 `
 export const SecondHeading = styled.h2`
-font-family: 'Pretendard';
 font-style: normal;
 font-weight: 700;
 font-size: 37.897px;
 line-height: 140%;
-color: #4E4C4C;
 `
 
 export const SecondParagraph = styled.ul`
-font-family: 'Pretendard';
 font-style: normal;
 font-weight: 400;
 font-size: 21.328px;
 line-height: 160%;
-color: #676464;
 `

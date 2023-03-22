@@ -3,7 +3,6 @@ import { BaseLayout, Nav } from '@/components';
 import { getPathFromBaseUrl } from '@/utils';
 import styled from 'styled-components';
 
-
 /* Pages -------------------------------------------------------------------- */
 import HomePage from '@/pages/Home/HomePage';
 import SignInPage from '@/pages/SignIn/SignInPage';
