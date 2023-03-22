@@ -6,17 +6,17 @@ export function FormInput({ type, label }) {
   const id = useId();
   const inputRef = useRef(null);
 
-  useEffect(() => {
-    const input = inputRef.current;
-    const component = input.parentElement;
-    input.addEventListener('blur', (e) => {
-      if (e.target.value.length > 0) {
-        component.classList.add('inputed');
-      } else {
-        component.classList.remove('inputed');
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   const input = inputRef.current;
+  //   const component = input.parentElement;
+  //   input.addEventListener('blur', (e) => {
+  //     if (e.target.value.length > 0) {
+  //       component.classList.add('inputed');
+  //     } else {
+  //       component.classList.remove('inputed');
+  //     }
+  //   });
+  // }, []);
 
   return (
     <S.FromInputContainer>

@@ -13,12 +13,14 @@ export const FromInputContainer = styled.div`
 
 export const InputLabel = styled.label`
   margin-top: 10px;
-  transition: all 0.2s ease-out;
+  /* transition: all 0.2s ease-out; */
 `;
+
+export const FormImage = styled.img``;
 
 export const FormInputContent = styled.input`
   padding: 1rem;
   border-radius: 10px;
   width: clamp(340px, 40vw, 500px);
-  transition: all 0.2s ease-out;
+  /* transition: all 0.2s ease-out; */
 `;

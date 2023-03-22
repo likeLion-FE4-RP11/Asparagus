@@ -10,10 +10,14 @@ export default function SignUpPage() {
       <S.SignUpContent>
         <S.FormContainer>
           <S.SingUpTitle>Create an acount</S.SingUpTitle>
-          <FormInput label="Name" name="이름" />
-          <FormInput label="Email" name="이메일" />
-          <FormInput label="Password" name="비밀번호" />
-          <FormInput label="Password Check" name="비밀번호 확인" />
+          <FormInput type="text" label="Name" name="이름" />
+          <FormInput type="email" label="Email" name="이메일" />
+          <FormInput type="password" label="Password" name="비밀번호" />
+          <FormInput
+            type="password"
+            label="Password Check"
+            name="비밀번호확인"
+          />
           <S.FormCheckBox>
             I agree to the Terms of Service and Privacy Notice
           </S.FormCheckBox>
@@ -21,8 +25,8 @@ export default function SignUpPage() {
         </S.FormContainer>
       </S.SignUpContent>
       <S.HalfImageContainer>
-        <S.LogoImage>I's gallery</S.LogoImage>
-        <ImageContainer width="100%" height="100%" />
+        <S.ImageLogo>I's gallery</S.ImageLogo>
+        {/* 여기에 img 추가해야함 */}
       </S.HalfImageContainer>
     </S.SignUpContainer>
   );

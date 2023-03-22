@@ -42,11 +42,12 @@ export const FormCheckBox = styled.p`
 `;
 
 export const HalfImageContainer = styled.div`
+  background-color: pink;
   position: relative;
   width: 100%;
 `;
 
-export const LogoImage = styled.span`
+export const ImageLogo = styled.span`
   position: absolute;
   font-size: 50px;
   font-weight: 700;
