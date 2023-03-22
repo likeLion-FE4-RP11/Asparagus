@@ -7,6 +7,7 @@ const ImageContainer = styled.div`
   padding: 20px;
   background-color: ${(props) => props.bgColor};
   text-align: left;
+  z-index: 1;
 `;
 
 export function SeeMoreImg() {
