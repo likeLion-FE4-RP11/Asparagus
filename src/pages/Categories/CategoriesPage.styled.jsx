@@ -26,3 +26,27 @@ export const SecondContainer = styled.section`
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
 `;
+
+export const ImageTitle = styled.h1`
+  position: absolute;
+  font-size: 4.375rem;
+  font-weight: 700;
+  left: 170px;
+  bottom: 80px;
+  color: ${(props) => props.color};
+`;
+
+export const BaseText = styled.h1`
+  position: absolute;
+  font-size: 3.125rem;
+  font-weight: 600;
+  left: 170px;
+  bottom: 3px;
+  color: ${(props) => props.color};
+`;
+
+export const ImageLogo = styled.img`
+  position: absolute;
+  left: 395px;
+  bottom: 85px;
+`;
