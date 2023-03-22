@@ -53,10 +53,13 @@ export default function UploadPage() {
         user_uid,
         formStateRef.current['category_name']
       );
-      if (category_uid) console.log(category_uid);
-      // imageDataRef.current['name'] = file.name;
-      // imageDataRef.current['description'] = textInputRef.current.value;
-      // imageDataRef.current['user_uid'] = user_uid;
+      if (category_uid) {
+        console.log(category_uid);
+        imageDataRef.current['catagory_uid'] = category_uid;
+        imageDataRef.current['description'] = textInputRef.current.value;
+        imageDataRef.current['name'] = file.name;
+        imageDataRef.current['user_uid'] = user_uid;
+      }
     }
   };
 
