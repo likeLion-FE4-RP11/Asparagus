@@ -13,6 +13,7 @@ export const FromInputContainer = styled.div`
 
 export const InputLabel = styled.label`
   margin-top: 10px;
+  font-weight: 250;
   /* transition: all 0.2s ease-out; */
 `;
 

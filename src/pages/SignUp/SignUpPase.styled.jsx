@@ -11,6 +11,7 @@ export const SignUpContent = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   width: 100%;
+  padding: 40px 0;
 `;
 
 export const FormContainer = styled.form``;
@@ -21,6 +22,7 @@ export const SingUpTitle = styled.h2`
   width: 100%;
   font-size: 38px;
   font-weight: 700;
+  margin-bottom: 30px;
 `;
 
 export const SignUpButton = styled.button`
@@ -45,6 +47,13 @@ export const HalfImageContainer = styled.div`
   background-color: pink;
   position: relative;
   width: 100%;
+  overflow: hidden;
+`;
+
+export const SignUpMainImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
 `;
 
 export const ImageLogo = styled.span`
