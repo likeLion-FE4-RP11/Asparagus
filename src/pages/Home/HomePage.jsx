@@ -3,9 +3,9 @@ import { CategoryTitle, Category } from '@/components'
 import styled from 'styled-components/macro';
 
 export default function HomePage() {
-  useDocumentTitle('HomPage');
+  useDocumentTitle('HomePage');
   return <div>
-    <CategoryTitle />
+    <CategoryTitle title="C A T E G O R Y" />
     <Category />
   </div>;
 }

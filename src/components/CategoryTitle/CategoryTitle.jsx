@@ -25,7 +25,7 @@ const CategoryContents = styled.h3`
 export function CategoryTitle({ title }) {
   return (
     <CategoryTitleContainer>
-      <CategoryContents>C A T E G O R Y</CategoryContents>
+      <CategoryContents>{title}</CategoryContents>
     </CategoryTitleContainer>
   );
 }
