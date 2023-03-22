@@ -4,7 +4,7 @@ import HeartImg from '@/assets/Heart.png';
 import EmptyHeartImg from '@/assets/empty-heart.png';
 
 const LikeBtn = styled.span`
-  color : #F9FBFD;
+  color: #f9fbfd;
   font-size: 43px;
   font-style: normal;
 `;
@@ -15,7 +15,7 @@ const LikeButtonArea = styled.button`
   align-items: center;
 `;
 
-export function LikeButton(){
+export function LikeButton() {
   const [heart, setHeart] = useState(false);
   const [count, setCount] = useState(0);
 
@@ -37,8 +37,6 @@ export function LikeButton(){
         <img src={EmptyHeartImg} alt="빈하트" /> // false (빈 하트)
       )}
       <LikeBtn>{count}</LikeBtn>
-
-</LikeButtonArea>
+    </LikeButtonArea>
   );
-};
-
+}
