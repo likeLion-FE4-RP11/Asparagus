@@ -7,7 +7,7 @@ import {
   SeeMoreButton,
 } from '@/components';
 import { getColor, getFontSize } from '@/theme/utils';
-import { useCallback, useRef, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import * as S from './UploadPage.styled';
 import { useUploadFiles } from '@/firebase/storage';
 
@@ -25,31 +25,71 @@ const initialImageData = {
   user_uid: '',
 };
 
+const deleteButtonStyle = {
+  position: 'absolute',
+  right: '0',
+  marginTop: '2.9375rem',
+};
+
 export default function UploadPage() {
   useDocumentTitle('UploadPage');
 
-  const { fileInputRef, uploadFiles } = useUploadFiles();
+  const { fileInputRef, uploadFiles, isLoading, error, urlList } =
+    useUploadFiles({
+      dirName: 'assets/images',
+    });
+
+  const imageDataRef = useRef(initialImageData);
   const formStateRef = useRef(initialFormState);
   const textInputRef = useRef(null);
+
+  // 이미지 파일
+  const [file, setFile] = useState(null);
+  // 미리보기 이미지
+  const [preview, setPreview] = useState(null);
+
+  useEffect(() => {
+    if (urlList) {
+      imageDataRef.current['url'] = urlList[0];
+      console.log(imageDataRef);
+    }
+
+    if (error) {
+      console.log(error);
+    }
+  }, [isLoading, error, urlList]);
 
   const handelSubmit = (e) => {
     e.preventDefault();
     formStateRef.current['description'] = textInputRef.current.value;
-    console.log(formStateRef.current);
+    if (
+      formStateRef.current['category_name'] &&
+      formStateRef.current['description'] &&
+      file
+    ) {
+      uploadFiles();
+    }
   };
 
   const handleDeleteImage = () => {
-    fileInputRef.current.initFilePreview();
+    setFile(null);
+    setPreview(null);
   };
 
   const handleDeleteText = () => {
     textInputRef.current.value = '';
   };
 
-  const deleteButtonStyle = {
-    position: 'absolute',
-    right: '0',
-    marginTop: '2.9375rem',
+  const onFileDrop = (e) => {
+    // 파일 확장자 유효성검사 필요함 (png, jpg만 가능하게)
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      // 파일 로드가 완료되었을 때 함수 호출
+      setPreview(reader.result);
+    };
+    setFile(file);
   };
 
   return (
@@ -58,7 +98,12 @@ export default function UploadPage() {
         <S.ImageTitle color={getColor('content')} fontSize={getFontSize('4xl')}>
           My own exhibition
         </S.ImageTitle>
-        <ImageUploadInput ref={fileInputRef} />
+        <ImageUploadInput
+          file={file}
+          preview={preview}
+          onFileDrop={onFileDrop}
+          ref={fileInputRef}
+        />
         <DeleteButton style={deleteButtonStyle} onClick={handleDeleteImage} />
         <Accordion
           style={{ margin: '2.9375rem 0 6.25rem 0' }}
@@ -83,6 +128,8 @@ export default function UploadPage() {
       >
         upload
       </SeeMoreButton>
+      <p>파일 업로드 개수: {urlList ? urlList : 0}</p>
+      <p>{isLoading ? '로딩중' : '로딩끝!'}</p>
     </S.FlexContainer>
   );
 }
