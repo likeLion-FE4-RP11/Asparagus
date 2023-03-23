@@ -1,7 +1,7 @@
 import { useRef, useState, useCallback } from 'react';
 import * as S from './Accordion.styled';
 import ArrowDown from '@/assets/arrow-down.svg';
-import ArrowUp from '@/assets/arrow-up.svg';
+import ArrowUp from '@/assets/arrow-up.svg'
 import { getColor } from '@/theme/utils';
 
 export function Accordion({ ...restProps }) {
