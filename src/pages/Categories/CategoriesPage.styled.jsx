@@ -3,28 +3,52 @@ import styled from 'styled-components/macro';
 export const FirstContainer = styled.section`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-gap: 1.2rem;
-  margin-top: 8.75rem;
-  margin-bottom: 8.75rem;
+  margin-top: 5rem;
 
   @media screen and (max-width: 940px) {
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
-`;
+  `;
 
 export const SecondContainer = styled.section`
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-gap: 1.2rem;
-  margin-top: 8.75rem;
+  margin-top: 1.75rem;
   margin-bottom: 8.75rem;
 
   @media screen and (max-width: 940px) {
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
 `;
+
+export const ThirdContainet = styled.section`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 1.2rem;
+  margin-top: 5rem;
+
+  @media screen and (max-width: 940px) {
+    grid-template-columns: 1fr;
+    grid-gap: 1.2rem;
+  `;
+
+export const FourthContainet = styled.section`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1.2rem;
+  margin-top: 1.75rem;
+  margin-bottom: 8.75rem;
+
+  @media screen and (max-width: 940px) {
+    grid-template-columns: 1fr;
+    grid-gap: 1.2rem;
+  `;
 
 export const ImageTitle = styled.h1`
   position: absolute;

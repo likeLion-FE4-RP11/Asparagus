@@ -7,6 +7,8 @@ const SrcImageBox = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  max-width: 100%;
+  height: 100%;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
 

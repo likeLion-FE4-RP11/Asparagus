@@ -16,7 +16,7 @@ const LikeButtonArea = styled.button`
   align-items: center;
   position: absolute;
   left: 170px;
-  bottom: -500px;
+  bottom: -400px;
   appearance: none;
   background-color: transparent;
   border: none;
