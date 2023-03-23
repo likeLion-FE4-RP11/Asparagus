@@ -1,14 +1,8 @@
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import pencilImg from '@/assets/pencil-icon.svg';
 import { useState, useEffect } from 'react';
-import {
-  collection,
-  doc,
-  query,
-  where,
-  getDocs,
-  limit,
-} from 'firebase/firestore';
+import { collection, query, where, getDocs, limit } from 'firebase/firestore';
+import { db } from '@/firebase/firestore';
 import {
   Container,
   ToggleButton,
@@ -24,24 +18,27 @@ import { getColor } from '@/theme/utils';
 export default function CategoriesPage() {
   useDocumentTitle('Categories');
 
-  // const [imgArr, setImgArr] = useState([]);
+  const [imgArr, setImgArr] = useState([]);
 
-  // useEffect(() => {
-  //   const getImages = async () => {
-  //     const q = query(
-  //       collection(db, 'images'),
-  //       where('user_uid', '==', ''),
-  //       limit(10)
-  //     );
-  //     const myImgList = await getDocs(q);
-  //     const imageList = [];
-  //     myImgList.docs.map((doc) => imageList.push(doc.data().url));
+  useEffect(() => {
+    const getImages = async () => {
+      const q = query(
+        collection(db, 'images'),
+        where('user_uid', '==', 'CPBJoxBg5OYeielSBFcWUSuDpF23'),
+        limit(10)
+      );
+      const myImgList = await getDocs(q);
 
-  //     setImgArr(imageList);
-  //   };
+      const imageList = [];
+      myImgList.docs.map((doc) => imageList.push(doc.data().url));
 
-  //   getImages();
-  // }, [imgArr]);
+      setImgArr(imageList);
+    };
+
+    getImages();
+  }, []);
+
+  console.log(imgArr);
 
   const [text, setText] = useState('I traveled here with my friends!');
   const [isEditable, setIsEditable] = useState(false);
