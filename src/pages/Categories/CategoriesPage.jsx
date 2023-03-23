@@ -1,6 +1,8 @@
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import pencilImg from '@/assets/pencil-icon.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { collection, query, where, getDocs, limit } from 'firebase/firestore';
+import { db } from '@/firebase/firestore';
 import {
   Container,
   ToggleButton,
@@ -15,6 +17,28 @@ import { getColor } from '@/theme/utils';
 
 export default function CategoriesPage() {
   useDocumentTitle('Categories');
+
+  const [imgArr, setImgArr] = useState([]);
+
+  useEffect(() => {
+    const getImages = async () => {
+      const q = query(
+        collection(db, 'images'),
+        where('user_uid', '==', 'CPBJoxBg5OYeielSBFcWUSuDpF23'),
+        limit(10)
+      );
+      const myImgList = await getDocs(q);
+
+      const imageList = [];
+      myImgList.docs.map((doc) => imageList.push(doc.data().url));
+
+      setImgArr(imageList);
+    };
+
+    getImages();
+  }, []);
+
+  console.log(imgArr);
 
   const [text, setText] = useState('I traveled here with my friends!');
   const [isEditable, setIsEditable] = useState(false);
@@ -38,8 +62,8 @@ export default function CategoriesPage() {
       <ToggleButton />
       <>
         <ImageContainer
-          width={'1557'}
-          height={'769'}
+          width={'1557px'}
+          height={'769px'}
           stlye={{ position: 'relative' }}
         ></ImageContainer>
         <S.ImageTitle color={getColor('white')}>Travel</S.ImageTitle>
@@ -65,22 +89,26 @@ export default function CategoriesPage() {
         )}
         <LikeButton />
       </>
-
+      {/* dataset-index에 docs에 있는 img uid를 넣으면 예시) 아래에있음 / 나중에 삭제할때 삭제버튼 누르면 그 이미지의 uid를 가져온다 */}
       <S.FirstContainer>
         <UseHover box1 width={'894'} height={'525'} />
         <UseHover box2 width={'632'} height={'525'} />
+      </S.FirstContainer>
+      <S.SecondContainer>
         <UseHover box3 width={'626'} height={'525'} />
         <UseHover box4 width={'900'} height={'525'} />
-      </S.FirstContainer>
+      </S.SecondContainer>
       <DesignParagraph>
         #Snapshot #Golden Bridge #Photographer #America #I want freedom
       </DesignParagraph>
-      <S.SecondContainer>
+      <S.ThirdContainet>
         <UseHover width={'1097'} height={'633'} />
         <UseHover width={'430'} height={'633'} />
+      </S.ThirdContainet>
+      <S.FourthContainet>
         <UseHover width={'739'} height={'416'} />
         <UseHover width={'789'} height={'416'} />
-      </S.SecondContainer>
+      </S.FourthContainet>
     </Container>
   );
 }
