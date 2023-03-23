@@ -7,6 +7,10 @@ import googleIcon from '@/assets/Google-logo.svg';
 import faceBookIcon from '@/assets/facebook-logo.svg';
 import * as S from './SignPage.styled';
 import { useAuthState, useSignIn, useSignOut } from '@/firebase/auth';
+import { signInWithPopup, GoogleAuthProvider, getAuth } from 'firebase/auth';
+
+const provider = new GoogleAuthProvider();
+const auth = getAuth();
 
 const initialFormState = {
   email: '',
@@ -20,6 +24,8 @@ export default function SignInPage() {
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
   const { signOut } = useSignOut();
   const { isLoading, error, user } = useAuthState();
+
+  // console.log({ user });
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -38,6 +44,24 @@ export default function SignInPage() {
     const { name, value } = e.target;
     console.log({ name, value });
     formState.current[name] = value;
+  };
+
+  const handleSignGoogle = (e) => {
+    e.preventDefault();
+
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+
+        console.log(result);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
   };
 
   if (isLoading) {
@@ -83,7 +107,11 @@ export default function SignInPage() {
         />
 
         <LoginButton type="submit">Log In</LoginButton>
-        <LoginButton type="submit" className="google">
+        <LoginButton
+          type="submit"
+          onClick={handleSignGoogle}
+          className="google"
+        >
           <S.Img src={googleIcon} alt="구글 로그인" />
           Continuew with Google
         </LoginButton>
