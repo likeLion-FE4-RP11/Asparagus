@@ -18,7 +18,7 @@ export default function SignInPage() {
   const formState = useRef(initialFormState);
 
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
-  // const { signOut } = useSignOut();
+  const { signOut } = useSignOut();
   const { isLoading, error, user } = useAuthState();
 
   const handleSignIn = async (e) => {
@@ -29,11 +29,39 @@ export default function SignInPage() {
     await signIn(email, password);
   };
 
+  const handleSignOut = () => {
+    console.log('로그아웃');
+    signOut();
+  };
+
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     console.log({ name, value });
     formState.current[name] = value;
   };
+
+  if (isLoading) {
+    return <figure role="alert">페이지 로딩중</figure>;
+  }
+
+  if (error) {
+    return <figure role="alert">오류!</figure>;
+  }
+
+  if (user) {
+    return (
+      <div>
+        <h2>인증 사용자 페이지</h2>
+        <div>
+          <ul>
+            <li>{user.displayName}</li>
+            <li>{user.email}</li>
+          </ul>
+          <button onClick={handleSignOut}>로그아웃</button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <S.FormContainer>
