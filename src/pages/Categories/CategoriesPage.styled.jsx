@@ -72,6 +72,6 @@ export const BaseText = styled.h1`
 
 export const ImageLogo = styled.img`
   position: absolute;
-  left: 350px;
+  left: 390px;
   bottom: 85px;
 `;
