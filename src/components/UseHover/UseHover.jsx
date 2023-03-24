@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { DeleteButton } from '@/components';
 import { useState } from 'react';
 
-export function UseHover({ width, height, description, ...props }) {
+export function UseHover({ width, height, description, src, ...props }) {
   const [visible, setVisible] = useState(false);
   const DeleteButtonStyle = {
     position: 'absolute',
@@ -42,7 +42,7 @@ export function UseHover({ width, height, description, ...props }) {
       >
         <HoverScript>{description}</HoverScript>
       </motion.div>
-      <ImageContainer width={width} height={height}></ImageContainer>
+      <ImageContainer width={width} height={height} src={src}></ImageContainer>
       {visible && <DeleteButton style={DeleteButtonStyle} />}
     </HoverContainer>
   );
@@ -82,4 +82,5 @@ UseHover.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   description: PropTypes.string,
+  src: PropTypes.string,
 };
