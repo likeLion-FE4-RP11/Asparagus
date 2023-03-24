@@ -1,6 +1,5 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper';
-import styled from 'styled-components/macro';
+import * as S from './MainSwiper.styled';
 
 // Import Swiper Styles
 import 'swiper/css';
@@ -9,29 +8,6 @@ import { collection, getDocs, query, where, limit } from 'firebase/firestore';
 import { useState, useEffect } from 'react'
 import { db } from '@/firebase/firestore';
 
-const StyledSwiper = styled(Swiper)`
-  width: 1560px;
-  height: 765px;
-  margin-top: 186px;
-  margin-bottom: 147px;
-`;
-
-const StyledSwiperSlide = styled(SwiperSlide)`
-  display: flex;
-  width: 1560px;
-  height: 765px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 18px;
-  background: red;
-`;
-const StyledSwiperSlideImg = styled.img`
-  display: block;
-  width: 1560px;
-  height: 765px;
-  object-fit: cover;
-`;
 
 /* Component ---------------------------------------------------------------- */
 
@@ -62,7 +38,7 @@ export function MainSwiper() {
   
 
   return (
-    <StyledSwiper
+    <S.StyledSwiper
       loop={true}
       pagination={{
         dynamicBullets: true,
@@ -81,28 +57,28 @@ export function MainSwiper() {
 
 
       
-      {baseImgArr.map((slide, index) => {
+      {baseImgArr.map((url, index) => {
          return (
-          <StyledSwiperSlide key={slide}>
-            <img src={slide}/>
-          </StyledSwiperSlide>
+          <S.StyledSwiperSlide key={url}>
+            <img src={url} alt="기본 이미지" />
+          </S.StyledSwiperSlide>
         );
       })}
 
-      {imgArr ? imgArr.map((slide, index) => {
+      {imgArr ? imgArr.map((url, index) => {
         return (
-          <StyledSwiperSlide key={slide}>
-            <img src={slide}/>
-          </StyledSwiperSlide>
+          <S.StyledSwiperSlide key={url}>
+            <img src={url} alt="기본 이미지" />
+          </S.StyledSwiperSlide>
         );
-      }) : baseImgArr.map((slide, index) => {
+      }) : baseImgArr.map((url, index) => {
         return (
-          <StyledSwiperSlide key={slide}>
-            <img src={slide}/>
-          </StyledSwiperSlide>
+          <S.StyledSwiperSlide key={url}>
+            <img src={url} alt="기본 이미지" />
+          </S.StyledSwiperSlide>
         );
       }) }
       
-    </StyledSwiper>
+    </S.StyledSwiper>
   );
 }
