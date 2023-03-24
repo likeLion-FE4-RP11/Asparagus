@@ -77,13 +77,11 @@ export function MainSwiper() {
       modules={[Autoplay, Pagination]}
       spaceBetween={20}
       slidesPerView={1}
-      // onSlideChange={() => console.log('slide change')}
-      // onSwiper={(swiper) => console.log(swiper)}
     >
 
 
       
-      {baseImgArr.map((slide, index) => { //샘플이미지만 start
+      {baseImgArr.map((slide, index) => {
          return (
           <StyledSwiperSlide key={slide}>
             <img src={slide}/>
