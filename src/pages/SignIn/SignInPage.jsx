@@ -139,7 +139,9 @@ export default function SignInPage() {
           onChange={handleChangeInput}
         />
 
-        <LoginButton type="submit">Log In</LoginButton>
+        <LoginButton disabled={isLoadingSignIn} type="submit">
+          {!isLoadingSignIn ? 'log in' : 'loading...'}
+        </LoginButton>
         <LoginButton
           type="submit"
           onClick={handleSignGoogle}

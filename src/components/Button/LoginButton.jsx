@@ -15,17 +15,22 @@ const ButtonStyle = styled.button`
   margin-top: 10px;
   color: ${(props) => props.color}
   background-color: ${(props) => props.bgColor};
+  
+
   &.google{
-    background-color: #000000;
+    background-color: #333;
     color: #FFFFFF;
   }
   &.facebook{
-    background-color :#0066FF;
+    background-color :#0066ffd5;
     color: #FFFFFF;
   }
   &:disabled{
     cursor: not-allowed;
+    background-color: #f2e9e4; 
+    color: #333;
   }
+ 
 `;
 
 export function LoginButton({ disabled, children, ...restProps }) {
