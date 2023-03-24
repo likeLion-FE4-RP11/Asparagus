@@ -1,5 +1,5 @@
 import { A11yHidden } from '@/components';
-import { useId, useRef } from 'react';
+import { forwardRef, useId } from 'react';
 import styled from 'styled-components/macro';
 import { getColor } from '@/theme/utils';
 
@@ -16,17 +16,16 @@ const TextArea = styled.textarea`
   }
 `;
 
-export function DescriptionInput() {
+export const DescriptionInput = forwardRef(function DescriptionInput(_, ref) {
   const id = useId();
-  const inputRef = useRef('');
 
   const handleInputChange = (e) => {
-    inputRef.current = e.target.value;
+    ref.current.value = e.target.value;
   };
 
   const submit = async () => {
     // fetch, axios
-    console.log(inputRef.current);
+    console.log(ref.current);
     // const result = await fetch('POST', '주소');
   };
 
@@ -39,12 +38,11 @@ export function DescriptionInput() {
         placeholder="please write image description"
         type="text"
         id={id}
-        ref={inputRef}
+        ref={ref}
         onChange={handleInputChange}
         bgColor={getColor('gray/50')}
         color={getColor('gray/150')}
       />
-      {/* button 태그 추후 props로 받아와 onChange 함수 넣을 예정 */}
     </section>
   );
-}
+});
