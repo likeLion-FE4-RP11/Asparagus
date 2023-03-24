@@ -14,9 +14,7 @@ export const SignUpContent = styled.div`
   padding: 40px 0;
 `;
 
-export const FormContainer = styled.form``;
-
-export const SingUpTitle = styled.h2`
+export const SingUpTitle = styled.span`
   display: inline-block;
   text-align: start;
   width: 100%;
@@ -56,7 +54,7 @@ export const SignUpMainImage = styled.img`
   object-fit: fill;
 `;
 
-export const ImageLogo = styled.span`
+export const ImageLogo = styled.h1`
   position: absolute;
   font-size: 50px;
   font-weight: 700;
