@@ -7,9 +7,15 @@ import googleIcon from '@/assets/Google-logo.svg';
 import faceBookIcon from '@/assets/facebook-logo.svg';
 import * as S from './SignPage.styled';
 import { useAuthState, useSignIn, useSignOut } from '@/firebase/auth';
-import { signInWithPopup, GoogleAuthProvider, getAuth } from 'firebase/auth';
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  getAuth,
+  FacebookAuthProvider,
+} from 'firebase/auth';
 
 const provider = new GoogleAuthProvider();
+const FaceBookprovider = new FacebookAuthProvider();
 const auth = getAuth();
 
 const initialFormState = {
@@ -64,6 +70,33 @@ export default function SignInPage() {
       });
   };
 
+  const handlSignFacebook = (e) => {
+    e.preventDefault();
+
+    signInWithPopup(auth, FaceBookprovider)
+      .then((result) => {
+        // The signed-in user info.
+        const FBuser = result.FBuser;
+
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        const FBcredential = FacebookAuthProvider.credentialFromResult(result);
+        const FBaccessToken = FBcredential.FBaccessToken;
+
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+        console.log(result);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const FBerrorMessage = error.message;
+        // const email = error.customData.email;
+        const FBcredential = FacebookAuthProvider.credentialFromError(error);
+        console.log(error);
+        // ...
+      });
+  };
+
   if (isLoading) {
     return <figure role="alert">페이지 로딩중</figure>;
   }
@@ -115,7 +148,11 @@ export default function SignInPage() {
           <S.Img src={googleIcon} alt="구글 로그인" />
           Continuew with Google
         </LoginButton>
-        <LoginButton type="submit" className="facebook">
+        <LoginButton
+          type="submit"
+          className="facebook"
+          onClick={handlSignFacebook}
+        >
           <S.Img src={faceBookIcon} alt="페이스북 로그인 " />
           Continuew with facebook
         </LoginButton>
