@@ -6,30 +6,24 @@ import FourthMask from '@/assets/FourthMask.svg';
 
 const ButtonContainer = styled.div`
   display: flex;
-	text-align: center;
-  weight: 1560px;
-  height: 633.51px;
   flex-flow: row nowrap;
-  align-items: center;
+  justify-content: space-between;
+  gap: 1.8844rem;
+  padding: 0 1.8844rem;
+  height: 31.906875rem;
   position: relative;
   top: -431px;
   z-index: 2;
-  margin-left: 180px;
-`
+  margin: 0 auto;
+`;
 
-
-const ButtonContents = styled.button `
-  weight: 367.39px;
-  height: 510.51px;
-  background-color: #FFFFFF;
+const ButtonContents = styled.button`
+  height: 100%;
+  background-color: #ffffff;
   cursor: pointer;
   padding: 17.34px;
-  margin-top: 123px;
-  margin-right: 30.15px;
-  align-items: row;
-  vertical-align: bottom;
-  border-style: solid;
-  border-color: #00000080;
+  margin-top: 7.6875rem;
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-width: 1px;
   border-radius: 10px;
   font-size: 35px;
@@ -37,33 +31,35 @@ const ButtonContents = styled.button `
 
   img {
     display: block;
-    margin-bottom: 126.51px;
+    margin-bottom: 4rem;
   }
-`
-
+`;
 
 export function Category() {
   const handleSelect = (e) => {
-      console.log(e.target.innerText);
+    console.log(e.target.innerText);
   };
   return (
     <ButtonContainer>
       <ButtonContents type="button" onClick={handleSelect}>
-        <img src={FirstMask} alt="FirstMask" />Daily
+        <img src={FirstMask} alt="FirstMask" />
+        Daily
       </ButtonContents>
       <ButtonContents type="button" onClick={handleSelect}>
-        <img src={SecondMask} alt="SecondMask" />Travel
+        <img src={SecondMask} alt="SecondMask" />
+        Travel
       </ButtonContents>
       <ButtonContents type="button" onClick={handleSelect}>
-        <img src={ThirdMask} alt="ThirdMask" />Food
+        <img src={ThirdMask} alt="ThirdMask" />
+        Food
       </ButtonContents>
       <ButtonContents type="button" onClick={handleSelect}>
-        <img src={FourthMask} alt="FourthMask" />Hobby
+        <img src={FourthMask} alt="FourthMask" />
+        Hobby
       </ButtonContents>
-    </ButtonContainer>    
+    </ButtonContainer>
   );
 }
-
 
 
 
