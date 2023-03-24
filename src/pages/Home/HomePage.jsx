@@ -14,7 +14,7 @@ export default function HomePage() {
 
   return <>
     <MainSwiper/>
-    <CategoryTitle title="C A T E G O R Y" />
+    <CategoryTitle title={'C A T E G O R Y'} />
     <Category />
     <TopButton />
     </>
