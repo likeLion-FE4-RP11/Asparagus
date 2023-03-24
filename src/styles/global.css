@@ -10,6 +10,19 @@ body {
   box-sizing: border-box;
 }
 
+/* focus */
+a:focus,
+input:focus,
+button:focus,
+textarea:focus,
+.swiper-button-prev:focus,
+.swiper-button-next:focus,
+.swiper-pagination-bullet:focus {
+  outline: 1px solid var(--red-1);
+  outline-offset: 0;
+  box-shadow: 0 0 10px 3px rgba(10, 255, 225, 0.4);
+}
+
 *,
 *::before,
 *::after {

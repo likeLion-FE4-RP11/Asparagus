@@ -2,7 +2,7 @@ import { useId, useRef, useEffect } from 'react';
 import { bool, string } from 'prop-types';
 import * as S from './SignUpFormInput.styled';
 
-export function FormInput({ type, label }) {
+export function SignUpFormInput({ type, label, ...restProps }) {
   const id = useId();
   const inputRef = useRef(null);
 
@@ -21,16 +21,16 @@ export function FormInput({ type, label }) {
   return (
     <S.FromInputContainer>
       <S.InputLabel htmlFor={id}>{label}</S.InputLabel>
-      <S.FormInputContent ref={inputRef} id={id} type={type} />
+      <S.FormInputContent ref={inputRef} id={id} type={type} {...restProps} />
     </S.FromInputContainer>
   );
 }
 
-FormInput.defualtProps = {
+SignUpFormInput.defualtProps = {
   type: 'text',
 };
 
-FormInput.propTypes = {
+SignUpFormInput.propTypes = {
   type: string,
   label: string,
 };

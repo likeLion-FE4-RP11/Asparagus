@@ -5,7 +5,6 @@ import {
   CategoryTitle,
   Category,
 } from '@/components'
-import { useCallback, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 
 
