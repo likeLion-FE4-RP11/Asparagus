@@ -4,9 +4,12 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { DeleteButton } from '@/components';
 import { useState } from 'react';
+import { useDeleteFile } from '@/firebase/storage/useDeleteFile';
+import { useDeleteData } from '@/firebase/firestore';
 
 export function UseHover({ width, height, description, src, ...props }) {
   const [visible, setVisible] = useState(false);
+
   const DeleteButtonStyle = {
     position: 'absolute',
     zIndex: 1000,

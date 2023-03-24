@@ -2,6 +2,7 @@ import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import pencilImg from '@/assets/pencil-icon.svg';
 import { useState, useEffect } from 'react';
 import { collection, query, where, getDocs, limit } from 'firebase/firestore';
+
 import { db } from '@/firebase/firestore';
 import {
   ToggleButton,
@@ -51,7 +52,7 @@ export default function CategoriesPage() {
 
   console.log(imgArr);
 
-  const [text, setText] = useState('I traveled here with my friends!');
+  const [text, setText] = useState('I Love Traveled here with my friends!');
   const [isEditable, setIsEditable] = useState(false);
 
   const handleDoubleClick = () => {

@@ -7,6 +7,7 @@ export const FirstContainer = styled.section`
   grid-gap: 1.2rem;
   margin-top: 5rem;
 
+  
   @media screen and (max-width: 940px) {
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
@@ -66,12 +67,12 @@ export const BaseText = styled.h1`
   left: 170px;
   bottom: 0px;
   color: ${(props) => props.color};
-  @media screen and (max-width: 940px) {
-    bottom: -50px;
+  @media screen and (max-width: 1000px) {
+    bottom: -75px;
 `;
 
 export const ImageLogo = styled.img`
   position: absolute;
-  left: 390px;
+  left: 380px;
   bottom: 85px;
 `;
