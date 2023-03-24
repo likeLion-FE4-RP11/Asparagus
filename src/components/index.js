@@ -4,6 +4,7 @@ export * from './Button/LoginButton';
 export * from './ImageContainer/ImageContainer';
 export * from './ImageContainer/BaseImage';
 export * from './Swiper/Swiper';
+export * from './Swiper/MainSwiper';
 export * from './Button/TopButton';
 export * from './Button/TopButtonTest';
 export * from './DesignParagraph/DesignParagraph';
