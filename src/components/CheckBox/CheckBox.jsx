@@ -1,6 +1,7 @@
 import { useState, useId, forwardRef } from 'react';
 import { A11yHidden } from '@/components/index';
 import * as S from './CheckBox.styled';
+import PropTypes from 'prop-types';
 
 export const CheckBox = forwardRef(function CheckBox(
   { context, children },
