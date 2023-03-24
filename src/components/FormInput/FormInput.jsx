@@ -5,11 +5,11 @@ import * as S from './FormInput.styled';
 
 export function FormInput({ label, type, invisibleLabel, ...restProps }) {
   const id = useId();
-
   return (
     <S.FormInput>
       {renderLabel(id, label, invisibleLabel)}
       <S.InputStyle type={type} id={id} {...restProps} />
+      <input type="text" {...restProps} />
     </S.FormInput>
   );
 }
