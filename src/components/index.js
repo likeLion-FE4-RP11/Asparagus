@@ -25,3 +25,4 @@ export * from './UseHover/UseHover';
 export * from './SignUpFormInput/SignUpFormInput';
 export * from './FormInput/FormInput';
 export * from './Category/Category';
+export * from './RecentImageTitle/RecentImageTitle';

@@ -1,5 +1,5 @@
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { CategoryTitle, FormInput, ImageContainer } from '@/components/index';
+// import { CategoryTitle, FormInput, ImageContainer } from '@/components/index';
 import * as S from './SignUpPase.styled';
 export default function SignUpPage() {
   // 브라우저탭 이름

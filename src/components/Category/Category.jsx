@@ -10,11 +10,13 @@ const ButtonContainer = styled.div`
   weight: 1560px;
   height: 633.51px;
   flex-flow: row nowrap;
+  justify-content: center;
   align-items: center;
+  gap: 30.15px;
   position: relative;
   top: -431px;
   z-index: 2;
-  margin-left: 180px;
+  /* margin-left: 180px; */
 `
 
 
@@ -25,7 +27,7 @@ const ButtonContents = styled.button `
   cursor: pointer;
   padding: 17.34px;
   margin-top: 123px;
-  margin-right: 30.15px;
+  /* margin-right: 30.15px; */
   align-items: row;
   vertical-align: bottom;
   border-style: solid;
@@ -34,6 +36,7 @@ const ButtonContents = styled.button `
   border-radius: 10px;
   font-size: 35px;
   text-align: left;
+  display: block;
 
   img {
     display: block;
