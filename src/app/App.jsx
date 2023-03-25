@@ -28,20 +28,14 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <NotFoundPage />,
     children: [
-      { index: true, element: <HomePage /> },
+      { index: true, element: <SignInPage /> },
+      { index: true, element: <SignUpPage /> },
+
       {
-        path: 'signin',
+        path: '/',
         element: (
           <BaseLayout>
-            <SignInPage />
-          </BaseLayout>
-        ),
-      },
-      {
-        path: 'signup',
-        element: (
-          <BaseLayout>
-            <SignUpPage />
+            <HomePage />
           </BaseLayout>
         ),
       },
