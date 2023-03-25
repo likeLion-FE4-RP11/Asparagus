@@ -9,8 +9,7 @@ const RecentImageContents = styled.h3`
   font-weight: 700;
   line-height: 160px;
   text-align: center;
-  margin-top: -411px;
-  /* width: 100vw; */
+  margin-top: -230px;
 `;
 
 

@@ -12,27 +12,30 @@ const BaseImageBox = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   background-color: ${(props) => props.bgColor};
+  object-fit: cover;
+  width: 100%;
 
   img {
     display: block;
+    object-fit: cover;
+    width: 29.4375rem;
+    height: 37.5rem;
+    border-radius: 20px;
   }
 `;
 
 // 이미지 로딩 중에 띄울 컴포넌트
-export function BaseImage({ width, height, imgArr }) {
+export function BaseImage({ width, height, img }) {
   return (
     <BaseImageBox width={width} height={height} bgColor={getColor('gray/100')}>
-      {imgArr.map((img)=>{
-        <img src={img} alt="기본 이미지" />
-      })
-      }
+        <img src={img} alt="기본" />
     </BaseImageBox>
   );
 }
 
 BaseImage.defaultProps = {
-  width: '1097px',
-  height: '633px',
+  width: '68.5625rem',
+  height: '39.5625rem',
 };
 
 BaseImage.propTypes = {
