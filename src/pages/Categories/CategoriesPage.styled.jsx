@@ -52,7 +52,6 @@ export const FourthContainet = styled.section`
   `;
 
 export const ImageTitle = styled.h1`
-  position: absolute;
   font-size: 4.375rem;
   font-weight: 700;
   left: 170px;
@@ -61,7 +60,6 @@ export const ImageTitle = styled.h1`
 `;
 
 export const BaseText = styled.h1`
-  position: absolute;
   font-size: 3.125rem;
   font-weight: 600;
   left: 170px;
@@ -73,6 +71,16 @@ export const BaseText = styled.h1`
 
 export const ImageLogo = styled.img`
   position: absolute;
-  left: 380px;
-  bottom: 85px;
+  top: 10px;
+  left: 220px;
+`;
+
+export const TextContainer = styled.section`
+  position: absolute;
+  width: 1000px;
+  height: 700px;
+  max-width: 100%;
+  height: 100%;
+  top: 450px;
+  left: 150px;
 `;

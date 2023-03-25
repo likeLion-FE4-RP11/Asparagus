@@ -4,10 +4,16 @@ import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { DeleteButton } from '@/components';
 import { useState } from 'react';
-import { useDeleteFile } from '@/firebase/storage/useDeleteFile';
-import { useDeleteData } from '@/firebase/firestore';
+import { deleteImageItem } from '@/utils/categoryUtils';
 
-export function UseHover({ width, height, description, src, ...props }) {
+export function UseHover({
+  width,
+  height,
+  description,
+  src,
+  datasetKey,
+  ...props
+}) {
   const [visible, setVisible] = useState(false);
 
   const DeleteButtonStyle = {
@@ -15,6 +21,10 @@ export function UseHover({ width, height, description, src, ...props }) {
     zIndex: 1000,
     right: 20,
     top: 10,
+  };
+
+  const handleDeleteImgData = () => {
+    deleteImageItem(datasetKey);
   };
 
   return (
@@ -46,7 +56,9 @@ export function UseHover({ width, height, description, src, ...props }) {
         <HoverScript>{description}</HoverScript>
       </motion.div>
       <ImageContainer width={width} height={height} src={src}></ImageContainer>
-      {visible && <DeleteButton style={DeleteButtonStyle} />}
+      {visible && (
+        <DeleteButton onClick={handleDeleteImgData} style={DeleteButtonStyle} />
+      )}
     </HoverContainer>
   );
 }
@@ -86,4 +98,5 @@ UseHover.propTypes = {
   height: PropTypes.string,
   description: PropTypes.string,
   src: PropTypes.string,
+  datasetKey: PropTypes.string,
 };
