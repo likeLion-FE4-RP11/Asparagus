@@ -2,10 +2,26 @@ import { ImageContainer } from '@/components/index';
 import styled from 'styled-components/macro';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
+import { DeleteButton } from '@/components';
+import { useState } from 'react';
 
 export function UseHover({ width, height, description, ...props }) {
+  const [visible, setVisible] = useState(false);
+  const DeleteButtonStyle = {
+    position: 'absolute',
+    zIndex: 1000,
+    right: 20,
+    top: 10,
+  };
+
   return (
-    <HoverContainer width={width} height={height}>
+    <HoverContainer
+      width={width}
+      height={height}
+      onClick={() => {
+        setVisible(!visible);
+      }}
+    >
       <motion.div
         variants={Variants}
         initial="begin"
@@ -26,7 +42,8 @@ export function UseHover({ width, height, description, ...props }) {
       >
         <HoverScript>{description}</HoverScript>
       </motion.div>
-      <ImageContainer width={width} height={height} />
+      <ImageContainer width={width} height={height}></ImageContainer>
+      {visible && <DeleteButton style={DeleteButtonStyle} />}
     </HoverContainer>
   );
 }
