@@ -49,7 +49,7 @@ export default function HomePage() {
 
   return <>
     <MainSwiper/>
-    <CategoryTitle title="C A T E G O R Y" />
+    <CategoryTitle title={'C A T E G O R Y'} />
     <Category />
     <RecentImageTitle title="R E C E N T&nbsp;&nbsp;&nbsp;&nbsp;I M A G E" />
 
