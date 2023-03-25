@@ -9,7 +9,6 @@ export function FormInput({ label, type, invisibleLabel, ...restProps }) {
     <S.FormInput>
       {renderLabel(id, label, invisibleLabel)}
       <S.InputStyle type={type} id={id} {...restProps} />
-      <input type="text" {...restProps} />
     </S.FormInput>
   );
 }

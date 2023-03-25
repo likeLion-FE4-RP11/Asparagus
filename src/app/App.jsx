@@ -1,5 +1,12 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { BaseLayout, Nav } from '@/components';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  createBrowserRouter,
+  RouterProvider,
+} from 'react-router-dom';
+import { BaseLayout, Nav, RootLayout } from '@/components';
 import { getPathFromBaseUrl } from '@/utils';
 import styled from 'styled-components';
 
@@ -15,26 +22,77 @@ const AppStyle = styled.div`
   display: block;
 `;
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      { index: true, element: <HomePage /> },
+      {
+        path: 'signin',
+        element: (
+          <BaseLayout>
+            <SignInPage />
+          </BaseLayout>
+        ),
+      },
+      {
+        path: 'signup',
+        element: (
+          <BaseLayout>
+            <SignUpPage />
+          </BaseLayout>
+        ),
+      },
+
+      {
+        path: 'categories',
+        element: (
+          <BaseLayout>
+            <CategoriesPage />
+          </BaseLayout>
+        ),
+      },
+      {
+        path: 'upload',
+        element: (
+          <BaseLayout>
+            <UploadPage />
+          </BaseLayout>
+        ),
+      },
+      {},
+    ],
+  },
+]);
+
+// function App() {
+//   return (
+//     <Router>
+//       <AppStyle>
+//         <BaseLayout>
+//           <Routes>
+//             <Route path="/" element={<HomePage />} />
+//             <Route path="/categories" element={<CategoriesPage />} />
+//             <Route path="/upload" element={<UploadPage />} />
+//             <Route path="*" element={<NotFoundPage />} />
+//           </Routes>
+//         </BaseLayout>
+
+//         <RootLayout>
+//           <Routes>
+//             <Route path="/signup" element={<SignUpPage />} />
+//             <Route path="/signin" element={<SignInPage />} />
+//           </Routes>
+//         </RootLayout>
+//       </AppStyle>
+//     </Router>
+//   );
+// }
+
 function App() {
-  return (
-    <Router>
-      <AppStyle>
-        {/* <Nav>
-          <Link to={getPathFromBaseUrl()}>홈페이지</Link>
-        </Nav> */}
-        <BaseLayout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/signin" element={<SignInPage />} />
-            <Route path="/categories" element={<CategoriesPage />} />
-            <Route path="/upload" element={<UploadPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </BaseLayout>
-      </AppStyle>
-    </Router>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
