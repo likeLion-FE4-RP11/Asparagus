@@ -16,11 +16,6 @@ import * as S from './HomePage.styled';
 export default function HomePage() {
   const [imgArr, setImgArr] = useState([]); 
   useDocumentTitle('HomePage');
-
-  // const handelUpload = useCallback(() => {
-  //   console.log('업로드 버튼 클릭');
-  // }, []);
-
   const [visible, setVisible] = useState(false);
 
   useEffect(()=>{
