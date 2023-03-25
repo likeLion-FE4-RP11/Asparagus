@@ -1,6 +1,7 @@
 import testImg from '@/assets/test.jpg';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
+import { BaseImage } from '@/components/ImageContainer/BaseImage';
 
 const SrcImageBox = styled.div`
   display: flex;
@@ -24,7 +25,11 @@ const SrcImageBox = styled.div`
 export function ImageContainer({ src, alt, width, height }) {
   return (
     <SrcImageBox width={width} height={height}>
-      <img src={src} alt={alt}></img>
+      {src ? (
+        <img src={src} alt={alt}></img>
+      ) : (
+        <BaseImage width={width} height={height} />
+      )}
     </SrcImageBox>
   );
 }
@@ -39,4 +44,5 @@ ImageContainer.propTypes = {
   alt: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
+  datasetKey: PropTypes.string,
 };
