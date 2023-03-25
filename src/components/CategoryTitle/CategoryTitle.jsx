@@ -6,7 +6,7 @@ const CategoryTitleContainer = styled.div`
   text-align: center;
   display: block;
   padding: 0;
-  width: 100vw;
+  width: 100%;
   height: 474px;
   position: relative;
   z-index: 1;
