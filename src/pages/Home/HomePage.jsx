@@ -51,7 +51,7 @@ export default function HomePage() {
     <MainSwiper/>
     <CategoryTitle title={'C A T E G O R Y'} />
     <Category />
-    <RecentImageTitle title="R E C E N T&nbsp;&nbsp;&nbsp;&nbsp;I M A G E" />
+    <RecentImageTitle title={'R E C E N T\u00A0\u00A0\u00A0 I M A G E'} />
 
     <S.MainSection>
     <SeeMoreImg img={imgArr[0]}/>
