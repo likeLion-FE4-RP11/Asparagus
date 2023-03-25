@@ -9,7 +9,7 @@ import {
   RecentImageTitle,
 } from '@/components'
 import { useCallback, useRef, useState, useEffect } from 'react';
-import { collection, getDocs, query, where, limit } from 'firebase/firestore';
+import { collection, getDocs, query, where, limit, orderBy, } from 'firebase/firestore';
 import { db } from '@/firebase/firestore';
 import * as S from './HomePage.styled';
 
@@ -24,6 +24,7 @@ export default function HomePage() {
       const q = query(
         collection(db, 'images'),
         where('user_uid',"==","EHSFq6SN4UfSAyGTw6UH"),
+        orderBy('createAt', 'desc'), //최신순으로 정렬
         limit(6)
       )
       const myImgList = await getDocs(q)
