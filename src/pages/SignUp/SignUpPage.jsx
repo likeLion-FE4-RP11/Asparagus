@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { CheckBox } from '@/components';
 import * as S from './SignUpPase.styled';
 import { useSignUp, useAuthState } from '@/firebase/auth';
+import { useCreateAuthUser } from '@/firebase/firestore';
 import MainImage from '../../assets/SignUp_main.jpg';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import {
@@ -9,7 +10,6 @@ import {
   SignUpFormInput,
   ImageContainer,
 } from '@/components/index';
-import { DeprecatedLayoutGroupContext } from 'framer-motion';
 
 const initialFormState = {
   name: '',
@@ -24,6 +24,7 @@ export default function SignUpPage() {
 
   const { signUp } = useSignUp();
   const { isLoading, error, user } = useAuthState();
+  const { createAuthUser } = useCreateAuthUser;
   const formStateRef = useRef(initialFormState);
 
   //
@@ -38,15 +39,13 @@ export default function SignUpPage() {
     const { name, email, password, passwordConfirm } = formStateRef.current;
 
     await signUp(email, password, name);
+    await createAuthUser(user); //! FireStore를 user정보를 올리는 코드를 추가했습니다.
   };
+  console.log(user); //! 콘솔에 null이 뜨다가 몇초 뒤에 전에 입력했던 회원가입 정보가 나타납니다.
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     formStateRef.current[name] = value;
-  };
-
-  const test = (e) => {
-    console.log(e.target.value);
   };
 
   return (
@@ -63,7 +62,7 @@ export default function SignUpPage() {
             />
             <SignUpFormInput
               type="email"
-              label="이메일"
+              label="이메ㄴ일"
               name="email"
               onChange={handleChangeInput}
             />
