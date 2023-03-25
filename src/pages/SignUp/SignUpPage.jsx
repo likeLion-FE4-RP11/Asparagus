@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { CheckBox } from '@/components';
 import * as S from './SignUpPase.styled';
 import { useSignUp, useAuthState } from '@/firebase/auth';
@@ -24,7 +24,7 @@ export default function SignUpPage() {
 
   const { signUp } = useSignUp();
   const { isLoading, error, user } = useAuthState();
-  const { createAuthUser } = useCreateAuthUser;
+  const { createAuthUser } = useCreateAuthUser();
   const formStateRef = useRef(initialFormState);
 
   //
@@ -39,9 +39,16 @@ export default function SignUpPage() {
     const { name, email, password, passwordConfirm } = formStateRef.current;
 
     await signUp(email, password, name);
-    await createAuthUser(user); //! FireStore를 user정보를 올리는 코드를 추가했습니다.
   };
-  console.log(user); //! 콘솔에 null이 뜨다가 몇초 뒤에 전에 입력했던 회원가입 정보가 나타납니다.
+
+  useEffect(() => {
+    if (user) {
+      (async () => {
+        const { name, email } = formStateRef.current;
+        await createAuthUser(user);
+      })();
+    }
+  }, [createAuthUser, user]);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
