@@ -100,60 +100,52 @@ export default function CategoriesPage() {
       <ImageContainer
         width={'1557px'}
         height={'769px'}
-        stlye={{ position: 'relative' }}
-        src={imgArr[0]}
+        style={{ position: 'relative' }}
       ></ImageContainer>
-      <S.ImageTitle color={getColor('white')}>Travel</S.ImageTitle>
-      <S.ImageLogo
-        src={pencilImg}
-        onDoubleClick={handleDoubleClick}
-        alt="대표 사진 내용 편집하기"
-      />
-      {isEditable ? (
-        <input
-          type="text"
-          value={text}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          style={{
-            position: 'absolute',
-            left: '170px',
-            bottom: '50px',
-          }}
+      <S.TextContainer>
+        <S.ImageTitle color={getColor('white')}>Travel</S.ImageTitle>
+        <S.ImageLogo
+          src={pencilImg}
+          onDoubleClick={handleDoubleClick}
+          alt="대표 사진 내용 편집하기"
         />
-      ) : (
-        <S.BaseText color={getColor('white')}>{text}</S.BaseText>
-      )}
-      <LikeButton />
+        {isEditable ? (
+          <input
+            type="text"
+            value={text}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+          />
+        ) : (
+          <S.BaseText color={getColor('white')}>{text}</S.BaseText>
+        )}
+        <LikeButton />
+      </S.TextContainer>
       <S.FirstContainer>
         <UseHover
-          src={imgArr[1]}
-          description={descriptionArr[1]}
           width={'894'}
           height={'525'}
+          description={descriptionArr[1]}
           datasetKey={imgIdArr[1]}
         />
         <UseHover
-          src={imgArr[2]}
-          description={descriptionArr[2]}
           width={'632'}
           height={'525'}
+          description={descriptionArr[2]}
           datasetKey={imgIdArr[2]}
         />
       </S.FirstContainer>
       <S.SecondContainer>
         <UseHover
-          src={imgArr[3]}
-          description={descriptionArr[3]}
           width={'626'}
           height={'525'}
+          description={descriptionArr[3]}
           datasetKey={imgIdArr[3]}
         />
         <UseHover
-          src={imgArr[4]}
-          description={descriptionArr[4]}
           width={'900'}
           height={'525'}
+          description={descriptionArr[4]}
           datasetKey={imgIdArr[4]}
         />
       </S.SecondContainer>
@@ -162,33 +154,29 @@ export default function CategoriesPage() {
       </DesignParagraph>
       <S.ThirdContainet>
         <UseHover
-          src={imgArr[5]}
-          description={descriptionArr[5]}
           width={'1097'}
           height={'633'}
+          description={descriptionArr[5]}
           datasetKey={imgIdArr[5]}
         />
         <UseHover
-          src={imgArr[6]}
-          description={descriptionArr[6]}
           width={'430'}
           height={'633'}
+          description={descriptionArr[6]}
           datasetKey={imgIdArr[6]}
         />
       </S.ThirdContainet>
       <S.FourthContainet>
         <UseHover
-          src={imgArr[7]}
-          description={descriptionArr[7]}
           width={'739'}
           height={'416'}
+          description={descriptionArr[7]}
           datasetKey={imgIdArr[7]}
         />
         <UseHover
-          src={imgArr[8]}
-          description={descriptionArr[8]}
           width={'789'}
           height={'416'}
+          description={descriptionArr[8]}
           datasetKey={imgIdArr[8]}
         />
       </S.FourthContainet>

@@ -1,4 +1,4 @@
-import testImg from '@/assets/test.jpg';
+import testImg from '@/assets/test.svg';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 import { BaseImage } from '@/components/ImageContainer/BaseImage';
