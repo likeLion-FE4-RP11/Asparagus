@@ -6,9 +6,9 @@ const ParagraphSection = styled.section`
   margin: 0 auto;
   font-size: 43px;
   word-break: normal;
-  width: 60%;
+  width: 70%;
   text-align: center;
-  background-color: aquamarine;
+  background-color: #ffffff;
 `;
 
 const Paragraph = styled.p`

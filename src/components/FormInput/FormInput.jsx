@@ -1,10 +1,12 @@
 import { useId } from 'react';
+
 import { bool, string } from 'prop-types';
 import { A11yHidden } from '@/components/';
 import * as S from './FormInput.styled';
 
 export function FormInput({ label, type, invisibleLabel, ...restProps }) {
   const id = useId();
+
   return (
     <S.FormInput>
       {renderLabel(id, label, invisibleLabel)}
@@ -26,10 +28,10 @@ FormInput.propTypes = {
 
 function renderLabel(id, label, invisibleLabel) {
   return invisibleLabel ? (
-    <A11yHidden as="label" htmlFor={id}>
+    <A11yHidden as="label" htmlFor={id} className="label">
       {label}
     </A11yHidden>
   ) : (
-    <S.LabelStyle htmlFor={id}>{label}</S.LabelStyle>
+    <S.labelStyle htmlFor={id}>{label}</S.labelStyle>
   );
 }

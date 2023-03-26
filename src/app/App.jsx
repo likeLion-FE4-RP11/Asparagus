@@ -1,14 +1,5 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
-import { BaseLayout, Nav, RootLayout } from '@/components';
-import { getPathFromBaseUrl } from '@/utils';
-import styled from 'styled-components';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BaseLayout, RootLayout } from '@/components';
 
 /* Pages -------------------------------------------------------------------- */
 import HomePage from '@/pages/Home/HomePage';
@@ -61,30 +52,6 @@ const router = createBrowserRouter([
     children: [{ index: true, element: <SignUpPage /> }],
   },
 ]);
-
-// function App() {
-//   return (
-//     <Router>
-//       <AppStyle>
-//         <BaseLayout>
-//           <Routes>
-//             <Route path="/" element={<HomePage />} />
-//             <Route path="/categories" element={<CategoriesPage />} />
-//             <Route path="/upload" element={<UploadPage />} />
-//             <Route path="*" element={<NotFoundPage />} />
-//           </Routes>
-//         </BaseLayout>
-
-//         <RootLayout>
-//           <Routes>
-//             <Route path="/signup" element={<SignUpPage />} />
-//             <Route path="/signin" element={<SignInPage />} />
-//           </Routes>
-//         </RootLayout>
-//       </AppStyle>
-//     </Router>
-//   );
-// }
 
 function App() {
   return <RouterProvider router={router} />;
