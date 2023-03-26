@@ -1,3 +1,4 @@
+
 import PropTypes, { string, element, bool } from 'prop-types';
 import styled from 'styled-components';
 import { getColor } from '@/theme/utils';
@@ -30,7 +31,6 @@ const ButtonStyle = styled.button`
     background-color: #f2e9e4; 
     color: #333;
   }
- 
 `;
 
 export function LoginButton({ disabled, children, ...restProps }) {
@@ -46,8 +46,7 @@ export function LoginButton({ disabled, children, ...restProps }) {
   );
 }
 
-// function getClassName(disabled) {
-//   let buttonStyle = {};
+
 
 /* Props -------------------------------------------------------------------- */
 
@@ -58,5 +57,5 @@ LoginButton.defaultProps = {
 LoginButton.propTypes = {
   disabled: PropTypes.bool,
   children: PropTypes.node,
-  // color: PropTypes.instanceOf(color),
+
 };

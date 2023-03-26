@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 export const UploadSection = styled.section`
   margin: 0 auto;
-  width: 81.40625%;
+  width: 100%;
   height: 50vh;
   border: 2px dashed black;
   display: flex;

@@ -7,6 +7,8 @@ const SrcImageBox = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  max-width: 100%;
+  height: 100%;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
 
@@ -30,8 +32,6 @@ export function ImageContainer({ src, alt, width, height }) {
 ImageContainer.defaultProps = {
   src: testImg,
   alt: '테스트 이미지',
-  width: '1097px',
-  height: '633px',
 };
 
 ImageContainer.propTypes = {

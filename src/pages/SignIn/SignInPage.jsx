@@ -1,5 +1,6 @@
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { Link } from 'react-router-dom';
+
 import { FormInput, LoginButton } from '@/components';
 import { getFontSize } from '@/theme/utils';
 import { useRef } from 'react';
@@ -17,6 +18,7 @@ import {
 const provider = new GoogleAuthProvider();
 const FaceBookprovider = new FacebookAuthProvider();
 const auth = getAuth();
+
 
 const initialFormState = {
   email: '',
@@ -163,5 +165,6 @@ export default function SignInPage() {
         Already have an account ? <Link to="/signup">Create Account </Link>
       </S.Info>
     </S.FormContainer>
+
   );
 }
