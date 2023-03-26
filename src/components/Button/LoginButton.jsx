@@ -19,16 +19,9 @@ const ButtonStyle = styled.button`
 `;
 
 export function LoginButton({ disabled, children, ...restProps }) {
-  const navigate = useNavigate();
-
-  const SubmitButton = () => {
-    navigate('/HomePage', { replace: false });
-  };
-
   return (
     <ButtonStyle
       type="button"
-      onClick={SubmitButton}
       disabled={disabled}
       bgColor={getColor('gray/50')}
       {...restProps}

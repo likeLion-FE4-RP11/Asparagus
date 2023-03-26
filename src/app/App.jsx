@@ -24,35 +24,41 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <NotFoundPage />,
     children: [
-      { index: true, element: <SignInPage /> },
-      { index: true, element: <SignUpPage /> },
       {
-        path: 'HomePage',
+        index: true,
         element: (
           <BaseLayout>
             <HomePage />
           </BaseLayout>
         ),
       },
-
       {
-        path: 'categories',
-        element: (
-          <BaseLayout>
-            <CategoriesPage />
-          </BaseLayout>
-        ),
-      },
-      {
-        path: 'upload',
+        path: 'Upload',
         element: (
           <BaseLayout>
             <UploadPage />
           </BaseLayout>
         ),
       },
-      {},
+      {
+        path: 'Categories',
+        element: (
+          <BaseLayout>
+            <CategoriesPage />
+          </BaseLayout>
+        ),
+      },
     ],
+  },
+  {
+    path: '/SignIn',
+    element: <RootLayout />,
+    children: [{ index: true, element: <SignInPage /> }],
+  },
+  {
+    path: '/SignUp',
+    element: <RootLayout />,
+    children: [{ index: true, element: <SignUpPage /> }],
   },
 ]);
 
