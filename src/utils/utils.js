@@ -5,6 +5,7 @@ import {
   serverTimestamp,
   getDoc,
   getDocs,
+  addDoc,
   query,
   where,
 } from 'firebase/firestore';
@@ -56,4 +57,19 @@ export const getCategoryId = async (user_uid, category_name) => {
   });
 
   return category_uid ?? null;
+};
+
+/**
+ * 이미지 아이템 추가하는 유틸리티 함수
+ * @param {any} imageItem image 아이템 (객체)
+ * @returns Promise<any>
+ */
+export const addImageItem = async (imageItem) => {
+  const imageCollectionRef = collection(db, IMAGE_COLLECTION_KEY);
+  // 데이터 추가
+  // 참고: https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko
+  return await addDoc(imageCollectionRef, {
+    ...imageItem,
+    createAt: serverTimestamp(),
+  });
 };
