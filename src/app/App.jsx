@@ -18,10 +18,6 @@ import CategoriesPage from '@/pages/Categories/CategoriesPage';
 import UploadPage from '@/pages/UploadPage/UploadPage';
 import NotFoundPage from '@/pages/NotFound/NotFoundPage';
 
-const AppStyle = styled.div`
-  display: block;
-`;
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -30,9 +26,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <SignInPage /> },
       { index: true, element: <SignUpPage /> },
-
       {
-        path: '/',
+        path: 'HomePage',
         element: (
           <BaseLayout>
             <HomePage />

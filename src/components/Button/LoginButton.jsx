@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
 import { getColor } from '@/theme/utils';
+import { useNavigate } from 'react-router-dom';
 
 const ButtonStyle = styled.button`
   width: 521px;
@@ -18,9 +19,16 @@ const ButtonStyle = styled.button`
 `;
 
 export function LoginButton({ disabled, children, ...restProps }) {
+  const navigate = useNavigate();
+
+  const SubmitButton = () => {
+    navigate('/HomePage', { replace: false });
+  };
+
   return (
     <ButtonStyle
       type="button"
+      onClick={SubmitButton}
       disabled={disabled}
       bgColor={getColor('gray/50')}
       {...restProps}
