@@ -1,8 +1,12 @@
-import PropTypes from 'prop-types';
-import styled from 'styled-components/macro';
+
+import PropTypes, { string, element, bool } from 'prop-types';
+import styled from 'styled-components';
 import { getColor } from '@/theme/utils';
 
 const ButtonStyle = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 521px;
   height: 65px;
   user-select: none;
@@ -10,10 +14,22 @@ const ButtonStyle = styled.button`
   border: 0px;
   border-radius: 11px;
   margin-top: 10px;
-  color: #000
+  color: ${(props) => props.color}
   background-color: ${(props) => props.bgColor};
+  
+
+  &.google{
+    background-color: #333;
+    color: #FFFFFF;
+  }
+  &.facebook{
+    background-color :#0066ffd5;
+    color: #FFFFFF;
+  }
   &:disabled{
     cursor: not-allowed;
+    background-color: #f2e9e4; 
+    color: #333;
   }
 `;
 
@@ -30,6 +46,8 @@ export function LoginButton({ disabled, children, ...restProps }) {
   );
 }
 
+
+
 /* Props -------------------------------------------------------------------- */
 
 LoginButton.defaultProps = {
@@ -38,5 +56,6 @@ LoginButton.defaultProps = {
 
 LoginButton.propTypes = {
   disabled: PropTypes.bool,
-  children: PropTypes.string,
+  children: PropTypes.node,
+
 };

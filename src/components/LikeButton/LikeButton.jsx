@@ -7,12 +7,21 @@ const LikeBtn = styled.span`
   color: #f9fbfd;
   font-size: 43px;
   font-style: normal;
+  padding-left: 15px;
 `;
 
 const LikeButtonArea = styled.button`
   display: flex;
   flex-flow: row;
   align-items: center;
+  position: absolute;
+  left: 170px;
+  bottom: -400px;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  @media screen and (max-width: 940px) {
+    bottom: -110px;
 `;
 
 export function LikeButton() {

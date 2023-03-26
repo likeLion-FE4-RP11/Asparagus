@@ -19,9 +19,6 @@ function App() {
   return (
     <Router>
       <AppStyle>
-        {/* <Nav>
-          <Link to={getPathFromBaseUrl()}>홈페이지</Link>
-        </Nav> */}
         <BaseLayout>
           <Routes>
             <Route path="/" element={<HomePage />} />
