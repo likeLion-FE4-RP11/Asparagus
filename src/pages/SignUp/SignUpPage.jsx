@@ -14,6 +14,7 @@ import {
   SignUpFormInput,
   ImageContainer,
 } from '@/components/index';
+import { writeBatchCategoryList, getCategoryIds } from '@/utils/utils';
 
 const initialFormState = {
   name: '',
@@ -26,14 +27,20 @@ export default function SignUpPage() {
   // 브라우저탭 이름
   useDocumentTitle('회원가입 → Likelion 4th');
 
-  const { signUp } = useSignUp();
-  const { isLoading, error, user } = useAuthState();
+  const { signUp, user: signUpUser } = useSignUp();
   const { createAuthUser } = useCreateAuthUser();
   const { createData } = useCreateData();
   const { writeBatchData } = useWriteBatchData();
   const formStateRef = useRef(initialFormState);
 
-  //
+  const categoryList = [];
+  const categoryNameList = ['Travel', 'Food', 'Hobby', 'Daily'];
+  const categoryDescriptionList = [
+    '이 카테고리는 Travel',
+    '이 카테고리는 Food',
+    '이 카테고리는 Hobby',
+    '이 카테고리는 Daily',
+  ];
 
   const SignUpPageReset = () => {
     console.log('reset');
@@ -48,22 +55,26 @@ export default function SignUpPage() {
   };
 
   useEffect(() => {
-    if (user) {
+    if (signUpUser) {
       (async () => {
         const { name, email, uid } = formStateRef.current;
-        await createAuthUser(user);
+        await createAuthUser(signUpUser);
+        await categoryNameList.map((categoryName, index) => {
+          const categoryObject = {
+            description: categoryDescriptionList[index],
+            isAllow: true,
+            likeCount: 0,
+            name: categoryName,
+            uid: signUpUser.uid,
+          };
+          categoryList.push(categoryObject);
+        });
+        console.log(categoryList);
+        await writeBatchCategoryList(categoryList);
+        await getCategoryIds(signUpUser.uid);
       })();
     }
-
-    //* 카테고리 분류 부분 (작업중)---------
-    //   if (user) {
-    //     async () => {
-    //       const { name, uid } = formStateRef.current;
-    //       await writeBatchData('test', 'key');
-    //     };
-    //   }
-    //*------------------------------
-  }, [createAuthUser, user]);
+  }, [createAuthUser, signUpUser]);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
