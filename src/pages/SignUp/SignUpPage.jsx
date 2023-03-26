@@ -69,7 +69,7 @@ export default function SignUpPage() {
             />
             <SignUpFormInput
               type="email"
-              label="이메ㄴ일"
+              label="이메일"
               name="email"
               onChange={handleChangeInput}
             />
