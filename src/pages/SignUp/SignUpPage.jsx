@@ -44,6 +44,16 @@ export default function SignUpPage() {
 
     const { name, email, password, passwordConfirm } = formStateRef.current;
 
+    if (!name || name.trim().length < 2) {
+      alert('2글자 이상 입력해주세요🥹');
+      return;
+    }
+
+    if (!Object.is(password, passwordConfirm)) {
+      alert('입력한 비밀번호가 다릅니다🥹');
+      return;
+    }
+
     await signUp(email, password, name);
   };
 
