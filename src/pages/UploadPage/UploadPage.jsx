@@ -10,7 +10,7 @@ import { getColor, getFontSize } from '@/theme/utils';
 import { useRef, useState, useEffect } from 'react';
 import * as S from './UploadPage.styled';
 import { useUploadFiles } from '@/firebase/storage';
-import { getCategoryId } from '@/utils';
+import { getCategoryId, addImageItem } from '@/utils';
 
 export default function UploadPage() {
   useDocumentTitle('UploadPage');
@@ -32,7 +32,6 @@ export default function UploadPage() {
   useEffect(() => {
     if (urlList) {
       imageDataRef.current['url'] = urlList[0];
-      console.log(imageDataRef);
     }
 
     if (error) {
@@ -42,13 +41,17 @@ export default function UploadPage() {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
+    if (imageDataRef.current['url'] === undefined) {
+      return alert('이미지가 이미 업로드 되었습니다.');
+    }
+
     formStateRef.current['description'] = textInputRef.current.value;
     if (
       formStateRef.current['category_name'] &&
       formStateRef.current['description'] &&
       file
     ) {
-      uploadFiles();
+      await uploadFiles();
       const category_uid = await getCategoryId(
         user_uid,
         formStateRef.current['category_name']
@@ -59,11 +62,10 @@ export default function UploadPage() {
         imageDataRef.current['description'] = textInputRef.current.value;
         imageDataRef.current['name'] = file.name;
         imageDataRef.current['user_uid'] = user_uid;
+        await addImageItem(imageDataRef.current);
       }
     }
   };
-
-  console.log(imageDataRef);
 
   const handleDeleteImage = () => {
     setFile(null);
@@ -122,7 +124,7 @@ export default function UploadPage() {
       >
         upload
       </SeeMoreButton>
-      <p>파일 업로드 개수: {urlList ? urlList : 0}</p>
+      <p>파일 업로드 개수: {urlList ? urlList.length : 0}</p>
       <p>{isLoading ? '로딩중' : '로딩끝!'}</p>
     </S.FlexContainer>
   );
