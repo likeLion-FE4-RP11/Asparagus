@@ -18,8 +18,8 @@ export function SeeMoreImg({ img }) {
 
  
   return (
-    <ImageContainer>
-        <BaseImage width="29.4375rem" height="37.5rem" img={img}/>
+    <ImageContainer width="29.4375rem" height="37.5rem">
+        <BaseImage img={img}/>
     </ImageContainer>
   );
 }
