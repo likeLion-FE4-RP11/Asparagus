@@ -17,6 +17,8 @@ const MoreButton = styled.button`
   line-height: 1;
   font-size: ${(props) => props.fontSize};
   letter-spacing: 15px;
+  display: block;
+  margin: auto;
 `;
 // background: ${({ theme }) => theme.color['white']};  // <- 질문하기
 /* component */

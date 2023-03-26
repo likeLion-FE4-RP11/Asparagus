@@ -28,6 +28,7 @@ const ButtonContents = styled.button`
   border-radius: 10px;
   font-size: 35px;
   text-align: left;
+  display: block;
 
   img {
     display: block;
