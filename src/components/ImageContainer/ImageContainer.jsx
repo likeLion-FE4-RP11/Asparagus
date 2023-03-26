@@ -44,5 +44,4 @@ ImageContainer.propTypes = {
   alt: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
-  datasetKey: PropTypes.string,
 };

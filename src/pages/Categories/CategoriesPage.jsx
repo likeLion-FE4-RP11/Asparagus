@@ -101,6 +101,7 @@ export default function CategoriesPage() {
         width={'1557px'}
         height={'769px'}
         style={{ position: 'relative' }}
+        src={imgArr[0]}
       ></ImageContainer>
       <S.TextContainer>
         <S.ImageTitle color={getColor('white')}>Travel</S.ImageTitle>
@@ -127,12 +128,14 @@ export default function CategoriesPage() {
           height={'525'}
           description={descriptionArr[1]}
           datasetKey={imgIdArr[1]}
+          src={imgArr[1]}
         />
         <UseHover
           width={'632'}
           height={'525'}
           description={descriptionArr[2]}
           datasetKey={imgIdArr[2]}
+          src={imgArr[2]}
         />
       </S.FirstContainer>
       <S.SecondContainer>
@@ -141,12 +144,14 @@ export default function CategoriesPage() {
           height={'525'}
           description={descriptionArr[3]}
           datasetKey={imgIdArr[3]}
+          src={imgArr[3]}
         />
         <UseHover
           width={'900'}
           height={'525'}
           description={descriptionArr[4]}
           datasetKey={imgIdArr[4]}
+          src={imgArr[4]}
         />
       </S.SecondContainer>
       <DesignParagraph>
@@ -158,12 +163,14 @@ export default function CategoriesPage() {
           height={'633'}
           description={descriptionArr[5]}
           datasetKey={imgIdArr[5]}
+          src={imgArr[5]}
         />
         <UseHover
           width={'430'}
           height={'633'}
           description={descriptionArr[6]}
           datasetKey={imgIdArr[6]}
+          src={imgArr[6]}
         />
       </S.ThirdContainet>
       <S.FourthContainet>
@@ -172,12 +179,14 @@ export default function CategoriesPage() {
           height={'416'}
           description={descriptionArr[7]}
           datasetKey={imgIdArr[7]}
+          src={imgArr[7]}
         />
         <UseHover
           width={'789'}
           height={'416'}
           description={descriptionArr[8]}
           datasetKey={imgIdArr[8]}
+          src={imgArr[8]}
         />
       </S.FourthContainet>
       <TopButton />

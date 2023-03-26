@@ -2,14 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import HeartImg from '@/assets/Heart.png';
 import EmptyHeartImg from '@/assets/empty-heart.png';
-import {
-  collection,
-  doc,
-  getDocs,
-  updateDoc,
-  query,
-  where,
-} from 'firebase/firestore';
+import { doc, getDoc, updateDoc, query } from 'firebase/firestore';
 import { db } from '@/firebase/firestore';
 
 const LikeBtn = styled.span`
@@ -33,28 +26,31 @@ const LikeButtonArea = styled.button`
 
 export function LikeButton() {
   const [heart, setHeart] = useState(false);
-  const [count, setCount] = useState([]);
-  const user_uid = 'EHSFq6SN4UfSAyGTw6UH';
+  const [count, setCount] = useState(0);
+
+  const category_uid = 'J5QsZE01c9QkdO1yzuVB';
 
   const updateCount = async (likeCount) => {
     setHeart((prev) => !prev);
-    const userDoc = doc(db, 'categories', likeCount);
-    const newFields = { likeCount: likeCount + 1 };
+    const userDoc = doc(db, 'categories', category_uid);
+    let newFields = {};
+
+    if (heart) {
+      newFields = { likeCount: likeCount - 1 };
+      setCount(count - 1);
+    } else {
+      newFields = { likeCount: likeCount + 1 };
+      setCount(count + 1);
+    }
     await updateDoc(userDoc, newFields);
   };
 
   useEffect(() => {
     const getCounter = async () => {
-      const q = query(
-        collection(db, 'categories'),
-        where('user_uid', '==', user_uid),
-        where('description', '==', '이 카테고리는 Travel')
-      );
+      const q = query(doc(db, 'categories', category_uid));
 
-      const data = await getDocs(q);
-      const dataList = [];
-      data.docs.map((doc) => dataList.push(doc.data().likeCount));
-      setCount(dataList);
+      const data = await getDoc(q);
+      setCount(data.data().likeCount);
     };
 
     getCounter();
@@ -66,7 +62,7 @@ export function LikeButton() {
     <LikeButtonArea
       type="button"
       onClick={() => {
-        updateCount(count[0]);
+        updateCount(count);
       }}
     >
       {heart ? (
@@ -74,7 +70,7 @@ export function LikeButton() {
       ) : (
         <img src={EmptyHeartImg} alt="좋아요 취소 한 상태" /> // false (빈 하트)
       )}
-      <LikeBtn>{count[0]}</LikeBtn>
+      <LikeBtn>{count}</LikeBtn>
     </LikeButtonArea>
   );
 }
