@@ -1,12 +1,10 @@
 import { useId, useRef } from 'react';
-import { useId } from 'react';
 import { bool, string } from 'prop-types';
 import { A11yHidden } from '@/components/';
 import * as S from './FormInput.styled';
 
 export function FormInput({ label, type, invisibleLabel, ...restProps }) {
   const id = useId();
-
 
   return (
     <S.FormInput>
