@@ -6,22 +6,75 @@ import {
   DescriptionInput,
   SeeMoreButton,
 } from '@/components';
-
 import { getColor, getFontSize } from '@/theme/utils';
-import { useCallback, useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import * as S from './UploadPage.styled';
 import { useUploadFiles } from '@/firebase/storage';
+import { getCategoryId, addImageItem } from '@/utils';
 
 export default function UploadPage() {
   useDocumentTitle('UploadPage');
 
-  const { fileInputRef, uploadFiles } = useUploadFiles();
-  const inputRef = useRef(null);
+  const { fileInputRef, uploadFiles, isLoading, error, urlList } =
+    useUploadFiles({
+      dirName: 'assets/images',
+    });
+
+  const imageDataRef = useRef(initialImageData);
+  const formStateRef = useRef(initialFormState);
+  const textInputRef = useRef(null);
 
   // 이미지 파일
   const [file, setFile] = useState(null);
   // 미리보기 이미지
   const [preview, setPreview] = useState(null);
+
+  useEffect(() => {
+    if (urlList) {
+      imageDataRef.current['url'] = urlList[0];
+    }
+
+    if (error) {
+      console.log(error);
+    }
+  }, [isLoading, error, urlList]);
+
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+    if (imageDataRef.current['url'] === undefined) {
+      return alert('이미지가 이미 업로드 되었습니다.');
+    }
+
+    formStateRef.current['description'] = textInputRef.current.value;
+    if (
+      formStateRef.current['category_name'] &&
+      formStateRef.current['description'] &&
+      file
+    ) {
+      await uploadFiles();
+      const category_uid = await getCategoryId(
+        user_uid,
+        formStateRef.current['category_name']
+      );
+      if (category_uid) {
+        console.log(category_uid);
+        imageDataRef.current['catagory_uid'] = category_uid;
+        imageDataRef.current['description'] = textInputRef.current.value;
+        imageDataRef.current['name'] = file.name;
+        imageDataRef.current['user_uid'] = user_uid;
+        await addImageItem(imageDataRef.current);
+      }
+    }
+  };
+
+  const handleDeleteImage = () => {
+    setFile(null);
+    setPreview(null);
+  };
+
+  const handleDeleteText = () => {
+    textInputRef.current.value = '';
+  };
 
   const onFileDrop = (e) => {
     // 파일 확장자 유효성검사 필요함 (png, jpg만 가능하게)
@@ -33,28 +86,6 @@ export default function UploadPage() {
       setPreview(reader.result);
     };
     setFile(file);
-  };
-
-  const handelUpload = useCallback(() => {
-    console.log('업로드 버튼 클릭');
-  }, []);
-
-  const resetInputFile = () => {
-    setFile(null);
-    setPreview(null);
-  };
-
-  // const resetInputText = () => {
-  //   // inputRef.current.value = null;
-  //   // inputRef.current = '';
-  //   console.log(inputRef.current.value);
-  //   console.log('삭제 버튼 클릭2');
-  // };
-
-  const deleteButtonStyle = {
-    position: 'absolute',
-    right: '0',
-    marginTop: '2.9375rem',
   };
 
   return (
@@ -69,8 +100,11 @@ export default function UploadPage() {
           onFileDrop={onFileDrop}
           ref={fileInputRef}
         />
-        <DeleteButton style={deleteButtonStyle} onClick={resetInputFile} />
-        <Accordion style={{ margin: '2.9375rem 0 6.25rem 0' }} />
+        <DeleteButton style={deleteButtonStyle} onClick={handleDeleteImage} />
+        <Accordion
+          style={{ margin: '2.9375rem 0 6.25rem 0' }}
+          ref={formStateRef}
+        />
       </S.ImageSection>
 
       <S.DescriptionSection>
@@ -80,16 +114,40 @@ export default function UploadPage() {
         >
           Enter image description
         </S.DescriptionTitle>
-        <DescriptionInput ref={inputRef} />
-        <DeleteButton style={deleteButtonStyle} />
+        <DescriptionInput ref={textInputRef} />
+        <DeleteButton style={deleteButtonStyle} onClick={handleDeleteText} />
       </S.DescriptionSection>
 
       <SeeMoreButton
-        onClick={handelUpload}
+        onClick={handelSubmit}
         style={{ marginBottom: '9.9375rem' }}
       >
         upload
       </SeeMoreButton>
+      <p>파일 업로드 개수: {urlList ? urlList.length : 0}</p>
+      <p>{isLoading ? '로딩중' : '로딩끝!'}</p>
     </S.FlexContainer>
   );
 }
+
+const initialFormState = {
+  category_name: '',
+  description: '',
+};
+
+// imageData
+const initialImageData = {
+  catagory_uid: '',
+  description: '',
+  name: '',
+  url: '',
+  user_uid: '',
+};
+
+const deleteButtonStyle = {
+  position: 'absolute',
+  right: '0',
+  marginTop: '2.9375rem',
+};
+
+const user_uid = 'EHSFq6SN4UfSAyGTw6UH';

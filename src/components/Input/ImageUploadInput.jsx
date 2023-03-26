@@ -1,5 +1,5 @@
 import { A11yHidden } from '@/components/index';
-import { useState, useRef, forwardRef, useId } from 'react';
+import { useRef, forwardRef, useId } from 'react';
 import ImageUploadIcon from '@/assets/imageUpload-icon.svg';
 import { getColor, getFontSize } from '@/theme/utils';
 import * as S from './ImageUploadInput.styled';
@@ -11,7 +11,8 @@ export const ImageUploadInput = forwardRef(function UploadInput(
   fileInputRef
 ) {
   const id = useId();
-  const wrapperRef = useRef('');
+
+  const wrapperRef = useRef(null);
 
   // DOM에 접근할 때: side effect -> useEffect에서 실행하도록 리팩토링 필요
   const onDragEnter = () => wrapperRef.current.classList.add('dragover');
@@ -49,10 +50,6 @@ export const ImageUploadInput = forwardRef(function UploadInput(
     </S.UploadSection>
   );
 });
-
-// ImageUploadInput.propTypes = {
-//   deleted: PropTypes.bool,
-// };
 
 ImageUploadInput.propTypes = {
   file: PropTypes.object,
