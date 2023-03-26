@@ -6,6 +6,7 @@ import { getFontSize } from '@/theme/utils';
 import { useRef } from 'react';
 import googleIcon from '@/assets/Google-logo.svg';
 import faceBookIcon from '@/assets/facebook-logo.svg';
+import loginImage from '@/assets/BackgroundImage.svg';
 import * as S from './SignPage.styled';
 import { useAuthState, useSignIn, useSignOut } from '@/firebase/auth';
 import {
@@ -18,7 +19,6 @@ import {
 const provider = new GoogleAuthProvider();
 const FaceBookprovider = new FacebookAuthProvider();
 const auth = getAuth();
-
 
 const initialFormState = {
   email: '',
@@ -124,47 +124,51 @@ export default function SignInPage() {
 
   return (
     <S.FormContainer>
-      <S.Header fontSize={getFontSize('2xl')}>Let’s get you started</S.Header>
-      <form onSubmit={handleSignIn}>
-        <FormInput
-          name="email"
-          type="email"
-          label="Email"
-          placeholder="Enter your email"
-          onChange={handleChangeInput}
-        />
-        <FormInput
-          name="password"
-          type="password"
-          label="Password"
-          placeholder="Enter your password"
-          onChange={handleChangeInput}
-        />
+      <div>
+        <S.Header fontSize={getFontSize('2xl')}>Let’s get you started</S.Header>
+        <form onSubmit={handleSignIn}>
+          <FormInput
+            name="email"
+            type="email"
+            label="Email"
+            placeholder="Enter your email"
+            onChange={handleChangeInput}
+          />
+          <FormInput
+            name="password"
+            type="password"
+            label="Password"
+            placeholder="Enter your password"
+            onChange={handleChangeInput}
+          />
 
-        <LoginButton disabled={isLoadingSignIn} type="submit">
-          {!isLoadingSignIn ? 'log in' : 'loading...'}
-        </LoginButton>
-        <LoginButton
-          type="submit"
-          onClick={handleSignGoogle}
-          className="google"
-        >
-          <S.Img src={googleIcon} alt="구글 로그인" />
-          Continuew with Google
-        </LoginButton>
-        <LoginButton
-          type="submit"
-          className="facebook"
-          onClick={handlSignFacebook}
-        >
-          <S.Img src={faceBookIcon} alt="페이스북 로그인 " />
-          Continuew with facebook
-        </LoginButton>
-      </form>
-      <S.Info>
-        Already have an account ? <Link to="/signup">Create Account </Link>
-      </S.Info>
+          <LoginButton disabled={isLoadingSignIn} type="submit">
+            {!isLoadingSignIn ? 'log in' : 'loading...'}
+          </LoginButton>
+          <LoginButton
+            type="submit"
+            onClick={handleSignGoogle}
+            className="google"
+          >
+            <S.Img src={googleIcon} alt="구글 로그인" />
+            Continuew with Google
+          </LoginButton>
+          <LoginButton
+            type="submit"
+            className="facebook"
+            onClick={handlSignFacebook}
+          >
+            <S.Img src={faceBookIcon} alt="페이스북 로그인 " />
+            Continuew with facebook
+          </LoginButton>
+        </form>
+        <S.Info>
+          Already have an account ? <Link to="/signup">Create Account </Link>
+        </S.Info>
+      </div>
+      <S.ImgContainer>
+        <img src={loginImage} alt="로그인 메인 이미지" />
+      </S.ImgContainer>
     </S.FormContainer>
-
   );
 }
