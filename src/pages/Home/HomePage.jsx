@@ -8,14 +8,14 @@ import {
   Category,
   RecentImageTitle,
 } from '@/components'
-import { useCallback, useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { collection, getDocs, query, where, limit, orderBy, } from 'firebase/firestore';
 import { db } from '@/firebase/firestore';
 import * as S from './HomePage.styled';
 
 export default function HomePage() {
-  const [imgArr, setImgArr] = useState([]); 
   useDocumentTitle('HomePage');
+  const [imgArr, setImgArr] = useState([]); 
   const [visible, setVisible] = useState(false);
 
   useEffect(()=>{

@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro';
 import { getColor } from '@/theme/utils';
 import { BaseImage } from '@/components';
+import PropTypes from 'prop-types';
 
 
 const ImageContainer = styled.div`
@@ -14,14 +15,19 @@ const ImageContainer = styled.div`
   margin-right: 71px;
 `;
 
-export function SeeMoreImg({ img }) {
+export function SeeMoreImg({ src }) {
 
  
   return (
     <ImageContainer width="29.4375rem" height="37.5rem">
-        <BaseImage img={img}/>
+        <BaseImage img={src}/>
     </ImageContainer>
   );
 }
 
 ImageContainer.displayName = 'ImageContainer';
+
+
+SeeMoreImg.propTypes = {
+  src: PropTypes.string,
+  };
