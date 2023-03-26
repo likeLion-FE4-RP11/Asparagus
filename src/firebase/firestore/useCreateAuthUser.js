@@ -20,16 +20,16 @@ export function useCreateAuthUser(collectionKey = 'users') {
       const userDocRef = doc(db, collectionKey, userAuth.uid);
 
       setIsLoading(true);
-
       try {
         const userSnapshot = await getDoc(userDocRef);
         if (!userSnapshot.exists()) {
-          const { email, displayName } = userAuth;
+          const { email, displayName, uid } = userAuth;
           const createAt = serverTimestamp();
           await setDoc(userDocRef, {
             email,
             displayName,
             createAt,
+            uid,
             ...additionData,
           });
         } else {

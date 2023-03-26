@@ -1,7 +1,12 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { CheckBox } from '@/components';
 import * as S from './SignUpPase.styled';
 import { useSignUp, useAuthState } from '@/firebase/auth';
+import {
+  useCreateAuthUser,
+  useCreateData,
+  useWriteBatchData,
+} from '@/firebase/firestore';
 import MainImage from '../../assets/SignUp_main.jpg';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import {
@@ -9,7 +14,6 @@ import {
   SignUpFormInput,
   ImageContainer,
 } from '@/components/index';
-import { DeprecatedLayoutGroupContext } from 'framer-motion';
 
 const initialFormState = {
   name: '',
@@ -24,6 +28,9 @@ export default function SignUpPage() {
 
   const { signUp } = useSignUp();
   const { isLoading, error, user } = useAuthState();
+  const { createAuthUser } = useCreateAuthUser();
+  const { createData } = useCreateData();
+  const { writeBatchData } = useWriteBatchData();
   const formStateRef = useRef(initialFormState);
 
   //
@@ -40,13 +47,27 @@ export default function SignUpPage() {
     await signUp(email, password, name);
   };
 
+  useEffect(() => {
+    if (user) {
+      (async () => {
+        const { name, email, uid } = formStateRef.current;
+        await createAuthUser(user);
+      })();
+    }
+
+    //* 카테고리 분류 부분 (작업중)---------
+    //   if (user) {
+    //     async () => {
+    //       const { name, uid } = formStateRef.current;
+    //       await writeBatchData('test', 'key');
+    //     };
+    //   }
+    //*------------------------------
+  }, [createAuthUser, user]);
+
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     formStateRef.current[name] = value;
-  };
-
-  const test = (e) => {
-    console.log(e.target.value);
   };
 
   return (

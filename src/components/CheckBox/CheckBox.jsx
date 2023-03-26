@@ -12,7 +12,7 @@ export const CheckBox = forwardRef(function CheckBox(
   const [checked, SetChecked] = useState(false);
 
   function handleCheckbox() {
-    () => SetChecked(!checked);
+    SetChecked(!checked);
     return;
   }
 
