@@ -1,6 +1,7 @@
-import testImg from '@/assets/test.jpg';
+import testImg from '@/assets/test.svg';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/macro';
+import { BaseImage } from '@/components/ImageContainer/BaseImage';
 
 const SrcImageBox = styled.div`
   display: flex;
@@ -24,14 +25,17 @@ const SrcImageBox = styled.div`
 export function ImageContainer({ src, alt, width, height }) {
   return (
     <SrcImageBox width={width} height={height}>
-      <img src={src} alt={alt}></img>
+      {src ? (
+        <img src={src} alt={alt}></img>
+      ) : (
+        <BaseImage width={width} height={height} />
+      )}
     </SrcImageBox>
   );
 }
 
 ImageContainer.defaultProps = {
   src: testImg,
-  alt: '테스트 이미지',
 };
 
 ImageContainer.propTypes = {

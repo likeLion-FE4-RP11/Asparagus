@@ -9,10 +9,10 @@ export const CheckBox = forwardRef(function CheckBox(
 ) {
   const id = useId();
   const disabled = false;
-  const [checked, SetChecked] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   function handleCheckbox() {
-    SetChecked(!checked);
+    setChecked(!checked);
     return;
   }
 

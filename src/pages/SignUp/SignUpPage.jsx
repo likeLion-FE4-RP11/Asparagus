@@ -1,14 +1,16 @@
-import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { CheckBox } from '@/components';
 import * as S from './SignUpPase.styled';
+import { useEffect, useRef } from 'react';
+import MainImage from '../../assets/SignUp_main.jpg';
 import { useSignUp, useAuthState } from '@/firebase/auth';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { writeBatchCategoryList, getCategoryIds } from '@/utils/utils';
 import {
   useCreateAuthUser,
   useCreateData,
   useWriteBatchData,
 } from '@/firebase/firestore';
-import MainImage from '../../assets/SignUp_main.jpg';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import {
   CategoryTitle,
   SignUpFormInput,
@@ -26,14 +28,20 @@ export default function SignUpPage() {
   // 브라우저탭 이름
   useDocumentTitle('회원가입 → Likelion 4th');
 
-  const { signUp } = useSignUp();
-  const { isLoading, error, user } = useAuthState();
+  const { signUp, user: signUpUser } = useSignUp();
   const { createAuthUser } = useCreateAuthUser();
   const { createData } = useCreateData();
   const { writeBatchData } = useWriteBatchData();
   const formStateRef = useRef(initialFormState);
-
-  //
+  // firestore collection
+  const categoryList = [];
+  const categoryNameList = ['Travel', 'Food', 'Hobby', 'Daily'];
+  const categoryDescriptionList = [
+    '이 카테고리는 Travel',
+    '이 카테고리는 Food',
+    '이 카테고리는 Hobby',
+    '이 카테고리는 Daily',
+  ];
 
   const SignUpPageReset = () => {
     console.log('reset');
@@ -58,22 +66,26 @@ export default function SignUpPage() {
   };
 
   useEffect(() => {
-    if (user) {
+    if (signUpUser) {
       (async () => {
         const { name, email, uid } = formStateRef.current;
-        await createAuthUser(user);
+        await createAuthUser(signUpUser);
+        await categoryNameList.map((categoryName, index) => {
+          const categoryObject = {
+            description: categoryDescriptionList[index],
+            isAllow: true,
+            likeCount: 0,
+            name: categoryName,
+            uid: signUpUser.uid,
+          };
+          categoryList.push(categoryObject);
+        });
+        console.log(categoryList);
+        await writeBatchCategoryList(categoryList);
+        await getCategoryIds(signUpUser.uid);
       })();
     }
-
-    //* 카테고리 분류 부분 (작업중)---------
-    //   if (user) {
-    //     async () => {
-    //       const { name, uid } = formStateRef.current;
-    //       await writeBatchData('test', 'key');
-    //     };
-    //   }
-    //*------------------------------
-  }, [createAuthUser, user]);
+  }, [createAuthUser, signUpUser]);
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -116,7 +128,9 @@ export default function SignUpPage() {
           </form>
         </S.SignUpContent>
         <S.HalfImageContainer>
-          <S.ImageLogo>I`s gallery</S.ImageLogo>
+          <S.ImageLogo>
+            <Link to="/">I`s gallery</Link>
+          </S.ImageLogo>
           <S.SignUpMainImage src={MainImage} alt="회원가입 메인 이미지" />
         </S.HalfImageContainer>
       </S.SignUpContainer>

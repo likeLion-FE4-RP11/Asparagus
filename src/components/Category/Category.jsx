@@ -3,6 +3,7 @@ import FirstMask from '@/assets/FirstMask.svg';
 import SecondMask from '@/assets/SecondMask.svg';
 import ThirdMask from '@/assets/ThirdMask.svg';
 import FourthMask from '@/assets/FourthMask.svg';
+import { Link } from 'react-router-dom';
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -17,7 +18,8 @@ const ButtonContainer = styled.div`
   margin: 0 auto;
 `;
 
-const ButtonContents = styled.button`
+const StyledLink = styled(Link)`
+  display: block;
   height: 100%;
   background-color: #ffffff;
   cursor: pointer;
@@ -28,7 +30,6 @@ const ButtonContents = styled.button`
   border-radius: 10px;
   font-size: 35px;
   text-align: left;
-  display: block;
 
   img {
     display: block;
@@ -36,32 +37,21 @@ const ButtonContents = styled.button`
   }
 `;
 
+const categories = ['Daily', 'Travel', 'Food', 'Hobby'];
+const sources = [FirstMask, SecondMask, ThirdMask, FourthMask];
+const descriptions = ['FirstMask', 'SecondMask', 'ThirdMask', 'FourthMask'];
+
 export function Category() {
-  const handleSelect = (e) => {
-    console.log(e.target.innerText);
-  };
   return (
     <ButtonContainer>
-      <ButtonContents type="button" onClick={handleSelect}>
-        <img src={FirstMask} alt="FirstMask" />
-        Daily
-      </ButtonContents>
-      <ButtonContents type="button" onClick={handleSelect}>
-        <img src={SecondMask} alt="SecondMask" />
-        Travel
-      </ButtonContents>
-      <ButtonContents type="button" onClick={handleSelect}>
-        <img src={ThirdMask} alt="ThirdMask" />
-        Food
-      </ButtonContents>
-      <ButtonContents type="button" onClick={handleSelect}>
-        <img src={FourthMask} alt="FourthMask" />
-        Hobby
-      </ButtonContents>
+      {categories.map((category, index) => {
+        return (
+          <StyledLink to={`/categories/${category}`} key={category}>
+            <img src={sources[index]} alt={descriptions[index]} />
+            {category}
+          </StyledLink>
+        );
+      })}
     </ButtonContainer>
   );
 }
-
-
-
-
