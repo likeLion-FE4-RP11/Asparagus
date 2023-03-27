@@ -11,7 +11,6 @@ import {
   Category,
   RecentImageTitle,
 } from '@/components';
-import { useState, useEffect } from 'react';
 import {
   collection,
   getDocs,
@@ -20,8 +19,6 @@ import {
   limit,
   orderBy,
 } from 'firebase/firestore';
-import { db } from '@/firebase/firestore';
-import * as S from './HomePage.styled';
 
 export default function HomePage() {
   useDocumentTitle('HomePage');
