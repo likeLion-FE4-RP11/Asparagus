@@ -30,15 +30,16 @@ export default function HomePage() {
 
   useEffect(() => {
     if (authUser) {
+      console.log(authUser.uid);
       const getRecentImages = async () => {
         const q = query(
           collection(db, 'images'),
-          where('user_uid', '==', authUser.uid),
+          where('uid', '==', authUser.uid),
           orderBy('createAt', 'desc'),
           limit(3)
         );
         const myImgList = await getDocs(q);
-
+        console.log(myImgList);
         const imageList = [];
         myImgList.docs.map((doc) => imageList.push(doc.data().url));
 
@@ -47,12 +48,13 @@ export default function HomePage() {
       };
 
       getRecentImages();
+      console.log(imgArr);
 
       const getMoreImages = async () => {
         const q = query(
           collection(db, 'categories'),
           where('isAllow', '==', true),
-          where('user_uid', '!=', authUser.uid),
+          where('uid', '!=', authUser.uid),
           limit(3)
         );
 
@@ -79,7 +81,7 @@ export default function HomePage() {
 
       getMoreImages();
     }
-  }, []);
+  }, [authUser]);
 
   return (
     <>

@@ -29,7 +29,7 @@ export function MainSwiper() {
       const getImages = async () => {
         const q = query(
           collection(db, 'images'),
-          where('user_uid', '==', authUser.uid),
+          where('uid', '==', authUser.uid),
           limit(10)
         );
         const myImgList = await getDocs(q);

@@ -43,7 +43,7 @@ export default function CategoriesPage() {
 
       const q = query(
         collection(db, 'images'),
-        where('user_uid', '==', user_uid),
+        where('uid', '==', user_uid),
         where('category_uid', '==', category_uid),
         limit(10)
       );
