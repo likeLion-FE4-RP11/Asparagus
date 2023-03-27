@@ -5,7 +5,6 @@ import {
   collection,
   query,
   where,
-  getDocs,
   limit,
   onSnapshot,
 } from 'firebase/firestore';
@@ -105,7 +104,38 @@ export default function CategoriesPage() {
     <ThemeProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
       <GlobalStyles />
       <ToggleButton />
-      <S.Themebutton onClick={() => themeTogggler()}>Mode</S.Themebutton>
+      <S.Themebutton onClick={() => themeTogggler()}>
+        {theme === 'dark' ? (
+          <svg
+            width="50"
+            height="54"
+            viewBox="0 0 50 54"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1 26.9815C1 12.9888 11.9894 1.38308 26.0416 1.00932C17.31 18.5251 28.9568 39.5412 48.2791 41.33C43.6542 48.368 35.779 53 26.7953 53C12.5644 53 1 41.3513 1 26.9815Z"
+              stroke="white"
+              stroke-width="2"
+            />
+          </svg>
+        ) : (
+          <svg
+            width="60"
+            height="60"
+            viewBox="0 0 60 60"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M50.1595 37.7192L49.7202 38.1585V38.7798V49.7202H38.7798H38.1585L37.7192 50.1595L30 57.8787L22.2808 50.1595L21.8415 49.7202H21.2202H10.2798V38.7798V38.1585L9.8405 37.7192L2.12132 30L9.8405 22.2808L10.2798 21.8415V21.2202V10.2798H21.2202H21.8415L22.2808 9.8405L30 2.12132L37.7192 9.8405L38.1585 10.2798H38.7798H49.7202V21.2202V21.8415L50.1595 22.2808L57.8787 30L50.1595 37.7192ZM12.5849 30C12.5849 39.6083 20.3917 47.4151 30 47.4151C39.6083 47.4151 47.4151 39.6083 47.4151 30C47.4151 20.3917 39.6083 12.5849 30 12.5849C20.3917 12.5849 12.5849 20.3917 12.5849 30Z"
+              stroke="black"
+              stroke-opacity="0.51"
+              stroke-width="3"
+            />
+          </svg>
+        )}
+      </S.Themebutton>
       <ImageContainer
         width={'1557px'}
         height={'769px'}

@@ -87,12 +87,10 @@ export const TextContainer = styled.section`
 
 export const Themebutton = styled.section`
   position: absolute;
-  right: 90px;
-  top: 215px;
+  right: 250px;
+  top: 260px;
   outline: none;
   border: none;
   padding: 1px 5px;
   border-radius: 35px;
-  background-color: #272727;
-  color: white;
 `;
