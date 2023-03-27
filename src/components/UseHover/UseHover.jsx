@@ -2,10 +2,39 @@ import { ImageContainer } from '@/components/index';
 import styled from 'styled-components/macro';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
+import { DeleteButton } from '@/components';
+import { useState } from 'react';
+import { deleteImageItem } from '@/utils/categoryUtils';
 
-export function UseHover({ width, height, description, ...props }) {
+export function UseHover({
+  width,
+  height,
+  description,
+  src,
+  datasetKey,
+  ...props
+}) {
+  const [visible, setVisible] = useState(false);
+
+  const DeleteButtonStyle = {
+    position: 'absolute',
+    zIndex: 1000,
+    right: 20,
+    top: 10,
+  };
+
+  const handleDeleteImgData = () => {
+    deleteImageItem(datasetKey);
+  };
+
   return (
-    <HoverContainer width={width} height={height}>
+    <HoverContainer
+      width={width}
+      height={height}
+      onClick={() => {
+        setVisible(!visible);
+      }}
+    >
       <motion.div
         variants={Variants}
         initial="begin"
@@ -26,7 +55,10 @@ export function UseHover({ width, height, description, ...props }) {
       >
         <HoverScript>{description}</HoverScript>
       </motion.div>
-      <ImageContainer width={width} height={height} />
+      <ImageContainer width={width} height={height} src={src}></ImageContainer>
+      {visible && (
+        <DeleteButton onClick={handleDeleteImgData} style={DeleteButtonStyle} />
+      )}
     </HoverContainer>
   );
 }
@@ -65,4 +97,6 @@ UseHover.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   description: PropTypes.string,
+  src: PropTypes.string,
+  datasetKey: PropTypes.string,
 };

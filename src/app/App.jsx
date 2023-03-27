@@ -1,7 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { BaseLayout, Nav } from '@/components';
-import { getPathFromBaseUrl } from '@/utils';
-import styled from 'styled-components';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BaseLayout, RootLayout } from '@/components';
 
 /* Pages -------------------------------------------------------------------- */
 import HomePage from '@/pages/Home/HomePage';
@@ -10,30 +8,57 @@ import SignUpPage from '@/pages/SignUp/SignUpPage';
 import CategoriesPage from '@/pages/Categories/CategoriesPage';
 import UploadPage from '@/pages/UploadPage/UploadPage';
 import NotFoundPage from '@/pages/NotFound/NotFoundPage';
+import { AuthUserProvider } from '@/contexts/AuthUser';
 
-const AppStyle = styled.div`
-  display: block;
-`;
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        index: true,
+        element: (
+          <BaseLayout>
+            <HomePage />
+          </BaseLayout>
+        ),
+      },
+      {
+        path: 'Upload',
+        element: (
+          <BaseLayout>
+            <UploadPage />
+          </BaseLayout>
+        ),
+      },
+      {
+        path: 'Categories/:name',
+        element: (
+          <BaseLayout>
+            <CategoriesPage />
+          </BaseLayout>
+        ),
+      },
+    ],
+  },
+  {
+    path: '/SignIn',
+    element: <RootLayout />,
+    children: [{ index: true, element: <SignInPage /> }],
+  },
+  {
+    path: '/SignUp',
+    element: <RootLayout />,
+    children: [{ index: true, element: <SignUpPage /> }],
+  },
+]);
 
 function App() {
   return (
-    <Router>
-      <AppStyle>
-        {/* <Nav>
-          <Link to={getPathFromBaseUrl()}>홈페이지</Link>
-        </Nav> */}
-        <BaseLayout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/signin" element={<SignInPage />} />
-            <Route path="/categories" element={<CategoriesPage />} />
-            <Route path="/upload" element={<UploadPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </BaseLayout>
-      </AppStyle>
-    </Router>
+    <AuthUserProvider>
+      <RouterProvider router={router} />;
+    </AuthUserProvider>
   );
 }
 
