@@ -13,6 +13,7 @@ import { collection, getDocs, query, where, limit, orderBy, } from 'firebase/fir
 import { db } from '@/firebase/firestore';
 import * as S from './HomePage.styled';
 
+
 export default function HomePage() {
   useDocumentTitle('HomePage');
   const [imgArr, setImgArr] = useState([]); 
@@ -41,8 +42,6 @@ export default function HomePage() {
 
   console.log(imgArr)
 
-
-
   return <>
     <MainSwiper/>
     <CategoryTitle title={'C A T E G O R Y'} />
@@ -70,5 +69,7 @@ export default function HomePage() {
     </S.SeeMoreSection>
 
     <TopButton />
+
     </>
+  );
 }

@@ -1,5 +1,4 @@
-
-import PropTypes, { string, element, bool } from 'prop-types';
+import PropTypes, { node, bool } from 'prop-types';
 import styled from 'styled-components';
 import { getColor } from '@/theme/utils';
 
@@ -57,5 +56,4 @@ LoginButton.defaultProps = {
 LoginButton.propTypes = {
   disabled: PropTypes.bool,
   children: PropTypes.node,
-
 };
