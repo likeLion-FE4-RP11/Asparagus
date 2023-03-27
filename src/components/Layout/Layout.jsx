@@ -1,5 +1,6 @@
 import { node, string } from 'prop-types';
 import { Header, Footer, Container } from '@/components';
+import { Outlet } from 'react-router-dom';
 
 /* Component ---------------------------------------------------------------- */
 
@@ -15,6 +16,13 @@ export function BaseLayout({ children, ...restProps }) {
   );
 }
 
+export function RootLayout() {
+  return (
+    <>
+      <Outlet />
+    </>
+  );
+}
 /* Props -------------------------------------------------------------------- */
 
 BaseLayout.defaultProps = {
