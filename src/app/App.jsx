@@ -8,6 +8,7 @@ import SignUpPage from '@/pages/SignUp/SignUpPage';
 import CategoriesPage from '@/pages/Categories/CategoriesPage';
 import UploadPage from '@/pages/UploadPage/UploadPage';
 import NotFoundPage from '@/pages/NotFound/NotFoundPage';
+import { AuthUserProvider } from '@/contexts/AuthUser';
 
 const router = createBrowserRouter([
   {
@@ -54,7 +55,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthUserProvider>
+      <RouterProvider router={router} />;
+    </AuthUserProvider>
+  );
 }
 
 export default App;

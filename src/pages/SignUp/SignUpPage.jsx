@@ -3,19 +3,12 @@ import { CheckBox } from '@/components';
 import * as S from './SignUpPase.styled';
 import { useEffect, useRef } from 'react';
 import MainImage from '../../assets/SignUp_main.jpg';
-import { useSignUp, useAuthState } from '@/firebase/auth';
+import { useSignUp } from '@/firebase/auth';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { writeBatchCategoryList, getCategoryIds } from '@/utils/utils';
-import {
-  useCreateAuthUser,
-  useCreateData,
-  useWriteBatchData,
-} from '@/firebase/firestore';
-import {
-  CategoryTitle,
-  SignUpFormInput,
-  ImageContainer,
-} from '@/components/index';
+import { useCreateAuthUser } from '@/firebase/firestore';
+import { SignUpFormInput } from '@/components/index';
+import { useAuthUser } from '@/contexts/AuthUser';
 
 const initialFormState = {
   name: '',
@@ -30,9 +23,9 @@ export default function SignUpPage() {
 
   const { signUp, user: signUpUser } = useSignUp();
   const { createAuthUser } = useCreateAuthUser();
-  const { createData } = useCreateData();
-  const { writeBatchData } = useWriteBatchData();
   const formStateRef = useRef(initialFormState);
+  const {  updateAuthUser } = useAuthUser();
+
   // firestore collection
   const categoryList = [];
   const categoryNameList = ['Travel', 'Food', 'Hobby', 'Daily'];
@@ -82,7 +75,7 @@ export default function SignUpPage() {
         });
         console.log(categoryList);
         await writeBatchCategoryList(categoryList);
-        await getCategoryIds(signUpUser.uid);
+        
       })();
     }
   }, [createAuthUser, signUpUser]);

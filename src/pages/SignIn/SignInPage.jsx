@@ -1,9 +1,9 @@
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { FormInput, LoginButton } from '@/components';
 import { getFontSize } from '@/theme/utils';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import googleIcon from '@/assets/Google-logo.svg';
 import faceBookIcon from '@/assets/facebook-logo.svg';
 import loginImage from '@/assets/BackgroundImage.svg';
@@ -15,6 +15,9 @@ import {
   getAuth,
   FacebookAuthProvider,
 } from 'firebase/auth';
+import { AuthUserContext } from '@/contexts/AuthUser';
+import { useContext } from 'react';
+import { getCategoryIds } from '@/utils/utils';
 
 const provider = new GoogleAuthProvider();
 const FaceBookprovider = new FacebookAuthProvider();
@@ -26,25 +29,38 @@ const initialFormState = {
 
 export default function SignInPage() {
   useDocumentTitle('SignInPage');
+  const navigate = useNavigate();
   const formState = useRef(initialFormState);
 
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
   const { signOut } = useSignOut();
   const { isLoading, error, user } = useAuthState();
+  const { authUser, updateAuthUser } = useContext(AuthUserContext);
 
-  // console.log({ user });
+  console.log('context에서 받아온 정보: ', authUser, updateAuthUser);
+
+  useEffect(() => {
+    if (user) {
+      (async () => {
+        const category_uids = await getCategoryIds(user.uid);
+        await updateAuthUser({
+          name: user.displayName,
+          email: user.email,
+          isLogin: true,
+          categories: category_uids,
+        });
+        navigate('/');
+      })();
+    }
+  }, [user]);
+
+  console.log(authUser);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
 
     const { email, password } = formState.current;
-    console.log({ email, password });
     await signIn(email, password);
-  };
-
-  const handleSignOut = () => {
-    console.log('로그아웃');
-    signOut();
   };
 
   const handleChangeInput = (e) => {
