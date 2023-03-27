@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'Categories',
+        path: 'Categories/:name',
         element: (
           <BaseLayout>
             <CategoriesPage />
