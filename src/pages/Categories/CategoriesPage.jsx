@@ -1,15 +1,23 @@
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import pencilImg from '@/assets/pencil-icon.svg';
-import { useState, useEffect } from 'react';
-import { collection, query, where, getDocs, limit } from 'firebase/firestore';
+import { useState, useEffect, useLayoutEffect } from 'react';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  limit,
+  onSnapshot,
+} from 'firebase/firestore';
+
 import { db } from '@/firebase/firestore';
 import {
-  Container,
   ToggleButton,
   LikeButton,
   DesignParagraph,
   ImageContainer,
   UseHover,
+  TopButton,
 } from '@/components';
 
 import * as S from './CategoriesPage.styled';
@@ -18,29 +26,58 @@ import { getColor } from '@/theme/utils';
 export default function CategoriesPage() {
   useDocumentTitle('Categories');
 
+  const [imageDataArr, setImageDataArr] = useState([]);
+
   const [imgArr, setImgArr] = useState([]);
+  const [descriptionArr, setDescriptionArr] = useState([]);
+  const [imgIdArr, setImgIdArr] = useState([]);
 
-  useEffect(() => {
-    const getImages = async () => {
-      const q = query(
-        collection(db, 'images'),
-        where('user_uid', '==', 'CPBJoxBg5OYeielSBFcWUSuDpF23'),
-        limit(10)
-      );
-      const myImgList = await getDocs(q);
+  const user_uid = 'EHSFq6SN4UfSAyGTw6UH';
+  const category_uid = 'J5QsZE01c9QkdO1yzuVB';
 
-      const imageList = [];
-      myImgList.docs.map((doc) => imageList.push(doc.data().url));
+  useLayoutEffect(() => {
+    const q = query(
+      collection(db, 'images'),
+      where('user_uid', '==', user_uid),
+      where('category_uid', '==', category_uid),
+      limit(10)
+    );
 
-      setImgArr(imageList);
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const data = [];
+
+      querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, data: doc.data() });
+      });
+
+      setImageDataArr(data);
+    });
+
+    return () => {
+      console.log('onSnapshot 이벤트 구독 해지');
+      unsubscribe();
     };
-
-    getImages();
   }, []);
 
-  console.log(imgArr);
+  useEffect(() => {
+    const idList = [];
+    const imageList = [];
+    const descriptionList = [];
+    imageDataArr.map(({ id, data }) => {
+      idList.push(id);
+      imageList.push(data.url);
+      descriptionList.push(data.description);
+    });
 
-  const [text, setText] = useState('I traveled here with my friends!');
+    setDescriptionArr(descriptionList);
+    setImgArr(imageList);
+    setImgIdArr(idList);
+  }, [imageDataArr]);
+
+  console.log(imgArr);
+  console.log(imgIdArr);
+
+  const [text, setText] = useState('I Love Traveled here with my friends!');
   const [isEditable, setIsEditable] = useState(false);
 
   const handleDoubleClick = () => {
@@ -58,14 +95,15 @@ export default function CategoriesPage() {
   };
 
   return (
-    <Container>
+    <>
       <ToggleButton />
-      <>
-        <ImageContainer
-          width={'1557px'}
-          height={'769px'}
-          stlye={{ position: 'relative' }}
-        ></ImageContainer>
+      <ImageContainer
+        width={'1557px'}
+        height={'769px'}
+        style={{ position: 'relative' }}
+        src={imgArr[0]}
+      ></ImageContainer>
+      <S.TextContainer>
         <S.ImageTitle color={getColor('white')}>Travel</S.ImageTitle>
         <S.ImageLogo
           src={pencilImg}
@@ -78,37 +116,80 @@ export default function CategoriesPage() {
             value={text}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
-            style={{
-              position: 'absolute',
-              left: '170px',
-              bottom: '50px',
-            }}
           />
         ) : (
           <S.BaseText color={getColor('white')}>{text}</S.BaseText>
         )}
         <LikeButton />
-      </>
-      {/* dataset-index에 docs에 있는 img uid를 넣으면 예시) 아래에있음 / 나중에 삭제할때 삭제버튼 누르면 그 이미지의 uid를 가져온다 */}
+      </S.TextContainer>
       <S.FirstContainer>
-        <UseHover box1 width={'894'} height={'525'} />
-        <UseHover box2 width={'632'} height={'525'} />
+        <UseHover
+          width={'894'}
+          height={'525'}
+          description={descriptionArr[1]}
+          datasetKey={imgIdArr[1]}
+          src={imgArr[1]}
+        />
+        <UseHover
+          width={'632'}
+          height={'525'}
+          description={descriptionArr[2]}
+          datasetKey={imgIdArr[2]}
+          src={imgArr[2]}
+        />
       </S.FirstContainer>
       <S.SecondContainer>
-        <UseHover box3 width={'626'} height={'525'} />
-        <UseHover box4 width={'900'} height={'525'} />
+        <UseHover
+          width={'626'}
+          height={'525'}
+          description={descriptionArr[3]}
+          datasetKey={imgIdArr[3]}
+          src={imgArr[3]}
+        />
+        <UseHover
+          width={'900'}
+          height={'525'}
+          description={descriptionArr[4]}
+          datasetKey={imgIdArr[4]}
+          src={imgArr[4]}
+        />
       </S.SecondContainer>
       <DesignParagraph>
         #Snapshot #Golden Bridge #Photographer #America #I want freedom
       </DesignParagraph>
       <S.ThirdContainet>
-        <UseHover width={'1097'} height={'633'} />
-        <UseHover width={'430'} height={'633'} />
+        <UseHover
+          width={'1097'}
+          height={'633'}
+          description={descriptionArr[5]}
+          datasetKey={imgIdArr[5]}
+          src={imgArr[5]}
+        />
+        <UseHover
+          width={'430'}
+          height={'633'}
+          description={descriptionArr[6]}
+          datasetKey={imgIdArr[6]}
+          src={imgArr[6]}
+        />
       </S.ThirdContainet>
       <S.FourthContainet>
-        <UseHover width={'739'} height={'416'} />
-        <UseHover width={'789'} height={'416'} />
+        <UseHover
+          width={'739'}
+          height={'416'}
+          description={descriptionArr[7]}
+          datasetKey={imgIdArr[7]}
+          src={imgArr[7]}
+        />
+        <UseHover
+          width={'789'}
+          height={'416'}
+          description={descriptionArr[8]}
+          datasetKey={imgIdArr[8]}
+          src={imgArr[8]}
+        />
       </S.FourthContainet>
-    </Container>
+      <TopButton />
+    </>
   );
 }
