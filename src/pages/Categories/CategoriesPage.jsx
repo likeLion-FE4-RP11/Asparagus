@@ -27,6 +27,7 @@ import { ThemeProvider } from 'styled-components';
 export default function CategoriesPage() {
   useDocumentTitle('Categories');
 
+  // 이미지 id, uid, description 불러오기
   const [imageDataArr, setImageDataArr] = useState([]);
   const [imgArr, setImgArr] = useState([]);
   const [descriptionArr, setDescriptionArr] = useState([]);
@@ -77,6 +78,7 @@ export default function CategoriesPage() {
   console.log(imgArr);
   console.log(imgIdArr);
 
+  // 텍스트 편집 기능
   const [text, setText] = useState('I Love Traveled here with my friends!');
   const [isEditable, setIsEditable] = useState(false);
 
@@ -94,11 +96,22 @@ export default function CategoriesPage() {
     }
   };
 
+  // 테마변경
   const [theme, setTheme] = useState('light');
 
-  const themeTogggler = () => {
-    theme === 'light' ? setTheme('dark') : setTheme('light');
+  const setMode = (mode) => {
+    window.localStorage.setItem('theme', mode);
+    setTheme(mode);
   };
+
+  const themeTogggler = () => {
+    theme === 'light' ? setMode('dark') : setMode('light');
+  };
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('theme');
+    localTheme ? setTheme(localTheme) : setMode('light');
+  }, []);
 
   return (
     <ThemeProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
