@@ -26,7 +26,7 @@ export function Nav() {
             <>
               <li>
                 <S.NavListAncor to="/">
-                  <NavButton onClick={handleSignOut}>Logout</NavButton>
+                  <S.NavButton onClick={handleSignOut}>Logout</S.NavButton>
                 </S.NavListAncor>
               </li>
               <li>

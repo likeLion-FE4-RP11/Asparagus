@@ -4,6 +4,7 @@ export const SignUpContainer = styled.section`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  height: 100vh;
 `;
 
 export const SignUpContent = styled.div`
@@ -11,7 +12,7 @@ export const SignUpContent = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   width: 100%;
-  padding: 40px 0;
+  padding: 30vh 0;
 `;
 
 export const SingUpTitle = styled.span`

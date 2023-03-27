@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CheckBox } from '@/components';
-import * as S from './SignUpPase.styled';
+import * as S from './SignUpPage.styled';
 import { useEffect, useRef } from 'react';
 import MainImage from '../../assets/SignUp_main.jpg';
 import { useSignUp } from '@/firebase/auth';
@@ -24,7 +24,7 @@ export default function SignUpPage() {
   const { signUp, user: signUpUser } = useSignUp();
   const { createAuthUser } = useCreateAuthUser();
   const formStateRef = useRef(initialFormState);
-  const {  updateAuthUser } = useAuthUser();
+  const { updateAuthUser } = useAuthUser();
 
   // firestore collection
   const categoryList = [];
@@ -75,7 +75,6 @@ export default function SignUpPage() {
         });
         console.log(categoryList);
         await writeBatchCategoryList(categoryList);
-        
       })();
     }
   }, [createAuthUser, signUpUser]);
