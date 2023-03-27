@@ -36,7 +36,10 @@ const Toggle = styled.div`
 
 export function ToggleButton() {
   const [isToggled, setIsToggled] = useState(false);
+  const [isAllow, setIsAllow] = useState(false);
   const handleToggle = () => setIsToggled((prev) => !prev);
+  const category_uid = 'J5QsZE01c9QkdO1yzuVB';
+
   return (
     <div>
       <Button isOn={isToggled} handle={handleToggle} />
