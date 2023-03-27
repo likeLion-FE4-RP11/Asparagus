@@ -36,6 +36,7 @@ export function ImageContainer({ src, alt, width, height }) {
 
 ImageContainer.defaultProps = {
   src: testImg,
+  alt: '테스트 이미지',
 };
 
 ImageContainer.propTypes = {

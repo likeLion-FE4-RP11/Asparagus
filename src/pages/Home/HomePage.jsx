@@ -1,4 +1,7 @@
+import * as S from './HomePage.styled';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { useState, useEffect } from 'react';
+import { db } from '@/firebase/firestore';
 import {
   MainSwiper,
   SeeMoreButton,
@@ -21,9 +24,9 @@ import { db } from '@/firebase/firestore';
 import * as S from './HomePage.styled';
 
 export default function HomePage() {
+  useDocumentTitle('HomePage');
   const [imgArr, setImgArr] = useState([]);
   const [moreImgArr, setMoreImgArr] = useState([]);
-  useDocumentTitle('HomePage');
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {

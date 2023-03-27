@@ -1,8 +1,10 @@
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getColor } from '@/theme/utils';
 import { Notification } from '../Notification/Notification';
+import { doc, getDoc, updateDoc, query } from 'firebase/firestore';
+import { db } from '@/firebase/firestore';
 
 const Toggle = styled.div`
   width: 156px;
@@ -36,7 +38,37 @@ const Toggle = styled.div`
 
 export function ToggleButton() {
   const [isToggled, setIsToggled] = useState(false);
-  const handleToggle = () => setIsToggled((prev) => !prev);
+  const [isAllow, setIsAllow] = useState(true);
+  const category_uid = 'J5QsZE01c9QkdO1yzuVB';
+
+  const handleToggle = async () => {
+    setIsToggled((prev) => !prev);
+    const userDoc = doc(db, 'categories', category_uid);
+    let newFields = {};
+
+    if (isToggled) {
+      newFields = { isAllow: true };
+      setIsAllow(false);
+    } else {
+      newFields = { isAllow: false };
+      setIsAllow(true);
+    }
+    await updateDoc(userDoc, newFields);
+  };
+
+  useEffect(() => {
+    const getIsAllow = async () => {
+      const q = query(doc(db, 'categories', category_uid));
+
+      const data = await getDoc(q);
+      setIsAllow(data.data().isAllow);
+    };
+
+    getIsAllow();
+  }, []);
+
+  console.log(isAllow);
+
   return (
     <div>
       <Button isOn={isToggled} handle={handleToggle} />

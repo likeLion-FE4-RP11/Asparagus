@@ -8,22 +8,17 @@ const ParagraphSection = styled.section`
   word-break: normal;
   width: 70%;
   text-align: center;
-  background-color: #ffffff;
+  margin-bottom: 120px;
 `;
 
 const Paragraph = styled.p`
-  color: ${(props) => props.color};
+  color: ${(props) => props.theme.fontColor};
 `;
 
 export function DesignParagraph({ children }) {
-  // toggle button state 받기
-  const tempIsDark = false;
-
   return (
     <ParagraphSection>
-      <Paragraph color={tempIsDark ? getColor('white') : getColor('secondary')}>
-        {children}
-      </Paragraph>
+      <Paragraph>{children}</Paragraph>
     </ParagraphSection>
   );
 }

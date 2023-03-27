@@ -1,4 +1,8 @@
+import * as S from './UploadPage.styled';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { getColor, getFontSize } from '@/theme/utils';
+import { getCategoryId, addImageItem } from '@/utils';
+import { useRef, useState, useEffect } from 'react';
 import {
   ImageUploadInput,
   Accordion,
@@ -6,11 +10,7 @@ import {
   DescriptionInput,
   SeeMoreButton,
 } from '@/components';
-import { getColor, getFontSize } from '@/theme/utils';
-import { useRef, useState, useEffect } from 'react';
-import * as S from './UploadPage.styled';
 import { useUploadFiles } from '@/firebase/storage';
-import { getCategoryId, addImageItem } from '@/utils';
 
 export default function UploadPage() {
   useDocumentTitle('UploadPage');
@@ -24,9 +24,7 @@ export default function UploadPage() {
   const formStateRef = useRef(initialFormState);
   const textInputRef = useRef(null);
 
-  // 이미지 파일
   const [file, setFile] = useState(null);
-  // 미리보기 이미지
   const [preview, setPreview] = useState(null);
 
   useEffect(() => {
@@ -57,7 +55,6 @@ export default function UploadPage() {
         formStateRef.current['category_name']
       );
       if (category_uid) {
-        console.log(category_uid);
         imageDataRef.current['catagory_uid'] = category_uid;
         imageDataRef.current['description'] = textInputRef.current.value;
         imageDataRef.current['name'] = file.name;
@@ -77,12 +74,10 @@ export default function UploadPage() {
   };
 
   const onFileDrop = (e) => {
-    // 파일 확장자 유효성검사 필요함 (png, jpg만 가능하게)
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      // 파일 로드가 완료되었을 때 함수 호출
       setPreview(reader.result);
     };
     setFile(file);
@@ -135,7 +130,6 @@ const initialFormState = {
   description: '',
 };
 
-// imageData
 const initialImageData = {
   catagory_uid: '',
   description: '',
