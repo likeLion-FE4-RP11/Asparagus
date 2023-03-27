@@ -24,6 +24,7 @@ export const FirstHeading = styled.div`
   margin-bottom: 2.43rem;
   display: flex;
   align-items: center;
+  color: #333333;
 `;
 
 export const FirstParagraph = styled.p`
@@ -41,6 +42,7 @@ export const FirstParagraph = styled.p`
 export const Member = styled.section`
   width: 500px;
   height: 240px;
+  color: #333333;
 `;
 export const SecondHeading = styled.h2`
   font-style: normal;
