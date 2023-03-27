@@ -24,7 +24,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/signin" element={<SignInPage />} />
-            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/categories/:name" element={<CategoriesPage />} />
             <Route path="/upload" element={<UploadPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
