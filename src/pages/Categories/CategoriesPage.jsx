@@ -1,14 +1,8 @@
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import pencilImg from '@/assets/pencil-icon.svg';
+import * as S from './CategoriesPage.styled';
+import { getColor } from '@/theme/utils';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { useState, useEffect, useLayoutEffect } from 'react';
-import {
-  collection,
-  query,
-  where,
-  limit,
-  onSnapshot,
-} from 'firebase/firestore';
-
 import { db } from '@/firebase/firestore';
 import {
   ToggleButton,
@@ -18,46 +12,57 @@ import {
   UseHover,
   TopButton,
 } from '@/components';
-
-import * as S from './CategoriesPage.styled';
-import { getColor } from '@/theme/utils';
+import {
+  collection,
+  query,
+  where,
+  limit,
+  onSnapshot,
+} from 'firebase/firestore';
 import { LightTheme, DarkTheme, GlobalStyles } from '@/theme/theme';
 import { ThemeProvider } from 'styled-components';
+import { useAuthUser } from '@/contexts/AuthUser';
+import { useParams } from 'react-router-dom';
 
 export default function CategoriesPage() {
   useDocumentTitle('Categories');
+
+  const category = useParams().name;
 
   // 이미지 id, uid, description 불러오기
   const [imageDataArr, setImageDataArr] = useState([]);
   const [imgArr, setImgArr] = useState([]);
   const [descriptionArr, setDescriptionArr] = useState([]);
   const [imgIdArr, setImgIdArr] = useState([]);
-
-  const user_uid = 'EHSFq6SN4UfSAyGTw6UH';
-  const category_uid = 'J5QsZE01c9QkdO1yzuVB';
+  const { authUser } = useAuthUser();
 
   useLayoutEffect(() => {
-    const q = query(
-      collection(db, 'images'),
-      where('user_uid', '==', user_uid),
-      where('category_uid', '==', category_uid),
-      limit(10)
-    );
+    if (authUser) {
+      const user_uid = authUser.uid;
+      const category_uid = authUser.categories[category];
 
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const data = [];
+      const q = query(
+        collection(db, 'images'),
+        where('user_uid', '==', user_uid),
+        where('category_uid', '==', category_uid),
+        limit(10)
+      );
 
-      querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, data: doc.data() });
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const data = [];
+
+        querySnapshot.forEach((doc) => {
+          data.push({ id: doc.id, data: doc.data() });
+        });
+
+        setImageDataArr(data);
       });
 
-      setImageDataArr(data);
-    });
-
-    return () => {
-      console.log('onSnapshot 이벤트 구독 해지');
-      unsubscribe();
-    };
+      return () => {
+        console.log('onSnapshot 이벤트 구독 해지');
+        unsubscribe();
+      };
+    }
   }, []);
 
   useEffect(() => {
@@ -74,9 +79,6 @@ export default function CategoriesPage() {
     setImgArr(imageList);
     setImgIdArr(idList);
   }, [imageDataArr]);
-
-  console.log(imgArr);
-  console.log(imgIdArr);
 
   // 텍스트 편집 기능
   const [text, setText] = useState('I Love Traveled here with my friends!');
