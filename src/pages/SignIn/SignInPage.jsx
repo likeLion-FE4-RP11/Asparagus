@@ -63,12 +63,6 @@ export default function SignInPage() {
     await signIn(email, password);
   };
 
-  const handleSignOut = () => {
-    console.log('로그아웃');
-    signOut();
-    updateAuthUser(null);
-  };
-
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     console.log({ name, value });
