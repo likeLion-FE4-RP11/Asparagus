@@ -1,5 +1,5 @@
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { FormInput, LoginButton } from '@/components';
 import { getFontSize } from '@/theme/utils';
@@ -29,6 +29,7 @@ const initialFormState = {
 
 export default function SignInPage() {
   useDocumentTitle('SignInPage');
+  const navigate = useNavigate();
   const formState = useRef(initialFormState);
 
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
@@ -42,15 +43,14 @@ export default function SignInPage() {
     if (user) {
       (async () => {
         const category_uids = await getCategoryIds(user.uid);
-        updateAuthUser({
+        await updateAuthUser({
           name: user.displayName,
           email: user.email,
           isLogin: true,
           categories: category_uids,
         });
+        navigate('/');
       })();
-    } else {
-      updateAuthUser({ ...authUser, isLogin: false });
     }
   }, [user]);
 
@@ -60,13 +60,13 @@ export default function SignInPage() {
     e.preventDefault();
 
     const { email, password } = formState.current;
-    console.log({ email, password });
     await signIn(email, password);
   };
 
   const handleSignOut = () => {
     console.log('로그아웃');
     signOut();
+    updateAuthUser(null);
   };
 
   const handleChangeInput = (e) => {
