@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { useEffect, useRef } from 'react';
 import { CheckBox } from '@/components';
 import * as S from './SignUpPase.styled';
 import { useSignUp, useAuthState } from '@/firebase/auth';
