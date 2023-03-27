@@ -124,7 +124,7 @@ export default function SignInPage() {
 
   return (
     <S.FormContainer>
-      <div>
+      <S.LeftContainer>
         <S.Header fontSize={getFontSize('2xl')}>Let’s get you started</S.Header>
         <form onSubmit={handleSignIn}>
           <FormInput
@@ -165,7 +165,7 @@ export default function SignInPage() {
         <S.Info>
           Already have an account ? <Link to="/signup">Create Account </Link>
         </S.Info>
-      </div>
+      </S.LeftContainer>
       <S.ImgContainer>
         <img src={loginImage} alt="로그인 메인 이미지" />
       </S.ImgContainer>

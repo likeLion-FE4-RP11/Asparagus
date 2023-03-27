@@ -14,11 +14,12 @@ export const Header = styled.h2`
 export const FormContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  position: relative;
+  /* position: relative; */
   background-color: pink;
-  width: auto;
-  height: 100%;
-  min-width: 1200px;
+  width: 100%;
+  /* height: 100%; */
+  /* min-width: 1200px; */
+  /* align-items: center; */
   justify-content: space-between;
 `;
 
@@ -29,4 +30,17 @@ export const Info = styled.p`
   }
 `;
 
-export const ImgContainer = styled.div``;
+export const ImgContainer = styled.div`
+  width: 500px;
+  height: 100%;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+`;
+
+export const LeftContainer = styled.div`
+  background-color: green;
+`;
