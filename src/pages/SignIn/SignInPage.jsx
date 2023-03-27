@@ -15,6 +15,7 @@ import {
   getAuth,
   FacebookAuthProvider,
 } from 'firebase/auth';
+import { getPathFromBaseUrl } from '@/utils';
 
 const provider = new GoogleAuthProvider();
 const FaceBookprovider = new FacebookAuthProvider();
@@ -167,6 +168,9 @@ export default function SignInPage() {
         </S.Info>
       </S.LeftContainer>
       <S.ImgContainer>
+        <Link to="/">
+          <S.Logo>I`s gallery</S.Logo>
+        </Link>
         <img src={loginImage} alt="로그인 메인 이미지" />
       </S.ImgContainer>
     </S.FormContainer>
