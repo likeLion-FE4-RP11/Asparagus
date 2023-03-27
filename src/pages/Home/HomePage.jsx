@@ -21,8 +21,9 @@ import { db } from '@/firebase/firestore';
 import * as S from './HomePage.styled';
 
 export default function HomePage() {
-  useDocumentTitle('HomePage');
   const [imgArr, setImgArr] = useState([]);
+  const [moreImgArr, setMoreImgArr] = useState([]);
+  useDocumentTitle('HomePage');
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -30,8 +31,8 @@ export default function HomePage() {
       const q = query(
         collection(db, 'images'),
         where('user_uid', '==', 'EHSFq6SN4UfSAyGTw6UH'),
-        orderBy('createAt', 'desc'), //최신순으로 정렬
-        limit(6)
+        orderBy('createAt', 'desc'),
+        limit(3)
       );
       const myImgList = await getDocs(q);
 
@@ -43,9 +44,38 @@ export default function HomePage() {
     };
 
     getImages();
-  }, []);
 
-  console.log(imgArr);
+    const getCategories = async () => {
+      const q = query(
+        collection(db, 'categories'),
+        where('isAllow', '==', true),
+        where('user_uid', '!=', 'EHSFq6SN4UfSAyGTw6UH'),
+        limit(3)
+      );
+
+      const querySnapshot = await getDocs(q);
+      const categoryList = [];
+      querySnapshot.docs.map((doc) => {
+        categoryList.push(doc.id);
+      });
+
+      const moreImgListPromises = categoryList.map((item) => {
+        const q2 = query(
+          collection(db, 'images'),
+          where('category_uid', '==', item)
+        );
+        return getDocs(q2).then(({ docs }) => {
+          return docs.map((doc) => doc.data().url);
+        });
+      });
+      Promise.all(moreImgListPromises).then((datas) => {
+        const urls = datas.reduce((urls, data) => [...urls, data[0]], []);
+        setMoreImgArr(urls);
+      });
+    };
+
+    getCategories();
+  }, []);
 
   return (
     <>
@@ -55,9 +85,9 @@ export default function HomePage() {
       <RecentImageTitle title={'R E C E N T\u00A0\u00A0\u00A0 I M A G E'} />
 
       <S.MainSection>
-        <SeeMoreImg img={imgArr[0]} />
-        <SeeMoreImg img={imgArr[1]} />
-        <SeeMoreImg img={imgArr[2]} />
+        <SeeMoreImg src={imgArr[0]} />
+        <SeeMoreImg src={imgArr[1]} />
+        <SeeMoreImg src={imgArr[2]} />
       </S.MainSection>
 
       <SeeMoreButton
@@ -68,9 +98,9 @@ export default function HomePage() {
       ></SeeMoreButton>
 
       <S.SeeMoreSection>
-        {visible && <SeeMoreImg img={imgArr[3]} />}
-        {visible && <SeeMoreImg img={imgArr[4]} />}
-        {visible && <SeeMoreImg img={imgArr[5]} />}
+        {visible &&
+          moreImgArr &&
+          moreImgArr.map((url) => <SeeMoreImg key={url} src={url} />)}
       </S.SeeMoreSection>
 
       <TopButton />
