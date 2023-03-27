@@ -22,6 +22,8 @@ import {
 
 import * as S from './CategoriesPage.styled';
 import { getColor } from '@/theme/utils';
+import { LightTheme, DarkTheme, GlobalStyles } from '@/theme/theme';
+import { ThemeProvider } from 'styled-components';
 
 export default function CategoriesPage() {
   useDocumentTitle('Categories');
@@ -93,9 +95,17 @@ export default function CategoriesPage() {
     }
   };
 
+  const [theme, setTheme] = useState('light');
+
+  const themeTogggler = () => {
+    theme === 'light' ? setTheme('dark') : setTheme('light');
+  };
+
   return (
-    <>
+    <ThemeProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
+      <GlobalStyles />
       <ToggleButton />
+      <S.Themebutton onClick={() => themeTogggler()}>Mode</S.Themebutton>
       <ImageContainer
         width={'1557px'}
         height={'769px'}
@@ -189,6 +199,6 @@ export default function CategoriesPage() {
         />
       </S.FourthContainet>
       <TopButton />
-    </>
+    </ThemeProvider>
   );
 }
