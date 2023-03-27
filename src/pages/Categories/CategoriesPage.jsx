@@ -1,15 +1,8 @@
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import pencilImg from '@/assets/pencil-icon.svg';
+import * as S from './CategoriesPage.styled';
+import { getColor } from '@/theme/utils';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { useState, useEffect, useLayoutEffect } from 'react';
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  limit,
-  onSnapshot,
-} from 'firebase/firestore';
-
 import { db } from '@/firebase/firestore';
 import {
   ToggleButton,
@@ -19,15 +12,18 @@ import {
   UseHover,
   TopButton,
 } from '@/components';
-
-import * as S from './CategoriesPage.styled';
-import { getColor } from '@/theme/utils';
+import {
+  collection,
+  query,
+  where,
+  limit,
+  onSnapshot,
+} from 'firebase/firestore';
 
 export default function CategoriesPage() {
   useDocumentTitle('Categories');
 
   const [imageDataArr, setImageDataArr] = useState([]);
-
   const [imgArr, setImgArr] = useState([]);
   const [descriptionArr, setDescriptionArr] = useState([]);
   const [imgIdArr, setImgIdArr] = useState([]);
@@ -54,7 +50,6 @@ export default function CategoriesPage() {
     });
 
     return () => {
-      console.log('onSnapshot 이벤트 구독 해지');
       unsubscribe();
     };
   }, []);
@@ -73,9 +68,6 @@ export default function CategoriesPage() {
     setImgArr(imageList);
     setImgIdArr(idList);
   }, [imageDataArr]);
-
-  console.log(imgArr);
-  console.log(imgIdArr);
 
   const [text, setText] = useState('I Love Traveled here with my friends!');
   const [isEditable, setIsEditable] = useState(false);

@@ -7,11 +7,11 @@ export const FirstContainer = styled.section`
   grid-gap: 1.2rem;
   margin-top: 5rem;
 
-  
   @media screen and (max-width: 940px) {
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
-  `;
+  }
+`;
 
 export const SecondContainer = styled.section`
   width: 100%;
@@ -24,6 +24,7 @@ export const SecondContainer = styled.section`
   @media screen and (max-width: 940px) {
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
+  }
 `;
 
 export const ThirdContainet = styled.section`
@@ -36,7 +37,8 @@ export const ThirdContainet = styled.section`
   @media screen and (max-width: 940px) {
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
-  `;
+  }
+`;
 
 export const FourthContainet = styled.section`
   width: 100%;
@@ -49,7 +51,8 @@ export const FourthContainet = styled.section`
   @media screen and (max-width: 940px) {
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
-  `;
+  }
+`;
 
 export const ImageTitle = styled.h1`
   font-size: 4.375rem;
@@ -67,6 +70,7 @@ export const BaseText = styled.h1`
   color: ${(props) => props.color};
   @media screen and (max-width: 1000px) {
     bottom: -75px;
+  }
 `;
 
 export const ImageLogo = styled.img`
