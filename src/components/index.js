@@ -26,3 +26,4 @@ export * from './FormInput/FormInput';
 export * from './SignUpFormInput/SignUpFormInput';
 export * from './Category/Category';
 export * from './CheckBox/CheckBox';
+export * from './RecentImageTitle/RecentImageTitle';

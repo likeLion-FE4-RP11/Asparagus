@@ -7,6 +7,7 @@ export const FirstContainer = styled.section`
   grid-gap: 1.2rem;
   margin-top: 5rem;
 
+  
   @media screen and (max-width: 940px) {
     grid-template-columns: 1fr;
     grid-gap: 1.2rem;
@@ -51,7 +52,6 @@ export const FourthContainet = styled.section`
   `;
 
 export const ImageTitle = styled.h1`
-  position: absolute;
   font-size: 4.375rem;
   font-weight: 700;
   left: 170px;
@@ -60,18 +60,27 @@ export const ImageTitle = styled.h1`
 `;
 
 export const BaseText = styled.h1`
-  position: absolute;
   font-size: 3.125rem;
   font-weight: 600;
   left: 170px;
   bottom: 0px;
   color: ${(props) => props.color};
-  @media screen and (max-width: 940px) {
-    bottom: -50px;
+  @media screen and (max-width: 1000px) {
+    bottom: -75px;
 `;
 
 export const ImageLogo = styled.img`
   position: absolute;
-  left: 395px;
-  bottom: 85px;
+  top: 10px;
+  left: 220px;
+`;
+
+export const TextContainer = styled.section`
+  position: absolute;
+  width: 1000px;
+  height: 700px;
+  max-width: 100%;
+  height: 100%;
+  top: 450px;
+  left: 150px;
 `;

@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import HeartImg from '@/assets/Heart.png';
 import EmptyHeartImg from '@/assets/empty-heart.png';
+import { doc, getDoc, updateDoc, query } from 'firebase/firestore';
+import { db } from '@/firebase/firestore';
 
 const LikeBtn = styled.span`
   color: #f9fbfd;
@@ -15,8 +17,7 @@ const LikeButtonArea = styled.button`
   flex-flow: row;
   align-items: center;
   position: absolute;
-  left: 170px;
-  bottom: -400px;
+  bottom: 50px;
   appearance: none;
   background-color: transparent;
   border: none;
@@ -29,22 +30,47 @@ export function LikeButton() {
   const [heart, setHeart] = useState(false);
   const [count, setCount] = useState(0);
 
-  //좋아요 클릭시
-  const handleLikeButton = () => {
+  const category_uid = 'J5QsZE01c9QkdO1yzuVB';
+
+  const updateCount = async (likeCount) => {
     setHeart((prev) => !prev);
+    const userDoc = doc(db, 'categories', category_uid);
+    let newFields = {};
+
     if (heart) {
+      newFields = { likeCount: likeCount - 1 };
       setCount(count - 1);
     } else {
+      newFields = { likeCount: likeCount + 1 };
       setCount(count + 1);
     }
+    await updateDoc(userDoc, newFields);
   };
 
+  useEffect(() => {
+    const getCounter = async () => {
+      const q = query(doc(db, 'categories', category_uid));
+
+      const data = await getDoc(q);
+      setCount(data.data().likeCount);
+    };
+
+    getCounter();
+  }, []);
+
+  console.log(count);
+
   return (
-    <LikeButtonArea type="button" onClick={handleLikeButton}>
+    <LikeButtonArea
+      type="button"
+      onClick={() => {
+        updateCount(count);
+      }}
+    >
       {heart ? (
-        <img src={HeartImg} alt="꽉찬하트" /> // true (꽉찬하트)>
+        <img src={HeartImg} alt="좋아요 클릭 한 상태" /> // true (꽉찬하트)>
       ) : (
-        <img src={EmptyHeartImg} alt="빈하트" /> // false (빈 하트)
+        <img src={EmptyHeartImg} alt="좋아요 취소 한 상태" /> // false (빈 하트)
       )}
       <LikeBtn>{count}</LikeBtn>
     </LikeButtonArea>
