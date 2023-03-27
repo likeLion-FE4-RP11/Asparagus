@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { FormInput, LoginButton } from '@/components';
 import { getFontSize } from '@/theme/utils';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import googleIcon from '@/assets/Google-logo.svg';
 import faceBookIcon from '@/assets/facebook-logo.svg';
 import loginImage from '@/assets/BackgroundImage.svg';
@@ -15,6 +15,9 @@ import {
   getAuth,
   FacebookAuthProvider,
 } from 'firebase/auth';
+import { AuthUserContext } from '@/contexts/AuthUser';
+import { useContext } from 'react';
+import { getCategoryIds } from '@/utils/utils';
 
 const provider = new GoogleAuthProvider();
 const FaceBookprovider = new FacebookAuthProvider();
@@ -31,8 +34,27 @@ export default function SignInPage() {
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
   const { signOut } = useSignOut();
   const { isLoading, error, user } = useAuthState();
+  const { authUser, updateAuthUser } = useContext(AuthUserContext);
 
-  // console.log({ user });
+  console.log('context에서 받아온 정보: ', authUser, updateAuthUser);
+
+  useEffect(() => {
+    if (user) {
+      (async () => {
+        const category_uids = await getCategoryIds(user.uid);
+        updateAuthUser({
+          name: user.displayName,
+          email: user.email,
+          isLogin: true,
+          categories: category_uids,
+        });
+      })();
+    } else {
+      updateAuthUser({ ...authUser, isLogin: false });
+    }
+  }, [user]);
+
+  console.log(authUser);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
