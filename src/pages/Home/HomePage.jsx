@@ -34,7 +34,7 @@ export default function HomePage() {
       const q = query(
         collection(db, 'images'),
         where('user_uid', '==', 'EHSFq6SN4UfSAyGTw6UH'),
-        orderBy('createAt', 'desc'), //최신순으로 정렬
+        orderBy('createAt', 'desc'),
         limit(3)
       );
       const myImgList = await getDocs(q);
