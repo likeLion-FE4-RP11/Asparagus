@@ -30,6 +30,7 @@ const StyledLink = styled(Link)`
   border-radius: 10px;
   font-size: 35px;
   text-align: left;
+  display: block;
 
   img {
     display: block;

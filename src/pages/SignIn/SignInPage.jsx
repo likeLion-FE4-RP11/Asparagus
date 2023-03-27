@@ -122,21 +122,6 @@ export default function SignInPage() {
     return <figure role="alert">오류!</figure>;
   }
 
-  if (user) {
-    return (
-      <div>
-        <h2>인증 사용자 페이지</h2>
-        <div>
-          <ul>
-            <li>{user.displayName}</li>
-            <li>{user.email}</li>
-          </ul>
-          <button onClick={handleSignOut}>로그아웃</button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <S.FormContainer>
       <S.LeftContainer>
