@@ -1,9 +1,10 @@
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, forwardRef } from 'react';
 import * as S from './Accordion.styled';
 import ArrowDown from '@/assets/arrow-down.svg';
 import ArrowUp from '@/assets/arrow-up.svg';
+import { getColor } from '@/theme/utils';
 
-export function Accordion() {
+export const Accordion = forwardRef(function Accordion({ ...restProps }, ref) {
   const parentRef = useRef(null);
   const childRef = useRef(null);
   const categories = ['Daily', 'Travel', 'Food', 'Hobby'];
@@ -35,12 +36,12 @@ export function Accordion() {
 
   const handleSelect = (e) => {
     if (e.target.nodeName === 'LI') {
-      console.log(e.target.innerText);
+      ref.current['category_name'] = e.target.innerText;
     }
   };
 
   return (
-    <S.Container>
+    <S.Container {...restProps}>
       <S.Header>
         Category options
         <S.Button type="button" onClick={handleButtonClick}>
@@ -48,13 +49,17 @@ export function Accordion() {
         </S.Button>
       </S.Header>
       <S.ContentsWrapper ref={parentRef}>
-        <S.Contents ref={childRef} onClick={handleSelect}>
+        <S.Contents
+          bgColor={getColor('gray/100')}
+          ref={childRef}
+          onClick={handleSelect}
+        >
           {renderCategory(categories)}
         </S.Contents>
       </S.ContentsWrapper>
     </S.Container>
   );
-}
+});
 
 const renderCategory = (categories) => {
   return (

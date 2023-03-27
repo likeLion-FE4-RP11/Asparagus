@@ -1,4 +1,3 @@
-import React from 'react';
 import Logo from '@/assets/Logo.png';
 import * as S from './Footer.styled';
 

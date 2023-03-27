@@ -1,37 +1,36 @@
 import { A11yHidden } from '@/components';
-import { useId, useRef } from 'react';
+import { forwardRef, useId } from 'react';
 import styled from 'styled-components/macro';
 import { getColor } from '@/theme/utils';
 
 const TextArea = styled.textarea`
   background-color: ${(props) => props.bgColor};
-  width: 1563px;
+  width: 100%;
   height: 500px;
   font-weight: 400;
   font-size: 43px;
   line-height: 160px;
   padding: 0 0 0 53px;
   &::placeholder {
-    color: #333333;
+    color: ${(props) => props.color};
   }
 `;
 
-export function DescriptionInput() {
+export const DescriptionInput = forwardRef(function DescriptionInput(_, ref) {
   const id = useId();
-  const inputRef = useRef('');
 
   const handleInputChange = (e) => {
-    inputRef.current = e.target.value;
+    ref.current.value = e.target.value;
   };
 
   const submit = async () => {
     // fetch, axios
-    console.log(inputRef.current);
+    console.log(ref.current);
     // const result = await fetch('POST', '주소');
   };
 
   return (
-    <section>
+    <section style={{ width: '100%' }}>
       <A11yHidden as="label" htmlFor={id}>
         이미지 설명 입력란
       </A11yHidden>
@@ -39,12 +38,11 @@ export function DescriptionInput() {
         placeholder="please write image description"
         type="text"
         id={id}
-        ref={inputRef}
+        ref={ref}
         onChange={handleInputChange}
         bgColor={getColor('gray/50')}
+        color={getColor('gray/150')}
       />
-      {/* button 태그 추후 props로 받아와 onChange 함수 넣을 예정 */}
-      <button onClick={submit}>전송</button>
     </section>
   );
-}
+});
