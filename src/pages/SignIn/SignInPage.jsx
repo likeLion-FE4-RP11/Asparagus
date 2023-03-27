@@ -15,12 +15,10 @@ import {
   getAuth,
   FacebookAuthProvider,
 } from 'firebase/auth';
-import { getPathFromBaseUrl } from '@/utils';
 
 const provider = new GoogleAuthProvider();
 const FaceBookprovider = new FacebookAuthProvider();
 const auth = getAuth();
-
 const initialFormState = {
   email: '',
   password: '',
