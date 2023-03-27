@@ -1,20 +1,21 @@
-import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { CheckBox } from '@/components';
 import * as S from './SignUpPase.styled';
+import { useEffect, useRef } from 'react';
+import MainImage from '../../assets/SignUp_main.jpg';
 import { useSignUp, useAuthState } from '@/firebase/auth';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { writeBatchCategoryList, getCategoryIds } from '@/utils/utils';
 import {
   useCreateAuthUser,
   useCreateData,
   useWriteBatchData,
 } from '@/firebase/firestore';
-import MainImage from '../../assets/SignUp_main.jpg';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import {
   CategoryTitle,
   SignUpFormInput,
   ImageContainer,
 } from '@/components/index';
-import { writeBatchCategoryList, getCategoryIds } from '@/utils/utils';
 
 const initialFormState = {
   name: '',
@@ -32,7 +33,7 @@ export default function SignUpPage() {
   const { createData } = useCreateData();
   const { writeBatchData } = useWriteBatchData();
   const formStateRef = useRef(initialFormState);
-
+  // firestore collection
   const categoryList = [];
   const categoryNameList = ['Travel', 'Food', 'Hobby', 'Daily'];
   const categoryDescriptionList = [
@@ -117,7 +118,9 @@ export default function SignUpPage() {
           </form>
         </S.SignUpContent>
         <S.HalfImageContainer>
-          <S.ImageLogo>I`s gallery</S.ImageLogo>
+          <S.ImageLogo>
+            <Link to="/">I`s gallery</Link>
+          </S.ImageLogo>
           <S.SignUpMainImage src={MainImage} alt="회원가입 메인 이미지" />
         </S.HalfImageContainer>
       </S.SignUpContainer>
