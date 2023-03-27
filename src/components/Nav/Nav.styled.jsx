@@ -21,7 +21,6 @@ export const NavListAncor = styled(NavLink)`
   text-decoration: none;
   font-size: 37.9px;
   font-weight: 700;
-  color: #4e4c4c;
 `;
 
 export const NavButton = styled.button`
@@ -30,5 +29,4 @@ export const NavButton = styled.button`
   cursor: pointer;
   font-size: 37.9px;
   font-weight: 700;
-  color: #4e4c4c;
 `;
