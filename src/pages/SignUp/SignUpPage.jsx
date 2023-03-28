@@ -1,14 +1,12 @@
-import { Link } from 'react-router-dom';
-import { CheckBox } from '@/components';
+import MainImage from '@/assets/SignUp_main.jpg';
 import * as S from './SignUpPage.styled';
-import { useEffect, useRef } from 'react';
-import MainImage from '../../assets/SignUp_main.jpg';
-import { useSignUp } from '@/firebase/auth';
+import { writeBatchCategoryList } from '@/utils/utils';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { writeBatchCategoryList, getCategoryIds } from '@/utils/utils';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { CheckBox, SignUpFormInput } from '@/components';
+import { useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
-import { SignUpFormInput } from '@/components/index';
-import { useAuthUser } from '@/contexts/AuthUser';
 
 const initialFormState = {
   name: '',
@@ -18,15 +16,13 @@ const initialFormState = {
 };
 
 export default function SignUpPage() {
-  // 브라우저탭 이름
-  useDocumentTitle('회원가입 → Likelion 4th');
+  useDocumentTitle('SignUpPage');
 
   const { signUp, user: signUpUser } = useSignUp();
   const { createAuthUser } = useCreateAuthUser();
   const formStateRef = useRef(initialFormState);
-  const { updateAuthUser } = useAuthUser();
+  const navigate = useNavigate();
 
-  // firestore collection
   const categoryList = [];
   const categoryNameList = ['Travel', 'Food', 'Hobby', 'Daily'];
   const categoryDescriptionList = [
@@ -36,13 +32,8 @@ export default function SignUpPage() {
     '이 카테고리는 Daily',
   ];
 
-  const SignUpPageReset = () => {
-    console.log('reset');
-  };
-
   const SignUpSubmit = async (e) => {
     e.preventDefault();
-
     const { name, email, password, passwordConfirm } = formStateRef.current;
 
     if (!name || name.trim().length < 2) {
@@ -61,7 +52,7 @@ export default function SignUpPage() {
   useEffect(() => {
     if (signUpUser) {
       (async () => {
-        const { name, email, uid } = formStateRef.current;
+        // const { name, email, uid } = formStateRef.current;
         await createAuthUser(signUpUser);
         await categoryNameList.map((categoryName, index) => {
           const categoryObject = {
@@ -73,8 +64,8 @@ export default function SignUpPage() {
           };
           categoryList.push(categoryObject);
         });
-        console.log(categoryList);
         await writeBatchCategoryList(categoryList);
+        // await navigate('/signin');
       })();
     }
   }, [createAuthUser, signUpUser]);
@@ -88,7 +79,7 @@ export default function SignUpPage() {
     <>
       <S.SignUpContainer>
         <S.SignUpContent>
-          <form onSubmit={SignUpSubmit} onReset={SignUpPageReset}>
+          <form onSubmit={SignUpSubmit}>
             <S.SingUpTitle>Create an acount</S.SingUpTitle>
             <SignUpFormInput
               type="text"

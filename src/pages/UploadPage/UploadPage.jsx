@@ -1,4 +1,8 @@
+import * as S from './UploadPage.styled';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { getColor, getFontSize } from '@/theme/utils';
+import { getCategoryId, addImageItem } from '@/utils';
+import { useRef, useState, useEffect } from 'react';
 import {
   ImageUploadInput,
   Accordion,
@@ -6,14 +10,12 @@ import {
   DescriptionInput,
   SeeMoreButton,
 } from '@/components';
-import { getColor, getFontSize } from '@/theme/utils';
-import { useRef, useState, useEffect } from 'react';
-import * as S from './UploadPage.styled';
 import { useUploadFiles } from '@/firebase/storage';
-import { getCategoryId, addImageItem } from '@/utils';
+import { useAuthUser } from '@/contexts/AuthUser';
 
 export default function UploadPage() {
   useDocumentTitle('UploadPage');
+  const { authUser } = useAuthUser();
 
   const { fileInputRef, uploadFiles, isLoading, error, urlList } =
     useUploadFiles({
@@ -24,9 +26,7 @@ export default function UploadPage() {
   const formStateRef = useRef(initialFormState);
   const textInputRef = useRef(null);
 
-  // 이미지 파일
   const [file, setFile] = useState(null);
-  // 미리보기 이미지
   const [preview, setPreview] = useState(null);
 
   useEffect(() => {
@@ -41,28 +41,34 @@ export default function UploadPage() {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
+
     if (imageDataRef.current['url'] === undefined) {
       return alert('이미지가 이미 업로드 되었습니다.');
     }
 
-    formStateRef.current['description'] = textInputRef.current.value;
-    if (
-      formStateRef.current['category_name'] &&
-      formStateRef.current['description'] &&
-      file
-    ) {
-      await uploadFiles();
-      const category_uid = await getCategoryId(
-        user_uid,
-        formStateRef.current['category_name']
-      );
-      if (category_uid) {
-        console.log(category_uid);
-        imageDataRef.current['catagory_uid'] = category_uid;
-        imageDataRef.current['description'] = textInputRef.current.value;
-        imageDataRef.current['name'] = file.name;
-        imageDataRef.current['user_uid'] = user_uid;
-        await addImageItem(imageDataRef.current);
+    if (authUser) {
+      console.log(authUser);
+      const user_uid = authUser.uid;
+      formStateRef.current['description'] = textInputRef.current.value;
+      if (
+        formStateRef.current['category_name'] &&
+        formStateRef.current['description'] &&
+        file
+      ) {
+        await uploadFiles();
+        const category_uid = await getCategoryId(
+          user_uid,
+          formStateRef.current['category_name']
+        );
+        console.log('카테고리 아이디', category_uid);
+        if (category_uid) {
+          imageDataRef.current['catagory_uid'] = category_uid;
+          imageDataRef.current['description'] = textInputRef.current.value;
+          imageDataRef.current['name'] = file.name;
+          imageDataRef.current['uid'] = user_uid;
+          await addImageItem(imageDataRef.current);
+          console.log('업로드 완료!');
+        }
       }
     }
   };
@@ -77,12 +83,10 @@ export default function UploadPage() {
   };
 
   const onFileDrop = (e) => {
-    // 파일 확장자 유효성검사 필요함 (png, jpg만 가능하게)
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
-      // 파일 로드가 완료되었을 때 함수 호출
       setPreview(reader.result);
     };
     setFile(file);
@@ -135,7 +139,6 @@ const initialFormState = {
   description: '',
 };
 
-// imageData
 const initialImageData = {
   catagory_uid: '',
   description: '',
@@ -149,5 +152,3 @@ const deleteButtonStyle = {
   right: '0',
   marginTop: '2.9375rem',
 };
-
-const user_uid = 'EHSFq6SN4UfSAyGTw6UH';

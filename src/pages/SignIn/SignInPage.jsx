@@ -1,14 +1,14 @@
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { Link, useNavigate } from 'react-router-dom';
-
-import { FormInput, LoginButton } from '@/components';
-import { getFontSize } from '@/theme/utils';
-import { useEffect, useRef } from 'react';
 import googleIcon from '@/assets/Google-logo.svg';
 import faceBookIcon from '@/assets/facebook-logo.svg';
 import loginImage from '@/assets/BackgroundImage.svg';
-import * as S from './SignPage.styled';
-import { useAuthState, useSignIn, useSignOut } from '@/firebase/auth';
+import * as S from './SignInPage.styled';
+import { getFontSize } from '@/theme/utils';
+import { getCategoryIds } from '@/utils/utils';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useContext } from 'react';
+import { FormInput, LoginButton } from '@/components';
+import { useAuthState, useSignIn } from '@/firebase/auth';
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -16,8 +16,6 @@ import {
   FacebookAuthProvider,
 } from 'firebase/auth';
 import { AuthUserContext } from '@/contexts/AuthUser';
-import { useContext } from 'react';
-import { getCategoryIds } from '@/utils/utils';
 
 const provider = new GoogleAuthProvider();
 const FaceBookprovider = new FacebookAuthProvider();
@@ -33,11 +31,8 @@ export default function SignInPage() {
   const formState = useRef(initialFormState);
 
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
-  const { signOut } = useSignOut();
   const { isLoading, error, user } = useAuthState();
-  const { authUser, updateAuthUser } = useContext(AuthUserContext);
-
-  console.log('context에서 받아온 정보: ', authUser, updateAuthUser);
+  const { updateAuthUser } = useContext(AuthUserContext);
 
   useEffect(() => {
     if (user) {
@@ -45,6 +40,7 @@ export default function SignInPage() {
         const category_uids = await getCategoryIds(user.uid);
         await updateAuthUser({
           name: user.displayName,
+          uid: user.uid,
           email: user.email,
           isLogin: true,
           categories: category_uids,
@@ -53,8 +49,6 @@ export default function SignInPage() {
       })();
     }
   }, [user]);
-
-  console.log(authUser);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -65,7 +59,6 @@ export default function SignInPage() {
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
-    console.log({ name, value });
     formState.current[name] = value;
   };
 
@@ -77,8 +70,6 @@ export default function SignInPage() {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-
-        console.log(result);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -92,25 +83,14 @@ export default function SignInPage() {
 
     signInWithPopup(auth, FaceBookprovider)
       .then((result) => {
-        // The signed-in user info.
         const FBuser = result.FBuser;
-
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
         const FBcredential = FacebookAuthProvider.credentialFromResult(result);
         const FBaccessToken = FBcredential.FBaccessToken;
-
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-        console.log(result);
       })
       .catch((error) => {
-        // Handle Errors here.
         const errorCode = error.code;
         const FBerrorMessage = error.message;
-        // const email = error.customData.email;
         const FBcredential = FacebookAuthProvider.credentialFromError(error);
-        console.log(error);
-        // ...
       });
   };
 

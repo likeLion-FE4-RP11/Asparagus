@@ -64,7 +64,7 @@ export const getCategoryId = async (user_uid, category_name) => {
   // 문서 가져오기
   // 참고: https://firebase.google.com/docs/firestore/query-data/get-data?hl=ko#get_a_document
   const categoryDocRef = collection(db, CATTEGORY_COLLECTION_KEY);
-  const q = query(categoryDocRef, where('user_uid', '==', user_uid));
+  const q = query(categoryDocRef, where('uid', '==', user_uid));
 
   const categoryDocSnapshot = await getDocs(q);
 
