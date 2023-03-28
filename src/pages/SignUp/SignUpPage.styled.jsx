@@ -11,8 +11,9 @@ export const SignUpContent = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  justify-content: center;
   width: 100%;
-  padding: 20vh 0;
+  padding: 10vh 0;
 `;
 
 export const SingUpTitle = styled.span`
