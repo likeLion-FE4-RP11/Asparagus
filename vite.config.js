@@ -5,7 +5,7 @@ import macro from 'vite-plugin-babel-macros';
 
 export default defineConfig({
   plugins: [macro(), react()],
-  base: '/',
+  base: '',
   resolve: {
     alias: [{ find: '@', replacement: resolve(__dirname, './src') }],
   },
