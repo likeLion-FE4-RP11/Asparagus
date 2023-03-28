@@ -36,34 +36,41 @@ export default function CategoriesPage() {
   const [imgIdArr, setImgIdArr] = useState([]);
   const { authUser } = useAuthUser();
 
+  let user_uid = '';
+  let category_uid = '';
+  
   useLayoutEffect(() => {
     if (authUser) {
-      const user_uid = authUser.uid;
-      const category_uid = authUser.categories[category];
+      user_uid = authUser.uid;
+      category_uid = authUser.categories[category];
 
-      const q = query(
-        collection(db, 'images'),
-        where('uid', '==', user_uid),
-        where('category_uid', '==', category_uid),
-        limit(10)
-      );
-
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const data = [];
-
-        querySnapshot.forEach((doc) => {
-          data.push({ id: doc.id, data: doc.data() });
-        });
-
-        setImageDataArr(data);
-      });
-
-      return () => {
-        console.log('onSnapshot 이벤트 구독 해지');
-        unsubscribe();
-      };
+      console.log(user_uid, category_uid);
     }
+    console.log('시도!!!!!!!', user_uid, category_uid);
+    const q = query(
+      collection(db, 'images'),
+      where('uid', '==', user_uid),
+      where('category_uid', '==', category_uid),
+      limit(10)
+    );
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const data = [];
+
+      querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, data: doc.data() });
+      });
+      console.log('데이타', data);
+
+      setImageDataArr(data);
+    });
+
+    return () => {
+      console.log('onSnapshot 이벤트 구독 해지');
+      unsubscribe();
+    };
   }, []);
+
+  console.log(imageDataArr);
 
   useEffect(() => {
     const idList = [];
