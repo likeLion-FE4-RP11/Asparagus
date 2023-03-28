@@ -3,11 +3,13 @@ import {
   doc,
   writeBatch,
   serverTimestamp,
-  getDoc,
   getDocs,
   addDoc,
   query,
   where,
+  orderBy,
+  onSnapshot,
+  limit,
 } from 'firebase/firestore';
 import { db } from '@/firebase/firestore';
 
@@ -105,4 +107,32 @@ export const addImageItem = async (imageItem) => {
     ...imageItem,
     createAt: serverTimestamp(),
   });
+};
+
+/**
+ * 실시간 업데이트 가져오는 유틸리티 함수
+ * @param {(data) => void} callback 콜백 함수
+ */
+export const onChangeCategoryList = (callback, user_uid, category_uid) => {
+  const categoryListCollectionRef = collection(db, IMAGE_COLLECTION_KEY);
+  const q = query(
+    categoryListCollectionRef,
+    where('uid', '==', user_uid),
+    where('category_uid', '==', category_uid),
+    limit(10)
+  );
+
+  // 실시간 업데이트 가져오기
+  // 참고: https://firebase.google.com/docs/firestore/query-data/listen?hl=ko
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    const data = [];
+
+    querySnapshot.forEach((doc) => {
+      data.push({ id: doc.id, data: doc.data() });
+    });
+    console.log('유틸함수 테스트', data);
+    callback(data);
+  });
+
+  return unsubscribe;
 };

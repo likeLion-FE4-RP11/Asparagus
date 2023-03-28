@@ -47,7 +47,7 @@ export default function UploadPage() {
     }
 
     if (authUser) {
-      console.log(authUser);
+      // console.log(authUser);
       const user_uid = authUser.uid;
       formStateRef.current['description'] = textInputRef.current.value;
       if (
@@ -62,7 +62,7 @@ export default function UploadPage() {
         );
         console.log('카테고리 아이디', category_uid);
         if (category_uid) {
-          imageDataRef.current['catagory_uid'] = category_uid;
+          imageDataRef.current['category_uid'] = category_uid;
           imageDataRef.current['description'] = textInputRef.current.value;
           imageDataRef.current['name'] = file.name;
           imageDataRef.current['uid'] = user_uid;
