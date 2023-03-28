@@ -3,6 +3,28 @@
 
 <div align="center">
 
+## 🚀 프로젝트 사용법
+
+```sh
+npm i
+
+npm start
+
+# or
+
+yarn
+
+yarn start
+```
+
+**root경로에 .env파일이 필요합니다.**
+
+```sh
+# /.env
+REACT_APP_API_URL=[API_URL]
+```
+
+
 ## 🦁 likelion-React-project
 ### _React를 이용한 나만의 전시 사이트_
 <br>
@@ -19,17 +41,11 @@
 
 <br>
 
-## **I's Gallary 프로젝트의 구성원**
+## I's Gallary 프로젝트의 구성원
 
- 조장: 김진섭
-
- 팀원: 오승택
-
- 팀원: 최예송
-
- 팀원: 김진희
-
- 팀원: 문나래
+|[김진섭 <br>(seovee)](https://github.com/seovee)|[오승택(5wintaek)](https://github.com/5wintaek)|[최예송(to06109)](https://github.com/to06109)|[김진희(kyuran6)](https://github.com/kyuran6)|[문나래(munnarae)](https://github.com/munnarae)|
+|------|---|---|---|---|
+|<img src="https://avatars.githubusercontent.com/u/18073169?v=4" width="140">|<img src="https://user-images.githubusercontent.com/109938280/225849971-ea8a252d-0210-4f79-a0cc-a20ba9db81db.jpeg" width="140">|<img src="https://user-images.githubusercontent.com/69625013/215288901-df0a18e7-9553-4911-be9e-823df1cdbdd9.jpg" width="140">|<img src="https://user-images.githubusercontent.com/119389578/224522581-36691cf0-286b-4128-adee-1ed37b3b4222.JPG" width="140">|<img src="https://user-images.githubusercontent.com/92195610/224521197-13956d69-3602-4347-afb2-dd1c2bec048d.jpg" width="140">|
 
 <br>
 
@@ -42,6 +58,8 @@
 <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=Firebase&logoColor=black"/>
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=black"/>
 <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat-square&logo=Visual Studio Code&logoColor=white"/>
+<img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
+<img src="https://img.shields.io/badge/-Framer%20motion-brightgreen"/>
 <div>
 
 </div>
