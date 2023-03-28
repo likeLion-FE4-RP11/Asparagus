@@ -26,6 +26,7 @@ import Dark from '@/assets/Dark.svg';
 import Light from '@/assets/Light.svg';
 import { useAuthUser } from '@/contexts/AuthUser';
 import { useParams } from 'react-router-dom';
+import { onChangeCategoryList } from '@/utils/utils';
 
 export default function CategoriesPage() {
   useDocumentTitle('Categories');
@@ -46,48 +47,31 @@ export default function CategoriesPage() {
     if (authUser) {
       user_uid = authUser.uid;
       category_uid = authUser.categories[category];
-
-      console.log(user_uid, category_uid);
+      console.log('시도!!!!!!!', user_uid, category_uid);
+      onChangeCategoryList(setImageDataArr, user_uid, category_uid);
     }
-    console.log('시도!!!!!!!', user_uid, category_uid);
-    const q = query(
-      collection(db, 'images'),
-      where('uid', '==', user_uid),
-      where('category_uid', '==', category_uid),
-      limit(10)
-    );
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const data = [];
-
-      querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, data: doc.data() });
-      });
-
-      setImageDataArr(data);
-    });
-
-    return () => {
-      console.log('onSnapshot 이벤트 구독 해지');
-      unsubscribe();
-    };
-  }, []);
-
+  }, [authUser]);
   console.log(imageDataArr);
 
   useEffect(() => {
     const idList = [];
     const imageList = [];
     const descriptionList = [];
-    imageDataArr.map(({ id, data }) => {
-      idList.push(id);
-      imageList.push(data.url);
-      descriptionList.push(data.description);
-    });
+    if (imageDataArr) {
+      imageDataArr.map(({ id, data }) => {
+        idList.push(id);
+        imageList.push(data.url);
+        descriptionList.push(data.description);
+      });
 
-    setDescriptionArr(descriptionList);
-    setImgArr(imageList);
-    setImgIdArr(idList);
+      setDescriptionArr(descriptionList);
+      setImgArr(imageList);
+      setImgIdArr(idList);
+    }
   }, [imageDataArr]);
+
+  console.log(imgArr);
+  console.log(imgIdArr);
 
   // 텍스트 편집 기능
   const [text, setText] = useState('I traveled here with my friends!');
@@ -128,7 +112,7 @@ export default function CategoriesPage() {
     <ThemeContext.Provider>
       <ThemeProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
         <GlobalStyles />
-        <ToggleButton />
+        <ToggleButton category_uid={category_uid} />
         <S.Themebutton onClick={() => themeTogggler()}>
           {theme === 'dark' ? (
             <img src={Dark} alt="다크모드 활성화" />
@@ -160,7 +144,7 @@ export default function CategoriesPage() {
           ) : (
             <S.BaseText color={getColor('white')}>{text}</S.BaseText>
           )}
-          <LikeButton />
+          <LikeButton category_uid={category_uid} />
         </S.categoryMainContainer>
 
         <S.FirstContainer>
