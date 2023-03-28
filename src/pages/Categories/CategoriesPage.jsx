@@ -136,16 +136,22 @@ export default function CategoriesPage() {
             <img src={Light} alt="라이트모드 활성화" />
           )}
         </S.Themebutton>
-        <MainSwiper />
-        <S.TextContainer>
+        <S.categoryMainContainer
+          width={'1557px'}
+          height={'769px'}
+          src={imgArr[0]}
+        >
           <S.ImageTitle color={getColor('white')}>Travel</S.ImageTitle>
-          <S.ImageLogo
-            src={pencilImg}
-            onDoubleClick={handleDoubleClick}
-            alt="대표 사진 내용 편집하기"
-          />
+          <S.testContainer>
+            <img
+              src={pencilImg}
+              onDoubleClick={handleDoubleClick}
+              alt="대표 사진 내용 편집하기"
+            />
+          </S.testContainer>
+
           {isEditable ? (
-            <input
+            <S.ChangeInput
               type="text"
               value={text}
               onChange={handleChange}
@@ -155,7 +161,8 @@ export default function CategoriesPage() {
             <S.BaseText color={getColor('white')}>{text}</S.BaseText>
           )}
           <LikeButton />
-        </S.TextContainer>
+        </S.categoryMainContainer>
+
         <S.FirstContainer>
           <UseHover
             width={'894'}
