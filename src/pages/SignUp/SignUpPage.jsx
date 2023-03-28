@@ -18,11 +18,11 @@ const initialFormState = {
 
 export default function SignUpPage() {
   useDocumentTitle('SignUpPage');
+  const navigate = useNavigate();
 
   const { signUp, user: signUpUser } = useSignUp();
   const { createAuthUser } = useCreateAuthUser();
   const formStateRef = useRef(initialFormState);
-  const navigate = useNavigate();
 
   const categoryList = [];
   const categoryNameList = ['Travel', 'Food', 'Hobby', 'Daily'];
@@ -68,6 +68,7 @@ export default function SignUpPage() {
         await writeBatchCategoryList(categoryList);
         // await navigate('/signin');
       })();
+      navigate('/signin');
     }
   }, [createAuthUser, signUpUser]);
 
