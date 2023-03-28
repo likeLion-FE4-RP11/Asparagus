@@ -17,7 +17,7 @@ const LikeButtonArea = styled.button`
   flex-flow: row;
   align-items: center;
   position: absolute;
-  bottom: 50px;
+  bottom: 200px;
   appearance: none;
   background-color: transparent;
   border: none;
