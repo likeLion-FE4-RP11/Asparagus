@@ -39,32 +39,40 @@ export default function CategoriesPage() {
   const [imgIdArr, setImgIdArr] = useState([]);
   const { authUser } = useAuthUser();
 
+  let user_uid = '';
+  let category_uid = '';
+
   useLayoutEffect(() => {
     if (authUser) {
-      const user_uid = authUser.uid;
-      const category_uid = authUser.categories[category];
+      user_uid = authUser.uid;
+      category_uid = authUser.categories[category];
 
-      const q = query(
-        collection(db, 'images'),
-        where('uid', '==', user_uid),
-        where('category_uid', '==', category_uid),
-        limit(10)
-      );
+      console.log(user_uid, category_uid);
+    }
+    console.log('시도!!!!!!!', user_uid, category_uid);
+    const q = query(
+      collection(db, 'images'),
+      where('uid', '==', user_uid),
+      where('category_uid', '==', category_uid),
+      limit(10)
+    );
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const data = [];
 
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const data = [];
-
-        querySnapshot.forEach((doc) => {
-          data.push({ id: doc.id, data: doc.data() });
-        });
-        setImageDataArr(data);
+      querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, data: doc.data() });
       });
 
-      return () => {
-        unsubscribe();
-      };
-    }
+      setImageDataArr(data);
+    });
+
+    return () => {
+      console.log('onSnapshot 이벤트 구독 해지');
+      unsubscribe();
+    };
   }, []);
+
+  console.log(imageDataArr);
 
   useEffect(() => {
     const idList = [];
@@ -128,16 +136,22 @@ export default function CategoriesPage() {
             <img src={Light} alt="라이트모드 활성화" />
           )}
         </S.Themebutton>
-        <MainSwiper />
-        <S.TextContainer>
+        <S.categoryMainContainer
+          width={'1557px'}
+          height={'769px'}
+          src={imgArr[0]}
+        >
           <S.ImageTitle color={getColor('white')}>Travel</S.ImageTitle>
-          <S.ImageLogo
-            src={pencilImg}
-            onDoubleClick={handleDoubleClick}
-            alt="대표 사진 내용 편집하기"
-          />
+          <S.testContainer>
+            <img
+              src={pencilImg}
+              onDoubleClick={handleDoubleClick}
+              alt="대표 사진 내용 편집하기"
+            />
+          </S.testContainer>
+
           {isEditable ? (
-            <input
+            <S.ChangeInput
               type="text"
               value={text}
               onChange={handleChange}
@@ -147,7 +161,8 @@ export default function CategoriesPage() {
             <S.BaseText color={getColor('white')}>{text}</S.BaseText>
           )}
           <LikeButton />
-        </S.TextContainer>
+        </S.categoryMainContainer>
+
         <S.FirstContainer>
           <UseHover
             width={'894'}

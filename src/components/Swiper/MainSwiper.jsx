@@ -9,10 +9,11 @@ import { collection, getDocs, query, where, limit } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { db } from '@/firebase/firestore';
 import { useAuthUser } from '@/contexts/AuthUser';
+import PropTypes from 'prop-types';
 
 /* Component ---------------------------------------------------------------- */
 
-export function MainSwiper() {
+export function MainSwiper({ children }) {
   // const baseImgArr = [
   //   'https://firebasestorage.googleapis.com/v0/b/i-s-gallery.appspot.com/o/assets%2Fsample%2Fdaily-5.webp?alt=media&token=9d5eb52c-49f8-4d87-a89f-12fd5ba020f1',
   //   'https://firebasestorage.googleapis.com/v0/b/i-s-gallery.appspot.com/o/assets%2Fsample%2Ffood-5.webp?alt=media&token=db9b6256-a352-40b6-961e-6e58733cbe5b',
@@ -76,6 +77,11 @@ export function MainSwiper() {
               </S.StyledSwiperSlide>
             );
           })}
+      {children}
     </S.StyledSwiper>
   );
 }
+
+MainSwiper.propTypes = {
+  children: PropTypes.node,
+};

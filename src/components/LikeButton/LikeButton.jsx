@@ -17,11 +17,12 @@ const LikeButtonArea = styled.button`
   flex-flow: row;
   align-items: center;
   position: absolute;
-  bottom: 50px;
+  bottom: 100px;
+  left: 103px;
+  z-index: 10;
   appearance: none;
   background-color: transparent;
   border: none;
-  @media screen and (max-width: 940px) {
 `;
 
 export function LikeButton() {
