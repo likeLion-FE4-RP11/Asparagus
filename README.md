@@ -49,6 +49,31 @@ REACT_APP_API_URL=[API_URL]
 
 <br>
 
+## 페이지별 기능
+![스크린샷 2023-03-28 시간: 11 46 06](https://user-images.githubusercontent.com/119389578/228114237-ab3ade1c-a6f5-4553-ae7d-b7fa1ab679f2.png)
+로그인 - 이메일/비밀번호 유효성 검사, 소셜로그인 (구글, 페이스북)  
+
+<br>
+
+![스크린샷 2023-03-28 시간: 11 44 06](https://user-images.githubusercontent.com/119389578/228114182-56e0d965-8c39-4380-9154-5225130c242d.png)
+회원가입 - 이메일/이름/비밀번호 유효성 검사, 체크가 되어있어야 버튼 활성화  
+
+<br>
+
+메인 - 사용자가 공개로 업로드한 이미지 및 다른 사람이 올린 이미지 보여줌  
+
+<br>
+
+카테고리 - 이미지 불러와서 카테고리별로 렌더링, 공개/비공개 설정 가능  
+
+<br>
+
+![스크린샷 2023-03-28 시간: 11 46 41](https://user-images.githubusercontent.com/119389578/228114331-83d76cef-7ee4-4e29-845b-39b0c0af426d.png)
+업로드 - 이미지 업로드 
+
+
+<br>
+
 ## ⚙️기술 스택
 <div>
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/>
