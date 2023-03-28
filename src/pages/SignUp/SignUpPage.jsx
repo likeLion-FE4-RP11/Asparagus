@@ -1,5 +1,6 @@
 import MainImage from '@/assets/SignUp_main.jpg';
 import * as S from './SignUpPage.styled';
+import { getFontSize } from '@/theme/utils';
 import { writeBatchCategoryList } from '@/utils/utils';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { Link, useNavigate } from 'react-router-dom';
@@ -76,47 +77,45 @@ export default function SignUpPage() {
   };
 
   return (
-    <>
-      <S.SignUpContainer>
-        <S.SignUpContent>
-          <form onSubmit={SignUpSubmit}>
-            <S.SingUpTitle>Create an acount</S.SingUpTitle>
-            <SignUpFormInput
-              type="text"
-              label="이름"
-              name="name"
-              onChange={handleChangeInput}
-            />
-            <SignUpFormInput
-              type="email"
-              label="이메일"
-              name="email"
-              onChange={handleChangeInput}
-            />
-            <SignUpFormInput
-              type="password"
-              label="비밀번호"
-              name="password"
-              onChange={handleChangeInput}
-            />
-            <SignUpFormInput
-              type="password"
-              label="비밀번호 확인"
-              name="passwordConfirm"
-              onChange={handleChangeInput}
-            />
-            <CheckBox ref={formStateRef} context="Sign me up!">
-              I agree to the Terms of Service and Privacy Notice
-            </CheckBox>
-          </form>
-        </S.SignUpContent>
-        <S.HalfImageContainer>
-          <S.ImageLogo>
-            <Link to="/">I`s gallery</Link>
-          </S.ImageLogo>
-          <S.SignUpMainImage src={MainImage} alt="회원가입 메인 이미지" />
-        </S.HalfImageContainer>
-      </S.SignUpContainer>
-    </>
+    <S.SignUpContainer>
+      <S.HalfImageContainer>
+        <S.ImageLogo>
+          <Link to="/">I`s gallery</Link>
+        </S.ImageLogo>
+        <S.SignUpMainImage src={MainImage} alt="회원가입 메인 이미지" />
+      </S.HalfImageContainer>
+      <S.SignUpContent>
+        <S.Header fontSize={getFontSize('2xl')}>Create an account</S.Header>
+        <form onSubmit={SignUpSubmit}>
+          <SignUpFormInput
+            type="text"
+            label="이름"
+            name="name"
+            onChange={handleChangeInput}
+          />
+          <SignUpFormInput
+            type="email"
+            label="이메일"
+            name="email"
+            onChange={handleChangeInput}
+          />
+          <SignUpFormInput
+            type="password"
+            label="비밀번호"
+            name="password"
+            onChange={handleChangeInput}
+          />
+          <SignUpFormInput
+            type="password"
+            label="비밀번호 확인"
+            name="passwordConfirm"
+            onChange={handleChangeInput}
+          />
+          <CheckBox ref={formStateRef} context="Sign me up!">
+            I agree to the Terms of Service and Privacy Notice
+          </CheckBox>
+        </form>
+      </S.SignUpContent>
+    </S.SignUpContainer>
   );
 }
