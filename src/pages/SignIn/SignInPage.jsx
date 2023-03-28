@@ -40,6 +40,7 @@ export default function SignInPage() {
         const category_uids = await getCategoryIds(user.uid);
         await updateAuthUser({
           name: user.displayName,
+          uid: user.uid,
           email: user.email,
           isLogin: true,
           categories: category_uids,

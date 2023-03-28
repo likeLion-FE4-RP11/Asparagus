@@ -1,5 +1,4 @@
 import * as S from './Nav.styled';
-import { NavLink } from 'react-router-dom';
 import { A11yHidden } from '@/components/index';
 import { useAuthUser } from '@/contexts/AuthUser';
 import { useSignOut } from '@/firebase/auth';
