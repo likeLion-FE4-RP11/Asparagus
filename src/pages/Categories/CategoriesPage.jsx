@@ -2,23 +2,13 @@ import * as S from './CategoriesPage.styled';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { getColor } from '@/theme/utils';
 import { useState, useEffect, useLayoutEffect } from 'react';
-import { db } from '@/firebase/firestore';
 import {
   ToggleButton,
   LikeButton,
   DesignParagraph,
-  ImageContainer,
   UseHover,
   TopButton,
-  MainSwiper,
 } from '@/components';
-import {
-  collection,
-  query,
-  where,
-  limit,
-  onSnapshot,
-} from 'firebase/firestore';
 import { LightTheme, DarkTheme, GlobalStyles } from '@/theme/theme';
 import { ThemeContext, ThemeProvider } from 'styled-components';
 import pencilImg from '@/assets/pencil-icon.svg';
@@ -33,7 +23,6 @@ export default function CategoriesPage() {
 
   const category = useParams().name;
 
-  // 이미지 id, uid, description 불러오기
   const [imageDataArr, setImageDataArr] = useState([]);
   const [imgArr, setImgArr] = useState([]);
   const [descriptionArr, setDescriptionArr] = useState([]);
@@ -125,7 +114,7 @@ export default function CategoriesPage() {
           height={'769px'}
           src={imgArr[0]}
         >
-          <S.ImageTitle color={getColor('white')}>Travel</S.ImageTitle>
+          <S.ImageTitle color={getColor('white')}>{category}</S.ImageTitle>
           <S.testContainer>
             <img
               src={pencilImg}

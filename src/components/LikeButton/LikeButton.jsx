@@ -4,6 +4,8 @@ import HeartImg from '@/assets/Heart.png';
 import EmptyHeartImg from '@/assets/empty-heart.png';
 import { doc, getDoc, updateDoc, query } from 'firebase/firestore';
 import { db } from '@/firebase/firestore';
+import { useAuthUser } from '@/contexts/AuthUser';
+import { useParams } from 'react-router-dom';
 
 const LikeBtn = styled.span`
   color: #f9fbfd;
@@ -26,10 +28,15 @@ const LikeButtonArea = styled.button`
 `;
 
 export function LikeButton() {
+  const category = useParams().name;
   const [heart, setHeart] = useState(false);
   const [count, setCount] = useState(0);
+  const { authUser } = useAuthUser();
 
-  const category_uid = 'J5QsZE01c9QkdO1yzuVB';
+  let category_uid = '';
+  if (authUser) {
+    category_uid = authUser.categories[category];
+  }
 
   const updateCount = async (likeCount) => {
     setHeart((prev) => !prev);
@@ -56,8 +63,6 @@ export function LikeButton() {
 
     getCounter();
   }, []);
-
-  console.log(count);
 
   return (
     <LikeButtonArea
