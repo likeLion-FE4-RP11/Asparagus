@@ -83,14 +83,16 @@ export const TextContainer = styled.section`
   height: 100%;
   top: 450px;
   left: 150px;
+  z-index: 1000;
 `;
 
-export const Themebutton = styled.section`
-  position: absolute;
-  right: 250px;
-  top: 260px;
-  outline: none;
-  border: none;
-  padding: 1px 5px;
-  border-radius: 35px;
+export const Themebutton = styled.div`
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  img {
+    position: absolute;
+    right: 190px;
+    bottom : 60px;
+
 `;
