@@ -2,7 +2,7 @@ import MainImage from '@/assets/SignUp_main.jpg';
 import * as S from './SignUpPage.styled';
 import { writeBatchCategoryList } from '@/utils/utils';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import { CheckBox, SignUpFormInput } from '@/components';
 import { useSignUp } from '@/firebase/auth';
@@ -21,6 +21,7 @@ export default function SignUpPage() {
   const { signUp, user: signUpUser } = useSignUp();
   const { createAuthUser } = useCreateAuthUser();
   const formStateRef = useRef(initialFormState);
+  const navigate = useNavigate();
 
   const categoryList = [];
   const categoryNameList = ['Travel', 'Food', 'Hobby', 'Daily'];
@@ -64,6 +65,7 @@ export default function SignUpPage() {
           categoryList.push(categoryObject);
         });
         await writeBatchCategoryList(categoryList);
+        // await navigate('/signin');
       })();
     }
   }, [createAuthUser, signUpUser]);

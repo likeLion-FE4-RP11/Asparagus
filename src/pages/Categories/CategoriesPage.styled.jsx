@@ -6,7 +6,6 @@ export const FirstContainer = styled.section`
   grid-template-columns: 1fr 2fr;
   grid-gap: 1.2rem;
   margin-top: 5rem;
-
   
   @media screen and (max-width: 940px) {
     grid-template-columns: 1fr;
@@ -81,16 +80,18 @@ export const TextContainer = styled.section`
   height: 700px;
   max-width: 100%;
   height: 100%;
-  top: 450px;
+  top: 630px;
   left: 150px;
+  z-index: 1000;
 `;
 
-export const Themebutton = styled.section`
-  position: absolute;
-  right: 250px;
-  top: 260px;
-  outline: none;
-  border: none;
-  padding: 1px 5px;
-  border-radius: 35px;
+export const Themebutton = styled.div`
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  img {
+    position: absolute;
+    right: 190px;
+    bottom : 60px;
+
 `;

@@ -1,11 +1,10 @@
 import styled from 'styled-components/macro';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-
 export const StyledSwiper = styled(Swiper)`
   width: 100%;
   height: 100%;
-  margin-top: 186px;
+  margin-top: 150px;
   margin-bottom: 147px;
   border-radius: 20px;
 `;
