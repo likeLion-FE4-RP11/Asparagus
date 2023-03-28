@@ -18,17 +18,17 @@ const BaseImageBox = styled.div`
   img {
     display: block;
     object-fit: cover;
-    width: 29.4375rem;
-    height: 37.5rem;
+    width: 5.8375rem;
+    height: 5.8375rem;
     border-radius: 20px;
   }
 `;
 
 // 이미지 로딩 중에 띄울 컴포넌트
-export function BaseImage({ width, height, img }) {
+export function BaseImage({ width, height }) {
   return (
     <BaseImageBox width={width} height={height} bgColor={getColor('gray/100')}>
-        <img src={img} alt="기본" />
+      <img src={baseSrc} alt="기본 이미지" />
     </BaseImageBox>
   );
 }
