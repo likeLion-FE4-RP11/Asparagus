@@ -9,12 +9,6 @@
 npm i
 
 npm start
-
-# or
-
-yarn
-
-yarn start
 ```
 
 **root경로에 .env파일이 필요합니다.**
