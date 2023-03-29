@@ -36,7 +36,6 @@ export default function CategoriesPage() {
     if (authUser) {
       user_uid = authUser.uid;
       category_uid = authUser.categories[category];
-      console.log('시도!!!!!!!', user_uid, category_uid);
       onChangeCategoryList(setImageDataArr, user_uid, category_uid);
     }
   }, [authUser]);
