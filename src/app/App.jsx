@@ -1,4 +1,4 @@
-import { createHashRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { BaseLayout, RootLayout } from '@/components';
 
 /* Pages -------------------------------------------------------------------- */
@@ -10,7 +10,7 @@ import UploadPage from '@/pages/UploadPage/UploadPage';
 import NotFoundPage from '@/pages/NotFound/NotFoundPage';
 import { AuthUserProvider } from '@/contexts/AuthUser';
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,

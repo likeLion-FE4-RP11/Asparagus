@@ -22,14 +22,22 @@ const SrcImageBox = styled.div`
   }
 `;
 
-export function ImageContainer({ src, alt, width, height }) {
+export function ImageContainer({
+  src,
+  alt,
+  width,
+  height,
+  children,
+  ...restProps
+}) {
   return (
-    <SrcImageBox width={width} height={height}>
+    <SrcImageBox width={width} height={height} {...restProps}>
       {src ? (
         <img src={src} alt={alt}></img>
       ) : (
         <BaseImage width={width} height={height} />
       )}
+      {children}
     </SrcImageBox>
   );
 }
@@ -44,4 +52,5 @@ ImageContainer.propTypes = {
   alt: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
+  children: PropTypes.node,
 };

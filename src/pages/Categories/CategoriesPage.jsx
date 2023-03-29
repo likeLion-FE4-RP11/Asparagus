@@ -2,23 +2,13 @@ import * as S from './CategoriesPage.styled';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { getColor } from '@/theme/utils';
 import { useState, useEffect, useLayoutEffect } from 'react';
-import { db } from '@/firebase/firestore';
 import {
   ToggleButton,
   LikeButton,
   DesignParagraph,
-  ImageContainer,
   UseHover,
   TopButton,
-  MainSwiper,
 } from '@/components';
-import {
-  collection,
-  query,
-  where,
-  limit,
-  onSnapshot,
-} from 'firebase/firestore';
 import { LightTheme, DarkTheme, GlobalStyles } from '@/theme/theme';
 import { ThemeContext, ThemeProvider } from 'styled-components';
 import pencilImg from '@/assets/pencil-icon.svg';
@@ -26,60 +16,50 @@ import Dark from '@/assets/Dark.svg';
 import Light from '@/assets/Light.svg';
 import { useAuthUser } from '@/contexts/AuthUser';
 import { useParams } from 'react-router-dom';
+import { onChangeCategoryList } from '@/utils/utils';
 
 export default function CategoriesPage() {
   useDocumentTitle('Categories');
 
   const category = useParams().name;
 
-  // 이미지 id, uid, description 불러오기
   const [imageDataArr, setImageDataArr] = useState([]);
   const [imgArr, setImgArr] = useState([]);
   const [descriptionArr, setDescriptionArr] = useState([]);
   const [imgIdArr, setImgIdArr] = useState([]);
   const { authUser } = useAuthUser();
 
+  let user_uid = '';
+  let category_uid = '';
+
   useLayoutEffect(() => {
     if (authUser) {
-      const user_uid = authUser.uid;
-      const category_uid = authUser.categories[category];
-
-      const q = query(
-        collection(db, 'images'),
-        where('uid', '==', user_uid),
-        where('category_uid', '==', category_uid),
-        limit(10)
-      );
-
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const data = [];
-
-        querySnapshot.forEach((doc) => {
-          data.push({ id: doc.id, data: doc.data() });
-        });
-        setImageDataArr(data);
-      });
-
-      return () => {
-        unsubscribe();
-      };
+      user_uid = authUser.uid;
+      category_uid = authUser.categories[category];
+      onChangeCategoryList(setImageDataArr, user_uid, category_uid);
     }
-  }, []);
+  }, [authUser]);
+  console.log(imageDataArr);
 
   useEffect(() => {
     const idList = [];
     const imageList = [];
     const descriptionList = [];
-    imageDataArr.map(({ id, data }) => {
-      idList.push(id);
-      imageList.push(data.url);
-      descriptionList.push(data.description);
-    });
+    if (imageDataArr) {
+      imageDataArr.map(({ id, data }) => {
+        idList.push(id);
+        imageList.push(data.url);
+        descriptionList.push(data.description);
+      });
 
-    setDescriptionArr(descriptionList);
-    setImgArr(imageList);
-    setImgIdArr(idList);
+      setDescriptionArr(descriptionList);
+      setImgArr(imageList);
+      setImgIdArr(idList);
+    }
   }, [imageDataArr]);
+
+  console.log(imgArr);
+  console.log(imgIdArr);
 
   // 텍스트 편집 기능
   const [text, setText] = useState('I traveled here with my friends!');
@@ -120,7 +100,7 @@ export default function CategoriesPage() {
     <ThemeContext.Provider>
       <ThemeProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
         <GlobalStyles />
-        <ToggleButton />
+        <ToggleButton category_uid={category_uid} />
         <S.Themebutton onClick={() => themeTogggler()}>
           {theme === 'dark' ? (
             <img src={Dark} alt="다크모드 활성화" />
@@ -128,16 +108,22 @@ export default function CategoriesPage() {
             <img src={Light} alt="라이트모드 활성화" />
           )}
         </S.Themebutton>
-        <MainSwiper />
-        <S.TextContainer>
-          <S.ImageTitle color={getColor('white')}>Travel</S.ImageTitle>
-          <S.ImageLogo
-            src={pencilImg}
-            onDoubleClick={handleDoubleClick}
-            alt="대표 사진 내용 편집하기"
-          />
+        <S.categoryMainContainer
+          width={'1557px'}
+          height={'769px'}
+          src={imgArr[0]}
+        >
+          <S.ImageTitle color={getColor('white')}>{category}</S.ImageTitle>
+          <S.testContainer>
+            <img
+              src={pencilImg}
+              onDoubleClick={handleDoubleClick}
+              alt="대표 사진 내용 편집하기"
+            />
+          </S.testContainer>
+
           {isEditable ? (
-            <input
+            <S.ChangeInput
               type="text"
               value={text}
               onChange={handleChange}
@@ -146,8 +132,9 @@ export default function CategoriesPage() {
           ) : (
             <S.BaseText color={getColor('white')}>{text}</S.BaseText>
           )}
-          <LikeButton />
-        </S.TextContainer>
+          <LikeButton category_uid={category_uid} />
+        </S.categoryMainContainer>
+
         <S.FirstContainer>
           <UseHover
             width={'894'}

@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 export const SignUpContainer = styled.section`
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row-reverse nowrap;
   justify-content: space-between;
   height: 100vh;
 `;
@@ -63,4 +63,10 @@ export const ImageLogo = styled.h1`
   color: white;
   top: 65px;
   right: 80px;
+`;
+
+export const Header = styled.h2`
+  font-size: ${(props) => props.fontSize};
+  font-weight: 700;
+  margin-bottom: 35px;
 `;
