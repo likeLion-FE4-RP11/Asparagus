@@ -73,7 +73,7 @@ export const testContainer = styled.div`
   }
 `;
 
-export const ImageTitle = styled.h1`
+export const ImageTitle = styled.h2`
   position: absolute;
   font-size: 4.375rem;
   font-weight: 700;
@@ -94,7 +94,7 @@ export const ChangeInput = styled.input`
   z-index: 10;
 `;
 
-export const BaseText = styled.h1`
+export const BaseText = styled.h3`
   font-size: 3.125rem;
   font-weight: 600;
   position: absolute;

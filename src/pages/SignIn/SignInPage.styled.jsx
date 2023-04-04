@@ -12,7 +12,7 @@ export const Header = styled.h2`
 
 export const FormContainer = styled.section`
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row-reverse nowrap;
   width: 100%;
   justify-content: space-between;
 `;
