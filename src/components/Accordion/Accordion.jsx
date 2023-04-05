@@ -5,6 +5,7 @@ import ArrowUp from '@/assets/arrow-up.svg';
 import { getColor } from '@/theme/utils';
 
 export const Accordion = forwardRef(function Accordion({ ...restProps }, ref) {
+  const [selectedOptoin, setSelectedOption] = useState('Category options');
   const parentRef = useRef(null);
   const childRef = useRef(null);
   const categories = ['Daily', 'Travel', 'Food', 'Hobby'];
@@ -37,13 +38,15 @@ export const Accordion = forwardRef(function Accordion({ ...restProps }, ref) {
   const handleSelect = (e) => {
     if (e.target.nodeName === 'LI') {
       ref.current['category_name'] = e.target.innerText;
+      setSelectedOption(ref.current['category_name']);
+      parentRef.current.style.height = '0';
     }
   };
 
   return (
     <S.Container {...restProps}>
       <S.Header>
-        Category options
+        {selectedOptoin}
         <S.Button type="button" onClick={handleButtonClick}>
           {buttonText}
         </S.Button>
