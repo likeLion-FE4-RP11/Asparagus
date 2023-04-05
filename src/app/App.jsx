@@ -57,7 +57,7 @@ const router = createHashRouter([
 function App() {
   return (
     <AuthUserProvider>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </AuthUserProvider>
   );
 }
