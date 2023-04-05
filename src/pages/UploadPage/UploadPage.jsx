@@ -12,6 +12,7 @@ import {
 } from '@/components';
 import { useUploadFiles } from '@/firebase/storage';
 import { useAuthUser } from '@/contexts/AuthUser';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function UploadPage() {
   useDocumentTitle('UploadPage');
@@ -47,7 +48,6 @@ export default function UploadPage() {
     }
 
     if (authUser) {
-      // console.log(authUser);
       const user_uid = authUser.uid;
       formStateRef.current['description'] = textInputRef.current.value;
       if (
@@ -67,9 +67,13 @@ export default function UploadPage() {
           imageDataRef.current['name'] = file.name;
           imageDataRef.current['uid'] = user_uid;
           await addImageItem(imageDataRef.current);
-          console.log('업로드 완료!');
+          toast.success('업로드 완료!');
         }
+      } else {
+        toast.error('모든 정보를 입력해야 합니다.');
       }
+    } else {
+      toast.error('로그인한 사용자만 이미지를 업로드할 수 있습니다.');
     }
   };
 
@@ -94,6 +98,7 @@ export default function UploadPage() {
 
   return (
     <S.FlexContainer>
+      <Toaster />
       <S.ImageSection>
         <S.ImageTitle color={getColor('content')} fontSize={getFontSize('4xl')}>
           My own exhibition
