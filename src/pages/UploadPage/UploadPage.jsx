@@ -44,7 +44,7 @@ export default function UploadPage() {
     e.preventDefault();
 
     if (imageDataRef.current['url'] === undefined) {
-      return alert('이미지가 이미 업로드 되었습니다.');
+      toast.error('이미지가 이미 업로드 되었습니다.');
     }
 
     if (authUser) {
@@ -100,12 +100,12 @@ export default function UploadPage() {
   return (
     <S.FlexContainer>
       <Toaster
-        containerStyle={{}}
         toastOptions={{
           duration: 5000,
           style: {
-            border: '1px solid #713200',
-            color: '#713200',
+            border: '2px solid #f2e9e4',
+            color: '#121724',
+            fontWeight: '600',
             margin: '10px',
             padding: '20px',
             fontSize: '25px',
