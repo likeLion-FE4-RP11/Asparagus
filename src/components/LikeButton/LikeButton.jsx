@@ -25,6 +25,10 @@ const LikeButtonArea = styled.button`
   appearance: none;
   background-color: transparent;
   border: none;
+  img {
+    z-index: 1000;
+    filter: brightness(100%);
+  }
 `;
 
 export function LikeButton() {

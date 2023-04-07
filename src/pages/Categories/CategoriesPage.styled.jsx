@@ -57,6 +57,9 @@ export const FourthContainet = styled.section`
 
 export const categoryMainContainer = styled(ImageContainer)`
   position: relative;
+  img {
+    filter: brightness(70%);
+  }
 `;
 
 export const testContainer = styled.div`
@@ -70,6 +73,7 @@ export const testContainer = styled.div`
   img {
     width: 100%;
     height: 100%;
+    filter: brightness(100%);
   }
 `;
 

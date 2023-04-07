@@ -88,7 +88,7 @@ export default function CategoriesPage() {
   console.log(imgIdArr);
 
   // 텍스트 편집 기능
-  const [text, setText] = useState('I traveled here with my friends!');
+  const [text, setText] = useState('Make new memories here!');
   const [isEditable, setIsEditable] = useState(false);
 
   const handleDoubleClick = () => {
