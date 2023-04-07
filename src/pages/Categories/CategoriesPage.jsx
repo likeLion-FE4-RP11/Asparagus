@@ -17,6 +17,15 @@ import Light from '@/assets/Light.svg';
 import { useAuthUser } from '@/contexts/AuthUser';
 import { useParams } from 'react-router-dom';
 import { onChangeCategoryList } from '@/utils/utils';
+import { db } from '@/firebase/firestore';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  limit,
+  onSnapshot,
+} from 'firebase/firestore';
 
 export default function CategoriesPage() {
   useDocumentTitle('Categories');
@@ -32,11 +41,34 @@ export default function CategoriesPage() {
   let user_uid = '';
   let category_uid = '';
 
+  const sample_user_uid = 'EHSFq6SN4UfSAyGTw6UH';
+  const sample_category_uid = 'HWon7XsmCqht8pum7PZf';
+
   useLayoutEffect(() => {
     if (authUser) {
       user_uid = authUser.uid;
       category_uid = authUser.categories[category];
       onChangeCategoryList(setImageDataArr, user_uid, category_uid);
+    } else {
+      const q = query(
+        collection(db, 'images'),
+        where('user_uid', '==', sample_user_uid),
+        where('category_uid', '==', sample_category_uid),
+        limit(10)
+      );
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const data = [];
+
+        querySnapshot.forEach((doc) => {
+          data.push({ id: doc.id, data: doc.data() });
+        });
+
+        setImageDataArr(data);
+      });
+
+      return () => {
+        unsubscribe();
+      };
     }
   }, [authUser]);
   console.log(imageDataArr);

@@ -34,8 +34,12 @@ export function LikeButton() {
   const { authUser } = useAuthUser();
 
   let category_uid = '';
+  let user_uid = 'HWon7XsmCqht8pum7PZf';
+
   if (authUser) {
     category_uid = authUser.categories[category];
+  } else {
+    category_uid = 'HWon7XsmCqht8pum7PZf';
   }
 
   const updateCount = async (likeCount) => {
