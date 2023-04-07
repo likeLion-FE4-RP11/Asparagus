@@ -44,7 +44,7 @@ export function UseHover({
           width: '100%',
           height: '100%',
           margin: 0,
-          background: '#666',
+          background: '#17202a',
           borderRadius: 20,
           position: 'absolute',
           display: 'flex',
@@ -72,8 +72,11 @@ const HoverContainer = styled.div`
 `;
 
 const HoverScript = styled.p`
-  font-size: 25px;
+  word-break: keep-all;
+  font-size: 35px;
   font-weight: 700;
+  text-align: center;
+  color: #ffffff;
 `;
 
 // variants 적용
