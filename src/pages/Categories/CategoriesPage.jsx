@@ -70,48 +70,22 @@ export default function CategoriesPage() {
     const idList = [];
     const imageList = [];
     const descriptionList = [];
-    // const isAllow = [];
+
     if (imageDataArr) {
       imageDataArr.map(({ id, data }) => {
         idList.push(id);
         descriptionList.push(data.description);
         imageList.push(data.url);
-        // isAllow.push(data.url);
       });
 
       setDescriptionArr(descriptionList);
       setImgArr(imageList);
       setImgIdArr(idList);
-      // setIsAllow(isAllow);
     }
   }, [imageDataArr]);
 
   console.log(imgArr);
   console.log(imgIdArr);
-
-  // 토글버튼 클릭시 false가 된 사진만 보이게 하기
-  // const [isAllow, setIsAllow] = useState([]);
-  // useEffect(() => {
-  //   if (isAllow === false) {
-  //     const q = query(
-  //       collection(db, 'categories'),
-  //       where('categories', '==', sample_category_uid),
-  //       where('isAllow', '==', false),
-  //       limit(10)
-  //     );
-  //     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-  //       const data = [];
-  //       querySnapshot.forEach((doc) => {
-  //         data.push({ id: doc.id, data: doc.data() });
-  //       });
-  //       setImageDataArr(data);
-  //     });
-  //     return () => {
-  //       unsubscribe();
-  //     };
-  //   }
-  // }, []);
-  // console.log(imageDataArr);
 
   // 텍스트 편집 기능
   const [text, setText] = useState('I traveled here with my friends!');
@@ -152,7 +126,7 @@ export default function CategoriesPage() {
     <ThemeContext.Provider>
       <ThemeProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
         <GlobalStyles />
-        <ToggleButton category_uid={category_uid} />
+        <ToggleButton />
         <S.Themebutton onClick={() => themeTogggler()}>
           {theme === 'dark' ? (
             <img src={Dark} alt="다크모드 활성화" />

@@ -1,10 +1,12 @@
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { getColor } from '@/theme/utils';
 import { Notification } from '../Notification/Notification';
 import { doc, getDoc, updateDoc, query } from 'firebase/firestore';
 import { db } from '@/firebase/firestore';
+import { useAuthUser } from '@/contexts/AuthUser';
+import { useParams } from 'react-router-dom';
 
 const Toggle = styled.div`
   width: 156px;
@@ -36,24 +38,43 @@ const Toggle = styled.div`
   }
 `;
 
+const sample_user_uid = 'EHSFq6SN4UfSAyGTw6UH';
+const sample_category_uid = {
+  Daily: 'HWon7XsmCqht8pum7PZf',
+  Travel: 'J5QsZE01c9QkdO1yzuVB',
+  Food: 'ARtP9pAr025AGEpyWqXT',
+  Hobby: 'skbzLrlxEL9f1BNlHyWt',
+};
+
 export function ToggleButton() {
+  const { authUser } = useAuthUser();
+  const category = useParams().name;
   const [isToggled, setIsToggled] = useState(false);
   const [isAllow, setIsAllow] = useState(true);
-  const category_uid = 'J5QsZE01c9QkdO1yzuVB';
+  let category_uid = sample_category_uid[category];
+
+  useLayoutEffect(() => {
+    if (authUser) {
+      category_uid = authUser.categories[category];
+    }
+  }, [authUser]);
 
   const handleToggle = async () => {
-    setIsToggled((prev) => !prev);
-    const userDoc = doc(db, 'categories', category_uid);
-    let newFields = {};
+    if (authUser) {
+      category_uid = authUser.categories[category];
+      setIsToggled((prev) => !prev);
+      const userDoc = doc(db, 'categories', category_uid);
+      let newFields = {};
 
-    if (isToggled) {
-      newFields = { isAllow: false };
-      setIsAllow(true);
-    } else {
-      newFields = { isAllow: true };
-      setIsAllow(false);
+      if (isToggled) {
+        newFields = { isAllow: true };
+        setIsAllow(true);
+      } else {
+        newFields = { isAllow: false };
+        setIsAllow(false);
+      }
+      await updateDoc(userDoc, newFields);
     }
-    await updateDoc(userDoc, newFields);
   };
 
   useEffect(() => {
@@ -62,17 +83,19 @@ export function ToggleButton() {
 
       const data = await getDoc(q);
       setIsAllow(data.data().isAllow);
+      setIsToggled(!isAllow);
     };
 
-    getIsAllow();
-  }, []);
-
-  console.log(isAllow);
+    if (authUser) {
+      category_uid = authUser.categories[category];
+      getIsAllow();
+    }
+  }, [authUser]);
 
   return (
     <div>
-      <Button isOn={isToggled} handle={handleToggle} />
-      {isToggled ? <Notification /> : ''}
+      <Button isOn={!isAllow} handle={handleToggle} />
+      {!isAllow ? <Notification /> : ''}
     </div>
   );
 }
