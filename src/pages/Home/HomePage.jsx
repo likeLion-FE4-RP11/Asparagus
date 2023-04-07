@@ -19,11 +19,11 @@ import {
   limit,
   orderBy,
 } from 'firebase/firestore';
-import { useAuthUser } from '@/contexts/AuthUser';
+
+const sample_user_uid = 'EHSFq6SN4UfSAyGTw6UH';
 
 export default function HomePage() {
   useDocumentTitle('HomePage');
-  const { authUser } = useAuthUser();
   const [imgArr, setImgArr] = useState([]);
   const [moreImgArr, setMoreImgArr] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -70,14 +70,13 @@ export default function HomePage() {
 
         return getDocs(q2).then(({ docs }) => {
           return docs.map((doc) => {
-            console.log(doc.data());
             return doc.data().url;
           });
         });
       });
 
       Promise.all(moreImgListPromises).then((datas) => {
-        console.log(datas);
+        // console.log(datas);
         const urls = datas.reduce((urls, data) => [...urls, data[0]], []);
         setMoreImgArr(urls);
       });
@@ -86,8 +85,6 @@ export default function HomePage() {
     getMoreImages();
     getRecentImages();
   }, []);
-
-  console.log(moreImgArr);
 
   return (
     <>
@@ -112,7 +109,7 @@ export default function HomePage() {
       <S.SeeMoreSection>
         {visible && moreImgArr
           ? moreImgArr.map((url, index) => <SeeMoreImg key={index} src={url} />)
-          : [1, 2, 3].map((index) => <SeeMoreImg key={index} />)}
+          : null}
       </S.SeeMoreSection>
 
       <TopButton />
