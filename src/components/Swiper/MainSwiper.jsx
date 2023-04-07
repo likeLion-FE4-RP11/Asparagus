@@ -69,7 +69,7 @@ export function MainSwiper() {
     } else {
       getSampleImages();
     }
-  }, []);
+  }, [authUser]);
 
   return (
     <S.StyledSwiper
