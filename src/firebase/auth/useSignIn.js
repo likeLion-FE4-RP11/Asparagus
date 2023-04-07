@@ -29,7 +29,7 @@ export function useSignIn() {
 
       setUser(userCredentials);
     } catch (error) {
-      setError(alert('로그인실패'));
+      setError(error);
     } finally {
       setIsLoading(false);
     }
