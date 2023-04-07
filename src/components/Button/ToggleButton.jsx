@@ -47,11 +47,11 @@ export function ToggleButton() {
     let newFields = {};
 
     if (isToggled) {
-      newFields = { isAllow: true };
-      setIsAllow(false);
-    } else {
       newFields = { isAllow: false };
       setIsAllow(true);
+    } else {
+      newFields = { isAllow: true };
+      setIsAllow(false);
     }
     await updateDoc(userDoc, newFields);
   };
