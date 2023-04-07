@@ -4,7 +4,7 @@ import { getFontSize } from '@/theme/utils';
 import { writeBatchCategoryList } from '@/utils/utils';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { CheckBox, SignUpFormInput } from '@/components';
 import { useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
@@ -18,8 +18,14 @@ const initialFormState = {
 
 export default function SignUpPage() {
   useDocumentTitle('SignUpPage');
-  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [emailMsg, setEmailMsg] = useState('');
+  const [password, setPassword] = useState('');
+  const [pwdMsg, setPwdMsg] = useState('');
+  const [confirmPwd, setConfirmPwd] = useState('');
+  const [confirmPwdMsg, setConfirmPwdMsg] = useState('');
 
+  const navigate = useNavigate();
   const { signUp, user: signUpUser } = useSignUp();
   const { createAuthUser } = useCreateAuthUser();
   const formStateRef = useRef(initialFormState);
@@ -33,19 +39,34 @@ export default function SignUpPage() {
     '이 카테고리는 Daily',
   ];
 
+  // 유효성 검사 ------
+  const ValidateName = (name) => {
+    return name.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,8}$/);
+  };
+
+  const ValidateEmail = (email) => {
+    return email
+      .toLowerCase()
+      .match(
+        /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+      );
+  };
+
+  const ValidatePwd = (password) => {
+    return password
+      .toLowerCase()
+      .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
+  };
+
+  const isEamilValid = ValidateEmail(email);
+  const isPwdValid = ValidatePwd(password);
+  const isConfirmPwd = password === confirmPwd;
+
+  // -------------
+
   const SignUpSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password, passwordConfirm } = formStateRef.current;
-
-    if (!name || name.trim().length < 2) {
-      alert('2글자 이상 입력해주세요🥹');
-      return;
-    }
-
-    if (!Object.is(password, passwordConfirm)) {
-      alert('입력한 비밀번호가 다릅니다🥹');
-      return;
-    }
 
     await signUp(email, password, name);
   };
@@ -77,6 +98,42 @@ export default function SignUpPage() {
     formStateRef.current[name] = value;
   };
 
+  const onChangeEmail = useCallback(async (e) => {
+    const currentEmail = e.target.value;
+    setEmail(currentEmail);
+
+    if (!ValidateEmail(currentEmail)) {
+      setEmailMsg('이메일 형식이 올바르지 않습니다.');
+    } else {
+      setEmailMsg('올바른 이메일 형식입니다.');
+    }
+  });
+
+  const onChangePwd = useCallback((e) => {
+    const currentPwd = e.target.value;
+    setPassword(currentPwd);
+
+    if (!ValidatePwd(currentPwd)) {
+      setPwdMsg('영문, 숫자, 특수기호 조합으로 10자리 이상 입력해주세요');
+    } else {
+      setPwdMsg('안전한 비밀번호입니다');
+    }
+  });
+
+  const onChangeConfirmPwd = useCallback(
+    (e) => {
+      const currentConfirmPwd = e.target.value;
+      setConfirmPwd(currentConfirmPwd);
+
+      if (currentConfirmPwd !== password) {
+        setConfirmPwdMsg('비밀번호가 일치하지 않습니다.');
+      } else {
+        setConfirmPwdMsg('비밀번호가 일치합니다.');
+      }
+    },
+    [password]
+  );
+
   return (
     <S.SignUpContainer>
       <S.HalfImageContainer>
@@ -98,20 +155,35 @@ export default function SignUpPage() {
             type="email"
             label="이메일"
             name="email"
-            onChange={handleChangeInput}
+            onChange={onChangeEmail}
           />
+          {!isEamilValid ? (
+            <S.WorngEmailMsg>{emailMsg}</S.WorngEmailMsg>
+          ) : (
+            <S.CorrectEmailMsg>{emailMsg}</S.CorrectEmailMsg>
+          )}
           <SignUpFormInput
             type="password"
             label="비밀번호"
             name="password"
-            onChange={handleChangeInput}
+            onChange={onChangePwd}
           />
+          {!isPwdValid ? (
+            <S.WorngPwdMsg>{pwdMsg}</S.WorngPwdMsg>
+          ) : (
+            <S.CorrectPwdMsg>{pwdMsg}</S.CorrectPwdMsg>
+          )}
           <SignUpFormInput
             type="password"
             label="비밀번호 확인"
             name="passwordConfirm"
-            onChange={handleChangeInput}
+            onChange={onChangeConfirmPwd}
           />
+          {!isConfirmPwd ? (
+            <S.WorngConfirmPwdMsg>{confirmPwdMsg}</S.WorngConfirmPwdMsg>
+          ) : (
+            <S.CorrectConfirmPwdMsg>{confirmPwdMsg}</S.CorrectConfirmPwdMsg>
+          )}
           <CheckBox ref={formStateRef} context="Sign me up!">
             I agree to the Terms of Service and Privacy Notice
           </CheckBox>
