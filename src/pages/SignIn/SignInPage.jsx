@@ -6,7 +6,7 @@ import { getFontSize } from '@/theme/utils';
 import { getCategoryIds } from '@/utils/utils';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useRef, useContext } from 'react';
+import { useEffect, useRef, useContext, useState } from 'react';
 import { FormInput, LoginButton } from '@/components';
 import { useAuthState, useSignIn } from '@/firebase/auth';
 import {
@@ -16,6 +16,7 @@ import {
   FacebookAuthProvider,
 } from 'firebase/auth';
 import { AuthUserContext } from '@/contexts/AuthUser';
+import toast, { Toaster } from 'react-hot-toast';
 
 const provider = new GoogleAuthProvider();
 const FaceBookprovider = new FacebookAuthProvider();
@@ -24,11 +25,14 @@ const initialFormState = {
   email: '',
   password: '',
 };
+const notify = () => toast('test');
 
 export default function SignInPage() {
   useDocumentTitle('SignInPage');
-  const navigate = useNavigate();
   const formState = useRef(initialFormState);
+  const [idValue, setIdValue] = useState('');
+  const [pwValue, setPwValue] = useState('');
+  const navigate = useNavigate();
 
   const { isLoading: isLoadingSignIn, signIn } = useSignIn();
   const { isLoading, error, user } = useAuthState();
@@ -68,8 +72,8 @@ export default function SignInPage() {
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
+        // const token = credential.accessToken;
+        // const user = result.user;
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -128,7 +132,12 @@ export default function SignInPage() {
             onChange={handleChangeInput}
           />
 
-          <LoginButton disabled={isLoadingSignIn} type="submit">
+          <LoginButton
+            disabled={isLoadingSignIn}
+            type="submit"
+            onClick={notify}
+          >
+            <Toaster />
             {!isLoadingSignIn ? 'log in' : 'loading...'}
           </LoginButton>
           <LoginButton
