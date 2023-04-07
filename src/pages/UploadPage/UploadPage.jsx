@@ -145,10 +145,8 @@ export default function UploadPage() {
         onClick={handelSubmit}
         style={{ marginBottom: '9.9375rem' }}
       >
-        upload
+        {isLoading ? 'uploading...' : 'upload'}
       </SeeMoreButton>
-      <p>파일 업로드 개수: {urlList ? urlList.length : 0}</p>
-      <p>{isLoading ? '로딩중' : '로딩끝!'}</p>
     </S.FlexContainer>
   );
 }
