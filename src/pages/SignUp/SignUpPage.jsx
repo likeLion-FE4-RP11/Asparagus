@@ -8,6 +8,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { CheckBox, SignUpFormInput } from '@/components';
 import { useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
+import { toast, Toaster } from 'react-hot-toast';
 
 const initialFormState = {
   name: '',
@@ -18,11 +19,11 @@ const initialFormState = {
 
 export default function SignUpPage() {
   useDocumentTitle('SignUpPage');
-  const [email, setEmail] = useState('');
-  const [emailMsg, setEmailMsg] = useState('');
-  const [password, setPassword] = useState('');
-  const [pwdMsg, setPwdMsg] = useState('');
+  const [emailState, setEmail] = useState('');
+  const [passwordState, setPassword] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
+  const [emailMsg, setEmailMsg] = useState('');
+  const [pwdMsg, setPwdMsg] = useState('');
   const [confirmPwdMsg, setConfirmPwdMsg] = useState('');
 
   const navigate = useNavigate();
@@ -40,34 +41,33 @@ export default function SignUpPage() {
   ];
 
   // 유효성 검사 ------
-  const ValidateName = (name) => {
-    return name.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,8}$/);
-  };
+  // const ValidateName = (name) => {
+  //   return name.toLowerCase().match(/^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|].{1,8}$/);
+  // };
 
-  const ValidateEmail = (email) => {
-    return email
+  const ValidateEmail = (emailState) => {
+    return emailState
       .toLowerCase()
       .match(
         /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
       );
   };
 
-  const ValidatePwd = (password) => {
-    return password
+  const ValidatePwd = (passwordState) => {
+    return passwordState
       .toLowerCase()
       .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
   };
 
-  const isEamilValid = ValidateEmail(email);
-  const isPwdValid = ValidatePwd(password);
-  const isConfirmPwd = password === confirmPwd;
+  const isEamilValid = ValidateEmail(emailState);
+  const isPwdValid = ValidatePwd(passwordState);
+  const isConfirmPwd = passwordState === confirmPwd;
 
   // -------------
 
   const SignUpSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password, passwordConfirm } = formStateRef.current;
-
     await signUp(email, password, name);
   };
 
@@ -98,7 +98,7 @@ export default function SignUpPage() {
     formStateRef.current[name] = value;
   };
 
-  const onChangeEmail = useCallback(async (e) => {
+  const onChangeEmail = useCallback((e) => {
     const currentEmail = e.target.value;
     setEmail(currentEmail);
 
@@ -107,6 +107,7 @@ export default function SignUpPage() {
     } else {
       setEmailMsg('올바른 이메일 형식입니다.');
     }
+    formStateRef.current['email'] = currentEmail;
   });
 
   const onChangePwd = useCallback((e) => {
@@ -118,6 +119,7 @@ export default function SignUpPage() {
     } else {
       setPwdMsg('안전한 비밀번호입니다');
     }
+    formStateRef.current['password'] = currentPwd;
   });
 
   const onChangeConfirmPwd = useCallback(
@@ -125,17 +127,31 @@ export default function SignUpPage() {
       const currentConfirmPwd = e.target.value;
       setConfirmPwd(currentConfirmPwd);
 
-      if (currentConfirmPwd !== password) {
+      if (currentConfirmPwd !== passwordState) {
         setConfirmPwdMsg('비밀번호가 일치하지 않습니다.');
       } else {
         setConfirmPwdMsg('비밀번호가 일치합니다.');
       }
     },
-    [password]
+    [passwordState]
   );
 
   return (
     <S.SignUpContainer>
+      <Toaster
+        toastOptions={{
+          duration: 5000,
+          style: {
+            border: '2px solid #f2e9e4',
+            color: '#121724',
+            fontWeight: '600',
+            margin: '10px',
+            padding: '20px',
+            fontSize: '25px',
+            minWidth: '700px',
+          },
+        }}
+      />
       <S.HalfImageContainer>
         <S.ImageLogo>
           <Link to="/">I`s gallery</Link>
