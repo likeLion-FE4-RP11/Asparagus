@@ -25,6 +25,9 @@ import {
   getDocs,
   limit,
   onSnapshot,
+  doc,
+  getDoc,
+  updateDoc,
 } from 'firebase/firestore';
 
 export default function CategoriesPage() {
@@ -42,7 +45,12 @@ export default function CategoriesPage() {
   let category_uid = '';
 
   const sample_user_uid = 'EHSFq6SN4UfSAyGTw6UH';
-  const sample_category_uid = 'HWon7XsmCqht8pum7PZf';
+  const sample_category_uid = {
+    Daily: 'HWon7XsmCqht8pum7PZf',
+    Travel: 'J5QsZE01c9QkdO1yzuVB',
+    Food: 'ARtP9pAr025AGEpyWqXT',
+    Hobby: 'skbzLrlxEL9f1BNlHyWt',
+  };
 
   useLayoutEffect(() => {
     if (authUser) {
@@ -50,48 +58,60 @@ export default function CategoriesPage() {
       category_uid = authUser.categories[category];
       onChangeCategoryList(setImageDataArr, user_uid, category_uid);
     } else {
-      const q = query(
-        collection(db, 'images'),
-        where('user_uid', '==', sample_user_uid),
-        where('category_uid', '==', sample_category_uid),
-        limit(10)
-      );
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const data = [];
-
-        querySnapshot.forEach((doc) => {
-          data.push({ id: doc.id, data: doc.data() });
-        });
-
-        setImageDataArr(data);
-      });
-
-      return () => {
-        unsubscribe();
-      };
+      user_uid = sample_user_uid;
+      category_uid = sample_category_uid[category];
+      onChangeCategoryList(setImageDataArr, user_uid, category_uid);
     }
   }, [authUser]);
   console.log(imageDataArr);
+  console.log(authUser);
 
   useEffect(() => {
     const idList = [];
     const imageList = [];
     const descriptionList = [];
+    // const isAllow = [];
     if (imageDataArr) {
       imageDataArr.map(({ id, data }) => {
         idList.push(id);
-        imageList.push(data.url);
         descriptionList.push(data.description);
+        imageList.push(data.url);
+        // isAllow.push(data.url);
       });
 
       setDescriptionArr(descriptionList);
       setImgArr(imageList);
       setImgIdArr(idList);
+      // setIsAllow(isAllow);
     }
   }, [imageDataArr]);
 
   console.log(imgArr);
   console.log(imgIdArr);
+
+  // 토글버튼 클릭시 false가 된 사진만 보이게 하기
+  // const [isAllow, setIsAllow] = useState([]);
+  // useEffect(() => {
+  //   if (isAllow === false) {
+  //     const q = query(
+  //       collection(db, 'categories'),
+  //       where('categories', '==', sample_category_uid),
+  //       where('isAllow', '==', false),
+  //       limit(10)
+  //     );
+  //     const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //       const data = [];
+  //       querySnapshot.forEach((doc) => {
+  //         data.push({ id: doc.id, data: doc.data() });
+  //       });
+  //       setImageDataArr(data);
+  //     });
+  //     return () => {
+  //       unsubscribe();
+  //     };
+  //   }
+  // }, []);
+  // console.log(imageDataArr);
 
   // 텍스트 편집 기능
   const [text, setText] = useState('I traveled here with my friends!');
