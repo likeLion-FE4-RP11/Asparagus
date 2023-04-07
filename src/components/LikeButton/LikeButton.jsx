@@ -34,7 +34,6 @@ export function LikeButton() {
   const { authUser } = useAuthUser();
 
   let category_uid = '';
-  let user_uid = 'HWon7XsmCqht8pum7PZf';
 
   if (authUser) {
     category_uid = authUser.categories[category];
@@ -53,6 +52,10 @@ export function LikeButton() {
     } else {
       newFields = { likeCount: likeCount + 1 };
       setCount(count + 1);
+    }
+    if (count === 0) {
+      newFields = { likeCount: likeCount + 0 };
+      setCount(count + 0);
     }
     await updateDoc(userDoc, newFields);
   };
