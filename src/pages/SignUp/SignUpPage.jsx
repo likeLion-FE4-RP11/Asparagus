@@ -5,7 +5,7 @@ import { writeBatchCategoryList } from '@/utils/utils';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
-import { CheckBox, SignUpFormInput } from '@/components';
+import { CheckBox, SignUpFormInput, LoadingSpinner } from '@/components';
 import { useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
 
@@ -79,6 +79,8 @@ export default function SignUpPage() {
 
   return (
     <S.SignUpContainer>
+      <LoadingSpinner />
+
       <S.HalfImageContainer>
         <S.ImageLogo>
           <Link to="/">I`s gallery</Link>
