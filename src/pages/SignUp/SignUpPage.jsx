@@ -5,7 +5,7 @@ import { writeBatchCategoryList } from '@/utils/utils';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState, useCallback } from 'react';
-import { CheckBox, SignUpFormInput } from '@/components';
+import { CheckBox, LoadingSpinner, SignUpFormInput } from '@/components';
 import { useSignUp } from '@/firebase/auth';
 import { useCreateAuthUser } from '@/firebase/firestore';
 import { toast, Toaster } from 'react-hot-toast';
@@ -27,7 +27,7 @@ export default function SignUpPage() {
   const [confirmPwdMsg, setConfirmPwdMsg] = useState('');
 
   const navigate = useNavigate();
-  const { signUp, user: signUpUser } = useSignUp();
+  const { signUp, user: signUpUser, isLoading } = useSignUp();
   const { createAuthUser } = useCreateAuthUser();
   const formStateRef = useRef(initialFormState);
 
@@ -138,59 +138,65 @@ export default function SignUpPage() {
 
   return (
     <S.SignUpContainer>
-      <S.HalfImageContainer>
-        <S.ImageLogo>
-          <Link to="/">I`s gallery</Link>
-        </S.ImageLogo>
-        <S.SignUpMainImage src={MainImage} alt="회원가입 메인 이미지" />
-      </S.HalfImageContainer>
-      <S.SignUpContent>
-        <S.Header fontSize={getFontSize('2xl')}>Create an account</S.Header>
-        <form onSubmit={SignUpSubmit}>
-          <SignUpFormInput
-            type="text"
-            label="이름"
-            name="name"
-            onChange={handleChangeInput}
-          />
-          <SignUpFormInput
-            type="email"
-            label="이메일"
-            name="email"
-            onChange={onChangeEmail}
-          />
-          {!isEamilValid ? (
-            <S.WorngEmailMsg>{emailMsg}</S.WorngEmailMsg>
-          ) : (
-            <S.CorrectEmailMsg>{emailMsg}</S.CorrectEmailMsg>
-          )}
-          <SignUpFormInput
-            type="password"
-            label="비밀번호"
-            name="password"
-            onChange={onChangePwd}
-          />
-          {!isPwdValid ? (
-            <S.WorngPwdMsg>{pwdMsg}</S.WorngPwdMsg>
-          ) : (
-            <S.CorrectPwdMsg>{pwdMsg}</S.CorrectPwdMsg>
-          )}
-          <SignUpFormInput
-            type="password"
-            label="비밀번호 확인"
-            name="passwordConfirm"
-            onChange={onChangeConfirmPwd}
-          />
-          {!isConfirmPwd ? (
-            <S.WorngConfirmPwdMsg>{confirmPwdMsg}</S.WorngConfirmPwdMsg>
-          ) : (
-            <S.CorrectConfirmPwdMsg>{confirmPwdMsg}</S.CorrectConfirmPwdMsg>
-          )}
-          <CheckBox ref={formStateRef} context="Sign me up!">
-            I agree to the Terms of Service and Privacy Notice
-          </CheckBox>
-        </form>
-      </S.SignUpContent>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <S.HalfImageContainer>
+            <S.ImageLogo>
+              <Link to="/">I`s gallery</Link>
+            </S.ImageLogo>
+            <S.SignUpMainImage src={MainImage} alt="회원가입 메인 이미지" />
+          </S.HalfImageContainer>
+          <S.SignUpContent>
+            <S.Header fontSize={getFontSize('2xl')}>Create an account</S.Header>
+            <form onSubmit={SignUpSubmit}>
+              <SignUpFormInput
+                type="text"
+                label="이름"
+                name="name"
+                onChange={handleChangeInput}
+              />
+              <SignUpFormInput
+                type="email"
+                label="이메일"
+                name="email"
+                onChange={onChangeEmail}
+              />
+              {!isEamilValid ? (
+                <S.WorngEmailMsg>{emailMsg}</S.WorngEmailMsg>
+              ) : (
+                <S.CorrectEmailMsg>{emailMsg}</S.CorrectEmailMsg>
+              )}
+              <SignUpFormInput
+                type="password"
+                label="비밀번호"
+                name="password"
+                onChange={onChangePwd}
+              />
+              {!isPwdValid ? (
+                <S.WorngPwdMsg>{pwdMsg}</S.WorngPwdMsg>
+              ) : (
+                <S.CorrectPwdMsg>{pwdMsg}</S.CorrectPwdMsg>
+              )}
+              <SignUpFormInput
+                type="password"
+                label="비밀번호 확인"
+                name="passwordConfirm"
+                onChange={onChangeConfirmPwd}
+              />
+              {!isConfirmPwd ? (
+                <S.WorngConfirmPwdMsg>{confirmPwdMsg}</S.WorngConfirmPwdMsg>
+              ) : (
+                <S.CorrectConfirmPwdMsg>{confirmPwdMsg}</S.CorrectConfirmPwdMsg>
+              )}
+              <CheckBox ref={formStateRef} context="Sign me up!">
+                I agree to the Terms of Service and Privacy Notice
+              </CheckBox>
+            </form>
+          </S.SignUpContent>
+        </>
+      )}
     </S.SignUpContainer>
   );
 }
