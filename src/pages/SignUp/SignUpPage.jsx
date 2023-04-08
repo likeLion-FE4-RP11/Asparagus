@@ -138,20 +138,6 @@ export default function SignUpPage() {
 
   return (
     <S.SignUpContainer>
-      <Toaster
-        toastOptions={{
-          duration: 5000,
-          style: {
-            border: '2px solid #f2e9e4',
-            color: '#121724',
-            fontWeight: '600',
-            margin: '10px',
-            padding: '20px',
-            fontSize: '25px',
-            minWidth: '700px',
-          },
-        }}
-      />
       <S.HalfImageContainer>
         <S.ImageLogo>
           <Link to="/">I`s gallery</Link>
