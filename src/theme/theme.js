@@ -23,6 +23,7 @@ export const GlobalStyles = createGlobalStyle`
   .header {
     background-color : ${(props) => props.theme.hdColor};
     transition : all .5s linear;
+    
   }
   .nav-1, .nav-2 .nav-3, .nav-4, .nav-5, .nav-6 {
     color : ${(props) => props.theme.fontColor};
