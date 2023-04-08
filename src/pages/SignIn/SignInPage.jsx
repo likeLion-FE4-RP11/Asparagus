@@ -80,8 +80,8 @@ export default function SignInPage() {
     signInWithPopup(auth, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        // const token = credential.accessToken;
-        // const user = result.user;
+        const token = credential.accessToken;
+        const user = result.user;
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -124,7 +124,6 @@ export default function SignInPage() {
       </S.ImgContainer>
       <S.LeftContainer>
         <S.Header fontSize={getFontSize('2xl')}>Let’s get you started</S.Header>
-        {/* {errorSignIn && <div>일치하지 않습니다.</div>} */}
 
         <form onSubmit={handleSignIn}>
           <FormInput
