@@ -65,13 +65,15 @@ export const Contents = styled.section`
 
   li::after {
     content: '';
-    display: block;
     width: 100%;
-    height: 1px;
-    background-color: #999999;
+    border-bottom: solid 1px #999999;
     position: absolute;
-    top: 66.56px;
+    padding-top: 4.16rem;
     left: 0;
+  }
+
+  li:nth-last-child(1)::after {
+    border-bottom: solid 0px #ffffff;
   }
 
   li:hover {
