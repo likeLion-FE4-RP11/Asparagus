@@ -70,3 +70,51 @@ export const Header = styled.h2`
   font-weight: 700;
   margin-bottom: 35px;
 `;
+
+export const WorngEmailMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: red;
+`;
+
+export const CorrectEmailMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: green;
+`;
+
+export const WorngPwdMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: red;
+`;
+
+export const CorrectPwdMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: green;
+`;
+
+export const WorngConfirmPwdMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: red;
+`;
+
+export const CorrectConfirmPwdMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: green;
+`;
