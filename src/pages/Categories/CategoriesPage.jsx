@@ -17,6 +17,18 @@ import Light from '@/assets/Light.svg';
 import { useAuthUser } from '@/contexts/AuthUser';
 import { useParams } from 'react-router-dom';
 import { onChangeCategoryList } from '@/utils/utils';
+import { db } from '@/firebase/firestore';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  limit,
+  onSnapshot,
+  doc,
+  getDoc,
+  updateDoc,
+} from 'firebase/firestore';
 
 export default function CategoriesPage() {
   useDocumentTitle('Categories');
@@ -32,24 +44,38 @@ export default function CategoriesPage() {
   let user_uid = '';
   let category_uid = '';
 
+  const sample_user_uid = 'EHSFq6SN4UfSAyGTw6UH';
+  const sample_category_uid = {
+    Daily: 'HWon7XsmCqht8pum7PZf',
+    Travel: 'J5QsZE01c9QkdO1yzuVB',
+    Food: 'ARtP9pAr025AGEpyWqXT',
+    Hobby: 'skbzLrlxEL9f1BNlHyWt',
+  };
+
   useLayoutEffect(() => {
     if (authUser) {
       user_uid = authUser.uid;
       category_uid = authUser.categories[category];
       onChangeCategoryList(setImageDataArr, user_uid, category_uid);
+    } else {
+      user_uid = sample_user_uid;
+      category_uid = sample_category_uid[category];
+      onChangeCategoryList(setImageDataArr, user_uid, category_uid);
     }
   }, [authUser]);
   console.log(imageDataArr);
+  console.log(authUser);
 
   useEffect(() => {
     const idList = [];
     const imageList = [];
     const descriptionList = [];
+
     if (imageDataArr) {
       imageDataArr.map(({ id, data }) => {
         idList.push(id);
-        imageList.push(data.url);
         descriptionList.push(data.description);
+        imageList.push(data.url);
       });
 
       setDescriptionArr(descriptionList);
@@ -62,7 +88,7 @@ export default function CategoriesPage() {
   console.log(imgIdArr);
 
   // 텍스트 편집 기능
-  const [text, setText] = useState('I traveled here with my friends!');
+  const [text, setText] = useState('Make new memories here!');
   const [isEditable, setIsEditable] = useState(false);
 
   const handleDoubleClick = () => {
@@ -100,7 +126,7 @@ export default function CategoriesPage() {
     <ThemeContext.Provider>
       <ThemeProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
         <GlobalStyles />
-        <ToggleButton category_uid={category_uid} />
+        <ToggleButton />
         <S.Themebutton onClick={() => themeTogggler()}>
           {theme === 'dark' ? (
             <img src={Dark} alt="다크모드 활성화" />

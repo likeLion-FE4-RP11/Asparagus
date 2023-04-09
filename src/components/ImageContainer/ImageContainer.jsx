@@ -53,4 +53,5 @@ ImageContainer.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   children: PropTypes.node,
+  filter: PropTypes.string,
 };

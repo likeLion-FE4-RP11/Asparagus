@@ -1,7 +1,8 @@
 import { Nav } from '@/components/index';
 import styled from 'styled-components/macro';
+import { useTheme } from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import Logo from '@/assets/Logo.svg';
+import LogoIcon from '@/assets/LogoIcon';
 
 const HeaderSection = styled.section`
   display: flex;
@@ -13,11 +14,13 @@ const HeaderSection = styled.section`
 `;
 
 export function Header() {
+  const theme = useTheme();
+
   return (
     <HeaderSection className="header">
       <h1>
         <Link to={'/'}>
-          <img src={Logo} alt="아이즈 갤러리 로고" />
+          <LogoIcon fill={'black'} />
         </Link>
       </h1>
       <Nav />
