@@ -16,7 +16,9 @@ import {
   FacebookAuthProvider,
 } from 'firebase/auth';
 import { AuthUserContext } from '@/contexts/AuthUser';
+import toast, { Toaster } from 'react-hot-toast';
 
+const notify = () => toast('아이디 혹은 비밀번호를 확인해주세요');
 const provider = new GoogleAuthProvider();
 const FaceBookprovider = new FacebookAuthProvider();
 const auth = getAuth();
@@ -27,10 +29,14 @@ const initialFormState = {
 
 export default function SignInPage() {
   useDocumentTitle('SignInPage');
-  const navigate = useNavigate();
   const formState = useRef(initialFormState);
+  const navigate = useNavigate();
 
-  const { isLoading: isLoadingSignIn, signIn } = useSignIn();
+  const {
+    isLoading: isLoadingSignIn,
+    signIn,
+    error: errorSignIn,
+  } = useSignIn();
   const { isLoading, error, user } = useAuthState();
   const { updateAuthUser } = useContext(AuthUserContext);
 
@@ -49,6 +55,12 @@ export default function SignInPage() {
       })();
     }
   }, [user]);
+
+  const handleToastError = () => {
+    if (errorSignIn) {
+      notify();
+    }
+  };
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -112,6 +124,7 @@ export default function SignInPage() {
       </S.ImgContainer>
       <S.LeftContainer>
         <S.Header fontSize={getFontSize('2xl')}>Let’s get you started</S.Header>
+
         <form onSubmit={handleSignIn}>
           <FormInput
             name="email"
@@ -128,9 +141,28 @@ export default function SignInPage() {
             onChange={handleChangeInput}
           />
 
-          <LoginButton disabled={isLoadingSignIn} type="submit">
-            {!isLoadingSignIn ? 'log in' : 'loading...'}
+          <LoginButton
+            onClick={handleToastError}
+            disabled={isLoadingSignIn}
+            type="submit"
+          >
+            {!isLoadingSignIn ? 'log In' : ' Loading...'}
           </LoginButton>
+          <Toaster
+            toastOptions={{
+              duration: 5000,
+              style: {
+                border: '2px solid #f2e9e4',
+                color: '#121724',
+                fontWeight: '600',
+                margin: '10px',
+                padding: '20px',
+                fontSize: '16px',
+                minWidth: '700px',
+              },
+            }}
+          />
+
           <LoginButton
             type="submit"
             onClick={handleSignGoogle}
@@ -148,6 +180,7 @@ export default function SignInPage() {
             Continuew with facebook
           </LoginButton>
         </form>
+
         <S.Info>
           Already have an account ? <Link to="/signup">Create Account </Link>
         </S.Info>
