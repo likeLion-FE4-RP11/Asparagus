@@ -57,6 +57,7 @@ export const FourthContainet = styled.section`
 
 export const categoryMainContainer = styled(ImageContainer)`
   position: relative;
+  width: 100%;
   img {
     filter: brightness(70%);
   }
@@ -119,5 +120,8 @@ export const Themebutton = styled.div`
     position: absolute;
     right: 20px;
     bottom: 68px;
+    @media screen and (max-width: 940px) {
+      right: 90px;
+    }
   }
 `;
