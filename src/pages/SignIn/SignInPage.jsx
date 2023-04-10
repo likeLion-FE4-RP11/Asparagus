@@ -53,16 +53,26 @@ export default function SignInPage() {
           isLogin: true,
           categories: category_uids,
         });
-        navigate('/');
+        toast((t) => (
+          <span>
+            <b>✅ 로그인 성공</b>
+            <button
+              onClick={() => {
+                toast.dismiss(t.id);
+                navigate('/');
+              }}
+            >
+              Go to Home
+            </button>
+          </span>
+        ));
+        // navigate('/');
       })();
     }
-  }, [signInUser]);
-
-  const handleToastError = () => {
-    if (errorSignIn) {
-      notify();
+    if (errorSignIn && !signInUser) {
+      alert('이메일이나 비밀번호를 확인해주세요');
     }
-  };
+  }, [signInUser, errorSignIn]);
 
   const isValidEmail = (emailValue) => {
     const regExp =
@@ -136,6 +146,7 @@ export default function SignInPage() {
 
   return (
     <S.FormContainer>
+      <Toaster />
       <S.ImgContainer>
         <Link to="/">
           <S.Logo>I`s gallery</S.Logo>
@@ -161,27 +172,9 @@ export default function SignInPage() {
             onChange={handleChangeInput}
           />
 
-          <LoginButton
-            onClick={handleToastError}
-            disabled={isLoadingSignIn}
-            type="submit"
-          >
+          <LoginButton disabled={isLoadingSignIn} type="submit">
             {!isLoadingSignIn ? 'log In' : ' Loading...'}
           </LoginButton>
-          <Toaster
-            toastOptions={{
-              duration: 5000,
-              style: {
-                border: '2px solid #f2e9e4',
-                color: '#121724',
-                fontWeight: '600',
-                margin: '10px',
-                padding: '20px',
-                fontSize: '16px',
-                minWidth: '700px',
-              },
-            }}
-          />
 
           <LoginButton
             type="submit"
