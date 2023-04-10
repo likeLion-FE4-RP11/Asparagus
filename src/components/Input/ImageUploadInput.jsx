@@ -24,7 +24,6 @@ export const ImageUploadInput = forwardRef(function UploadInput(
       onDragEnter={onDragEnter}
       onDragLeave={onDragLeave}
       onDrop={onDrop}
-      tabIndex="0"
     >
       {file ? (
         <S.PreviewImage>

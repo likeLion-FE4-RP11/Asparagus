@@ -15,6 +15,10 @@ export const UploadSection = styled.section`
   .dragover {
     opacity: 0.6;
   }
+
+  &:focus-within {
+    box-shadow: 0 0 10px 3px rgba(10, 255, 225, 0.4);
+  }
 `;
 
 export const Input = styled.input`
