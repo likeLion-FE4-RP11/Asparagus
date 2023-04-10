@@ -21,17 +21,39 @@ import {
 } from 'firebase/firestore';
 import { useAuthUser } from '@/contexts/AuthUser';
 
+const sample_user_uid = 'EHSFq6SN4UfSAyGTw6UH';
+
 export default function HomePage() {
   useDocumentTitle('HomePage');
-  const { authUser } = useAuthUser();
   const [imgArr, setImgArr] = useState([]);
   const [moreImgArr, setMoreImgArr] = useState([]);
   const [visible, setVisible] = useState(false);
+  const { authUser } = useAuthUser();
 
   useEffect(() => {
     const getRecentImages = async () => {
       let q = query(
         collection(db, 'images'),
+        where('uid', 'in', [authUser.uid, sample_user_uid]),
+        orderBy('createAt', 'desc'),
+        limit(3)
+      );
+
+      const myImgList = await getDocs(q);
+
+      const imageList = [];
+
+      myImgList.docs.map((doc) => imageList.push(doc.data().url));
+
+      imageList.sort(() => Math.random() - 0.5);
+
+      setImgArr(imageList);
+    };
+
+    const getSampleRecentImages = async () => {
+      let q = query(
+        collection(db, 'images'),
+        where('uid', '==', sample_user_uid),
         orderBy('createAt', 'desc'),
         limit(3)
       );
@@ -70,31 +92,31 @@ export default function HomePage() {
 
         return getDocs(q2).then(({ docs }) => {
           return docs.map((doc) => {
-            console.log(doc.data());
             return doc.data().url;
           });
         });
       });
 
       Promise.all(moreImgListPromises).then((datas) => {
-        console.log(datas);
         const urls = datas.reduce((urls, data) => [...urls, data[0]], []);
         setMoreImgArr(urls);
       });
     };
 
+    if (authUser) {
+      getRecentImages();
+    } else {
+      getSampleRecentImages();
+    }
     getMoreImages();
-    getRecentImages();
-  }, []);
-
-  console.log(moreImgArr);
+  }, [authUser]);
 
   return (
     <>
       <MainSwiper />
       <CategoryTitle title={'C A T E G O R Y'} />
       <Category />
-      <RecentImageTitle title={'R E C E N T\u00A0\u00A0\u00A0 I M A G E'} />
+      <CategoryTitle title={'R E C E N T\u00A0\u00A0\u00A0 I M A G E'} />
 
       <S.MainSection>
         <SeeMoreImg src={imgArr[0]} />
@@ -112,7 +134,7 @@ export default function HomePage() {
       <S.SeeMoreSection>
         {visible && moreImgArr
           ? moreImgArr.map((url, index) => <SeeMoreImg key={index} src={url} />)
-          : [1, 2, 3].map((index) => <SeeMoreImg key={index} />)}
+          : null}
       </S.SeeMoreSection>
 
       <TopButton />

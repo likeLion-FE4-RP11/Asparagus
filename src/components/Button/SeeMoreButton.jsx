@@ -10,7 +10,7 @@ const MoreButton = styled.button`
   color: ${(props) => {
     props.color;
   }};
-  padding: 20px 220px;
+  padding: 20px 130px;
   border: 20;
   border-radius: 10px;
   font-weight: 600;
@@ -37,7 +37,7 @@ export function SeeMoreButton({ children, onClick, ...restProps }) {
         type="button"
         onClick={onClick}
         color={getColor('secondary')}
-        fontSize={getFontSize('4xl')}
+        fontSize={getFontSize('xl')}
         {...restProps}
       >
         {children}

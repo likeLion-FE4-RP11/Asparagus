@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import styled from 'styled-components/macro';
 import HeartImg from '@/assets/Heart.png';
 import EmptyHeartImg from '@/assets/empty-heart.png';
@@ -25,18 +25,33 @@ const LikeButtonArea = styled.button`
   appearance: none;
   background-color: transparent;
   border: none;
+  img {
+    z-index: 1000;
+    filter: brightness(100%);
+  }
 `;
+const sample_user_uid = 'EHSFq6SN4UfSAyGTw6UH';
+const sample_category_uid = {
+  Daily: 'HWon7XsmCqht8pum7PZf',
+  Travel: 'J5QsZE01c9QkdO1yzuVB',
+  Food: 'ARtP9pAr025AGEpyWqXT',
+  Hobby: 'skbzLrlxEL9f1BNlHyWt',
+};
 
 export function LikeButton() {
   const category = useParams().name;
   const [heart, setHeart] = useState(false);
   const [count, setCount] = useState(0);
   const { authUser } = useAuthUser();
+  let category_uid = sample_category_uid[category];
 
-  let category_uid = '';
-  if (authUser) {
-    category_uid = authUser.categories[category];
-  }
+  useEffect(() => {
+    if (authUser) {
+      category_uid = authUser.categories[category];
+    } else {
+      category_uid = sample_category_uid[category];
+    }
+  }, [authUser]);
 
   const updateCount = async (likeCount) => {
     setHeart((prev) => !prev);
@@ -49,6 +64,10 @@ export function LikeButton() {
     } else {
       newFields = { likeCount: likeCount + 1 };
       setCount(count + 1);
+    }
+    if (count === 0) {
+      newFields = { likeCount: likeCount + 0 };
+      setCount(count + 0);
     }
     await updateDoc(userDoc, newFields);
   };

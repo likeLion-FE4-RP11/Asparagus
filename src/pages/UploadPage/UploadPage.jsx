@@ -12,6 +12,7 @@ import {
 } from '@/components';
 import { useUploadFiles } from '@/firebase/storage';
 import { useAuthUser } from '@/contexts/AuthUser';
+import { toast, Toaster } from 'react-hot-toast';
 
 export default function UploadPage() {
   useDocumentTitle('UploadPage');
@@ -43,11 +44,10 @@ export default function UploadPage() {
     e.preventDefault();
 
     if (imageDataRef.current['url'] === undefined) {
-      return alert('이미지가 이미 업로드 되었습니다.');
+      toast.error('이미지가 이미 업로드 되었습니다.');
     }
 
     if (authUser) {
-      // console.log(authUser);
       const user_uid = authUser.uid;
       formStateRef.current['description'] = textInputRef.current.value;
       if (
@@ -60,16 +60,21 @@ export default function UploadPage() {
           user_uid,
           formStateRef.current['category_name']
         );
-        console.log('카테고리 아이디', category_uid);
         if (category_uid) {
           imageDataRef.current['category_uid'] = category_uid;
           imageDataRef.current['description'] = textInputRef.current.value;
           imageDataRef.current['name'] = file.name;
           imageDataRef.current['uid'] = user_uid;
           await addImageItem(imageDataRef.current);
-          console.log('업로드 완료!');
+          toast.success('업로드 완료!');
+          handleDeleteImage();
+          handleDeleteText();
         }
+      } else {
+        toast.error('모든 정보를 입력해야 합니다.');
       }
+    } else {
+      toast.error('로그인한 사용자만 이미지를 업로드할 수 있습니다.');
     }
   };
 
@@ -94,6 +99,20 @@ export default function UploadPage() {
 
   return (
     <S.FlexContainer>
+      <Toaster
+        toastOptions={{
+          duration: 5000,
+          style: {
+            border: '2px solid #f2e9e4',
+            color: '#121724',
+            fontWeight: '600',
+            margin: '10px',
+            padding: '20px',
+            fontSize: '25px',
+            minWidth: '700px',
+          },
+        }}
+      />
       <S.ImageSection>
         <S.ImageTitle color={getColor('content')} fontSize={getFontSize('4xl')}>
           My own exhibition
@@ -126,10 +145,8 @@ export default function UploadPage() {
         onClick={handelSubmit}
         style={{ marginBottom: '9.9375rem' }}
       >
-        upload
+        {isLoading ? 'uploading...' : 'upload'}
       </SeeMoreButton>
-      <p>파일 업로드 개수: {urlList ? urlList.length : 0}</p>
-      <p>{isLoading ? '로딩중' : '로딩끝!'}</p>
     </S.FlexContainer>
   );
 }

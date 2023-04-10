@@ -5,16 +5,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components/macro';
 
 const Button = styled(motion.button)`
-  width: 111px;
-  height: 111px;
+  width: 64px;
+  height: 64px;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  gap: 7.73px;
+  gap: 5px;
   border-radius: 50%;
   color: #fff;
-  font-size: 25px;
+  font-size: 16px;
   font-weight: 500;
   background-color: ${(props) => props.bgColor};
   cursor: pointer;
@@ -22,6 +22,10 @@ const Button = styled(motion.button)`
   bottom: 82px;
   right: 74px;
   z-index: 10;
+  img {
+    width: 18px;
+    height: 16px;
+  }
 `;
 
 export function TopButton() {
