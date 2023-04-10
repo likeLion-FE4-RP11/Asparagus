@@ -20,7 +20,7 @@ textarea:focus,
 .swiper-pagination-bullet:focus {
   outline: 1px solid var(--red-1);
   outline-offset: 0;
-  box-shadow: 0 0 10px 3px rgba(10, 255, 225, 0.4);
+  box-shadow: 0 0 10px 3px rgba(147, 8, 246, 0.556);
 }
 
 *,

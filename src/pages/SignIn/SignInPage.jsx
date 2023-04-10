@@ -66,7 +66,6 @@ export default function SignInPage() {
             </button>
           </span>
         ));
-        // navigate('/');
       })();
     }
     if (errorSignIn && !signInUser) {
@@ -148,15 +147,16 @@ export default function SignInPage() {
     <S.FormContainer>
       <Toaster />
       <S.ImgContainer>
-        <Link to="/">
-          <S.Logo>I`s gallery</S.Logo>
-        </Link>
+        <S.Logo>
+          <Link to="/">I`s gallery</Link>
+        </S.Logo>
+
         <img src={loginImage} alt="로그인 메인 이미지" />
       </S.ImgContainer>
       <S.LeftContainer>
         <S.Header fontSize={getFontSize('2xl')}>Let’s get you started</S.Header>
 
-        <form onSubmit={handleSignIn}>
+        <S.FormStyle onSubmit={handleSignIn}>
           <FormInput
             name="email"
             type="email"
@@ -192,7 +192,7 @@ export default function SignInPage() {
             <S.Img src={faceBookIcon} alt="페이스북 로그인 " />
             Continuew with facebook
           </LoginButton>
-        </form>
+        </S.FormStyle>
 
         <S.Info>
           Already have an account ? <Link to="/signup">Create Account </Link>
