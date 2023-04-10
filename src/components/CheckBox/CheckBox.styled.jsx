@@ -22,7 +22,7 @@ export const CheckBox = styled.input`
 `;
 
 export const CheckBoxContents = styled.p`
-  font-size: 19px;
+  font-size: 1.5rem;
   font-weight: 300;
 `;
 
@@ -32,7 +32,7 @@ export const SignUpButton = styled.button`
   border-radius: 10px;
   display: block;
   width: 100%;
-  font-size: 20px;
+  font-size: 1.7rem;
   color: white;
   margin: 1.8rem;
   padding: 1.1rem;

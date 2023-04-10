@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 
-const LogoIcon = ({ fill }) => {
+export function LogoIcon({ fill }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="148"
-      height="122"
+      viewBox="-10 -25 160 160"
       fill="none"
     >
       <path
@@ -18,7 +17,7 @@ const LogoIcon = ({ fill }) => {
       />
     </svg>
   );
-};
+}
 
 export default LogoIcon;
 
