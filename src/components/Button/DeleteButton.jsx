@@ -3,11 +3,11 @@ import { getColor } from '@/theme/utils';
 import PropTypes from 'prop-types';
 
 const Button = styled.button`
-  width: 214px;
-  height: 77px;
-  font-size: 2.36rem;
+  width: 130px;
+  height: 50px;
+  font-size: 20px;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 15px;
   border: 2px solid transparent;
   cursor: pointer;
   color: #ffffff;

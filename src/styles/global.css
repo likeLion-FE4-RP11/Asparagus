@@ -1,6 +1,10 @@
 @import url('./normalize.css');
 @import url('./reset.css');
 
+:root {
+  font-size: calc(6px + 0.5vw);
+}
+
 body {
   margin: 0;
   font: 1rem/1.5 'Pretendard', sans-serif;

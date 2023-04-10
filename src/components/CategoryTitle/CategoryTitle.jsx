@@ -15,12 +15,10 @@ const CategoryTitleContainer = styled.div`
 const CategoryContents = styled.h3`
   color: #4e4c4c;
   /* display: inline-block; */
-  font-size: 40px;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 500;
   line-height: 160px;
 `;
-
-
 
 export function CategoryTitle({ title }) {
   return (

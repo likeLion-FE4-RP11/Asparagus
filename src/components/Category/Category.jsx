@@ -11,7 +11,7 @@ const ButtonContainer = styled.div`
   justify-content: space-between;
   gap: 1.8844rem;
   padding: 0 1.8844rem;
-  height: 31.906875rem;
+  height: 30rem;
   position: relative;
   top: -431px;
   z-index: 2;
@@ -28,7 +28,7 @@ const StyledLink = styled(Link)`
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-width: 1px;
   border-radius: 10px;
-  font-size: 35px;
+  font-size: 2rem;
   text-align: left;
   display: block;
 
