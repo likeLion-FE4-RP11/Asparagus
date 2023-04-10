@@ -126,7 +126,7 @@ export default function CategoriesPage() {
     <ThemeContext.Provider>
       <ThemeProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
         <GlobalStyles />
-        <ToggleButton />
+        <ToggleButton category_uid={category_uid} />
         <S.Themebutton onClick={() => themeTogggler()}>
           {theme === 'dark' ? (
             <img src={Dark} alt="다크모드 활성화" />
