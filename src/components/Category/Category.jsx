@@ -8,14 +8,10 @@ import { Link } from 'react-router-dom';
 const ButtonContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
+  top: 100%;
   justify-content: space-between;
   gap: 1.8844rem;
-  padding: 0 1.8844rem;
   height: 30rem;
-  position: relative;
-  top: -431px;
-  z-index: 2;
-  margin: 0 auto;
 `;
 
 const StyledLink = styled(Link)`
@@ -24,13 +20,11 @@ const StyledLink = styled(Link)`
   background-color: #ffffff;
   cursor: pointer;
   padding: 17.34px;
-  margin-top: 7.6875rem;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-width: 1px;
   border-radius: 10px;
   font-size: 2rem;
   text-align: left;
-  display: block;
 
   img {
     display: block;
