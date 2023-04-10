@@ -16,8 +16,8 @@ export const AnimateBox = styled.div`
   flex-direction: column;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.7);
-  width: 600px;
-  height: 700px;
+  width: 400px;
+  height: 500px;
   border-radius: 50px;
   backdrop-filter: blur(5px);
   box-shadow: 1px 10px 10px -4px rgba(0, 0, 0, 0.1);
@@ -28,9 +28,9 @@ export const NotificationLogo = styled.img`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 30px;
-  width: 278px;
-  height: 278px;
+  padding-bottom: 20px;
+  width: 200px;
+  height: 200px;
 `;
 
 export const NotificationTitle = styled.span`
@@ -38,7 +38,7 @@ export const NotificationTitle = styled.span`
   align-items: center;
   justify-content: center;
   margin: 20px 0 0 0;
-  font-size: 50px;
+  font-size: 35px;
   color: ${(props) => props.color};
   font-weight: bold;
 `;
@@ -47,9 +47,9 @@ export const NotificationContent = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 40px 0 0 0;
-  font-size: 32px;
+  margin: 20px 0 0 0;
+  font-size: 22px;
   font-weight: 400;
   color: ${(props) => props.color};
-  line-height: 50px;
+  line-height: 35px;
 `;
