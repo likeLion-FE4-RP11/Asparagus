@@ -64,10 +64,31 @@ export default function SignInPage() {
     }
   };
 
+  const isValidEmail = (emailValue) => {
+    const regExp =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    return regExp.test(emailValue);
+  };
+
+  const isValidPassword = (passwordValue) => {
+    return passwordValue
+      .toLowerCase()
+      .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
+  };
+
   const handleSignIn = async (e) => {
     e.preventDefault();
     const { email, password } = formState.current;
-    console.log(formState);
+
+    if (!isValidEmail(email)) {
+      alert('입력한 이메일이 올바른 유형이 아닙니다');
+      return;
+    }
+
+    if (!isValidPassword(password)) {
+      alert('입력한 패스워드가 유효하지 않습니다');
+      return;
+    }
 
     await signIn(email, password);
   };
