@@ -23,7 +23,7 @@ export function Header() {
     <HeaderSection className="header">
       <h1>
         <Link to={'/'}>
-          <LogoIcon fill={'white'} />
+          <LogoIcon fill={'black'} />
         </Link>
       </h1>
       <Nav />
