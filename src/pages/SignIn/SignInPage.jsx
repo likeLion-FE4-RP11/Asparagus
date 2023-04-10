@@ -34,15 +34,17 @@ export default function SignInPage() {
 
   const {
     isLoading: isLoadingSignIn,
-    signIn,
     error: errorSignIn,
+    signIn,
+    user: signInUser,
   } = useSignIn();
   const { isLoading, error, user } = useAuthState();
   const { updateAuthUser } = useContext(AuthUserContext);
 
   useEffect(() => {
-    if (user) {
+    if (signInUser) {
       (async () => {
+        console.log('user', signInUser);
         const category_uids = await getCategoryIds(user.uid);
         await updateAuthUser({
           name: user.displayName,
@@ -54,7 +56,7 @@ export default function SignInPage() {
         navigate('/');
       })();
     }
-  }, [user]);
+  }, [signInUser]);
 
   const handleToastError = () => {
     if (errorSignIn) {
@@ -64,8 +66,9 @@ export default function SignInPage() {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-
     const { email, password } = formState.current;
+    console.log(formState);
+
     await signIn(email, password);
   };
 
@@ -108,10 +111,6 @@ export default function SignInPage() {
 
   if (isLoading) {
     return <figure role="alert">페이지 로딩중</figure>;
-  }
-
-  if (error) {
-    return <figure role="alert">오류!</figure>;
   }
 
   return (
