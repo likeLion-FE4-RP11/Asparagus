@@ -35,7 +35,7 @@ const sample_category_uid = {
   Daily: 'HWon7XsmCqht8pum7PZf',
   Travel: 'J5QsZE01c9QkdO1yzuVB',
   Food: 'ARtP9pAr025AGEpyWqXT',
-  Hobby: 'skbzLrlxEL9f1BNlHyWt',
+  Hobby: 'TY0ro64wH7RnUlVtW1ZG',
 };
 
 export function LikeButton() {
