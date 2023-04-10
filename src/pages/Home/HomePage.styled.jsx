@@ -1,5 +1,18 @@
 import styled from 'styled-components/macro';
 
+export const CategoryContainer = styled.div`
+  position: relative;
+`;
+
+export const CategoryStyle = styled.div`
+  background: #f2e9e4;
+  position: absolute;
+  top: -5%;
+  width: 100%;
+  height: 80%;
+  z-index: -1;
+`;
+
 export const MainSection = styled.section`
   display: flex;
   justify-content: space-between;
@@ -8,17 +21,7 @@ export const MainSection = styled.section`
 
 export const SeeMoreSection = styled.section`
   display: flex;
-  margin-bottom: 257px;
+  padding: 100px 0;
   justify-content: space-between;
-`;
-
-export const CategoryContainer = styled.div`
-  background: #f2e9e4;
-  width: 100%;
-  height: 500px;
-  position: absolute;
-`;
-
-export const RecentImageContainer = styled.div`
-  background: #f2e9e4;
+  gap: 20px;
 `;

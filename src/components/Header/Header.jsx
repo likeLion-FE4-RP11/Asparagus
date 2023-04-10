@@ -8,9 +8,12 @@ const HeaderSection = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 18.8%;
+  padding: 0 10rem;
   height: 10rem;
   background: #f2e9e4;
+  @media (max-width: 768px) {
+    padding: 0 5vw;
+  }
 `;
 
 const HeaderLogoLink = styled(Link)`

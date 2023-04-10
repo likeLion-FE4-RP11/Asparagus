@@ -5,8 +5,12 @@ export const StyledSwiper = styled(Swiper)`
   width: 100%;
   height: 100%;
   margin-top: 150px;
-  margin-bottom: 147px;
+  margin-bottom: 150px;
   border-radius: 20px;
+  @media (max-width: 768px) {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
 `;
 
 export const StyledSwiperSlide = styled(SwiperSlide)`
@@ -17,6 +21,9 @@ export const StyledSwiperSlide = styled(SwiperSlide)`
   align-items: center;
   text-align: center;
   font-size: 18px;
+  @media (max-width: 768px) {
+    height: 100%;
+  }
 `;
 
 export const StyledSwiperSlideImg = styled.img`
