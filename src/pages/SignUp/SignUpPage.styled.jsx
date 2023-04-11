@@ -76,7 +76,6 @@ export const WorngEmailMsg = styled.span`
   text-align: center;
   margin-top: 5px;
   font-size: 14px;
-  color: red;
 `;
 
 export const CorrectEmailMsg = styled.span`
@@ -92,7 +91,6 @@ export const WorngPwdMsg = styled.span`
   text-align: center;
   margin-top: 5px;
   font-size: 14px;
-  color: red;
 `;
 
 export const CorrectPwdMsg = styled.span`
@@ -100,7 +98,6 @@ export const CorrectPwdMsg = styled.span`
   text-align: center;
   margin-top: 5px;
   font-size: 14px;
-  color: green;
 `;
 
 export const WorngConfirmPwdMsg = styled.span`
@@ -108,7 +105,6 @@ export const WorngConfirmPwdMsg = styled.span`
   text-align: center;
   margin-top: 5px;
   font-size: 14px;
-  color: red;
 `;
 
 export const CorrectConfirmPwdMsg = styled.span`

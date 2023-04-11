@@ -10,6 +10,10 @@ export const Header = styled.h2`
   margin-bottom: 35px;
 `;
 
+export const FormStyle = styled.form`
+  display: block;
+`;
+
 export const FormContainer = styled.section`
   display: flex;
   flex-flow: row-reverse nowrap;
@@ -28,7 +32,7 @@ export const LeftContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50vw;
+  width: 100%;
 `;
 
 export const Logo = styled.h1`
@@ -41,10 +45,15 @@ export const Logo = styled.h1`
 `;
 
 export const ImgContainer = styled.div`
-  width: 50vw;
+  width: 100%;
   height: 100vh;
-  background-color: aliceblue;
+  @media (max-width: 768px) {
+    display: none;
+  }
 
+  @media (min-width: 1920px) {
+    display: block;
+  }
   img {
     object-fit: cover;
     width: 100%;
