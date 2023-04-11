@@ -5,10 +5,12 @@ export const CategoryContainer = styled.div`
 `;
 
 export const CategoryStyle = styled.div`
+  all: none;
   background: #f2e9e4;
   position: absolute;
-  top: -5%;
-  width: 100%;
+  top: 0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   height: 80%;
   z-index: -1;
 `;
