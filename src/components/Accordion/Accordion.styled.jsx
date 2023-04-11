@@ -71,6 +71,10 @@ export const Contents = styled.section`
     left: 0;
   }
 
+  li:nth-last-child(1)::after {
+    border-bottom: solid 0px #ffffff;
+  }
+
   li:hover {
     background-color: ${(props) => props.bgColor};
   }
