@@ -190,9 +190,11 @@ export default function SignUpPage() {
               ) : (
                 <S.CorrectConfirmPwdMsg>{confirmPwdMsg}</S.CorrectConfirmPwdMsg>
               )}
-              <CheckBox ref={formStateRef} context="Sign me up!">
-                I agree to the Terms of Service and Privacy Notice
-              </CheckBox>
+              <CheckBox
+                ref={formStateRef}
+                context="Sign me up!"
+                children="I agree to the Terms of Service and Privacy Notice"
+              ></CheckBox>
             </form>
           </S.SignUpContent>
         </>

@@ -4,15 +4,22 @@ import styled from 'styled-components/macro';
 
 const ParagraphSection = styled.section`
   margin: 0 auto;
-  font-size: 43px;
-  word-break: normal;
-  width: 70%;
+  font-size: 1.8rem;
   text-align: center;
-  margin-bottom: 120px;
+  margin-bottom: 100px;
+
+  @media screen and (max-width: 940px) {
+    font-size: 2rem;
+    word-wrap: normal;
+  }
 `;
 
 const Paragraph = styled.p`
   color: ${(props) => props.theme.fontColor};
+  white-space: nomal;
+  line-height: 1.7;
+  display: inline-block;
+  width: 500px;
 `;
 
 export function DesignParagraph({ children }) {

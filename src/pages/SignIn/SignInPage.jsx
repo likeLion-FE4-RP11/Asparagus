@@ -34,15 +34,17 @@ export default function SignInPage() {
 
   const {
     isLoading: isLoadingSignIn,
-    signIn,
     error: errorSignIn,
+    signIn,
+    user: signInUser,
   } = useSignIn();
   const { isLoading, error, user } = useAuthState();
   const { updateAuthUser } = useContext(AuthUserContext);
 
   useEffect(() => {
-    if (user) {
+    if (signInUser) {
       (async () => {
+        console.log('user', signInUser);
         const category_uids = await getCategoryIds(user.uid);
         await updateAuthUser({
           name: user.displayName,
@@ -51,21 +53,52 @@ export default function SignInPage() {
           isLogin: true,
           categories: category_uids,
         });
-        navigate('/');
+        toast((t) => (
+          <span>
+            <b>✅ 로그인 성공</b>
+            <button
+              onClick={() => {
+                toast.dismiss(t.id);
+                navigate('/');
+              }}
+            >
+              Go to Home
+            </button>
+          </span>
+        ));
       })();
     }
-  }, [user]);
-
-  const handleToastError = () => {
-    if (errorSignIn) {
-      notify();
+    if (errorSignIn && !signInUser) {
+      alert('이메일이나 비밀번호를 확인해주세요');
     }
+  }, [signInUser, errorSignIn]);
+
+  const isValidEmail = (emailValue) => {
+    const regExp =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    return regExp.test(emailValue);
+  };
+
+  const isValidPassword = (passwordValue) => {
+    return passwordValue
+      .toLowerCase()
+      .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{10,25}$/);
   };
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-
     const { email, password } = formState.current;
+
+    if (!isValidEmail(email)) {
+      alert('입력한 이메일이 올바른 유형이 아닙니다');
+      return;
+    }
+
+    if (!isValidPassword(password)) {
+      alert('입력한 패스워드가 유효하지 않습니다');
+      return;
+    }
+
     await signIn(email, password);
   };
 
@@ -110,22 +143,20 @@ export default function SignInPage() {
     return <figure role="alert">페이지 로딩중</figure>;
   }
 
-  if (error) {
-    return <figure role="alert">오류!</figure>;
-  }
-
   return (
     <S.FormContainer>
+      <Toaster />
       <S.ImgContainer>
-        <Link to="/">
-          <S.Logo>I`s gallery</S.Logo>
-        </Link>
+        <S.Logo>
+          <Link to="/">I`s gallery</Link>
+        </S.Logo>
+
         <img src={loginImage} alt="로그인 메인 이미지" />
       </S.ImgContainer>
       <S.LeftContainer>
         <S.Header fontSize={getFontSize('2xl')}>Let’s get you started</S.Header>
 
-        <form onSubmit={handleSignIn}>
+        <S.FormStyle onSubmit={handleSignIn}>
           <FormInput
             name="email"
             type="email"
@@ -141,27 +172,9 @@ export default function SignInPage() {
             onChange={handleChangeInput}
           />
 
-          <LoginButton
-            onClick={handleToastError}
-            disabled={isLoadingSignIn}
-            type="submit"
-          >
+          <LoginButton disabled={isLoadingSignIn} type="submit">
             {!isLoadingSignIn ? 'log In' : ' Loading...'}
           </LoginButton>
-          <Toaster
-            toastOptions={{
-              duration: 5000,
-              style: {
-                border: '2px solid #f2e9e4',
-                color: '#121724',
-                fontWeight: '600',
-                margin: '10px',
-                padding: '20px',
-                fontSize: '16px',
-                minWidth: '700px',
-              },
-            }}
-          />
 
           <LoginButton
             type="submit"
@@ -179,7 +192,7 @@ export default function SignInPage() {
             <S.Img src={faceBookIcon} alt="페이스북 로그인 " />
             Continuew with facebook
           </LoginButton>
-        </form>
+        </S.FormStyle>
 
         <S.Info>
           Already have an account ? <Link to="/signup">Create Account </Link>

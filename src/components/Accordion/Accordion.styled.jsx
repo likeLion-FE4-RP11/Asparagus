@@ -7,15 +7,15 @@ export const Container = styled.section`
   justify-content: center;
   border-radius: 4px;
   border: 1px solid silver;
-  width: 486.93px;
+  width: 300px;
 `;
 
 export const Header = styled.section`
   display: flex;
   align-items: center;
-  height: 106.24px;
-  padding: 27px 35px 27px 35px;
-  font-size: 35.41px;
+  height: 65px;
+  padding: 0 35px 0 25px;
+  font-size: 20px;
   font-weight: 600;
 `;
 
@@ -26,8 +26,12 @@ export const Button = styled.button`
   border: none;
   background-color: transparent;
   position: absolute;
-  right: 35px;
+  right: 10px;
   cursor: pointer;
+
+  img {
+    width: 40px;
+  }
 `;
 
 export const ContentsWrapper = styled.section`
@@ -38,27 +42,24 @@ export const ContentsWrapper = styled.section`
 `;
 
 export const Contents = styled.section`
-  font-size: 35.41px;
-  padding: 4px 8px;
+  font-size: 20px;
+  padding: 0 25px;
 
   ul {
     display: flex;
     flex-direction: column;
-    height: fit-content;
     width: 100%;
-    padding: 0;
-    margin: 0;
+    padding-bottom: 10px;
   }
 
   li {
     display: flex;
     flex-flow: column nowrap;
+    justify-content: center;
     align-items: flex-start;
     height: 50px;
-    padding-left: 10px;
-    list-style: none;
     background-color: #ffffff;
-    margin: 26.56px 0;
+    margin-top: 10px;
     position: relative;
     cursor: pointer;
   }
@@ -67,8 +68,6 @@ export const Contents = styled.section`
     content: '';
     width: 100%;
     border-bottom: solid 1px #999999;
-    position: absolute;
-    padding-top: 4.16rem;
     left: 0;
   }
 
@@ -77,7 +76,6 @@ export const Contents = styled.section`
   }
 
   li:hover {
-    height: 100%;
     background-color: ${(props) => props.bgColor};
   }
 `;

@@ -27,7 +27,7 @@ export const ImageTitle = styled(Title)`
 export const DescriptionSection = styled.section`
   position: relative;
   width: 100%;
-  margin-bottom: 18.0625rem;
+  margin-bottom: 13.4375rem;
 `;
 
 export const DescriptionTitle = styled(Title)`

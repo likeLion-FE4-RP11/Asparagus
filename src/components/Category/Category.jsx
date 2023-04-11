@@ -10,31 +10,35 @@ const ButtonContainer = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   gap: 1.8844rem;
-  padding: 0 1.8844rem;
-  height: 30rem;
-  position: relative;
-  top: -431px;
-  z-index: 2;
-  margin: 0 auto;
 `;
 
 const StyledLink = styled(Link)`
-  display: block;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
   height: 100%;
   background-color: #ffffff;
   cursor: pointer;
-  padding: 17.34px;
-  margin-top: 7.6875rem;
+  padding: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-width: 1px;
   border-radius: 10px;
-  font-size: 2rem;
-  text-align: left;
-  display: block;
 
   img {
     display: block;
     margin-bottom: 4rem;
+    @media (max-width: 768px) {
+      margin-bottom: 10px;
+    }
+  }
+`;
+
+const CategoryTitle = styled.span`
+  text-align: left;
+  font-size: 2rem;
+  display: block;
+  @media (max-width: 768px) {
+    text-align: center;
   }
 `;
 
@@ -49,7 +53,7 @@ export function Category() {
         return (
           <StyledLink to={`/categories/${category}`} key={category}>
             <img src={sources[index]} alt={descriptions[index]} />
-            {category}
+            <CategoryTitle>{category}</CategoryTitle>
           </StyledLink>
         );
       })}

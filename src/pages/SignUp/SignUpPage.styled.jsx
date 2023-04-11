@@ -48,6 +48,9 @@ export const HalfImageContainer = styled.div`
   position: relative;
   width: 100%;
   overflow: hidden;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const SignUpMainImage = styled.img`
@@ -69,6 +72,53 @@ export const Header = styled.h2`
   font-size: ${(props) => props.fontSize};
   font-weight: 700;
   margin-bottom: 35px;
+  @media (max-width: 768px) {
+    font-size: 25px;
+  }
+`;
+
+export const WorngEmailMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+`;
+
+export const CorrectEmailMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: green;
+`;
+
+export const WorngPwdMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+`;
+
+export const CorrectPwdMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+`;
+
+export const WorngConfirmPwdMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+`;
+
+export const CorrectConfirmPwdMsg = styled.span`
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  font-size: 14px;
+  color: green;
 `;
 
 export const WorngEmailMsg = styled.span`
