@@ -9,8 +9,8 @@ import { useAuthUser } from '@/contexts/AuthUser';
 import { useParams } from 'react-router-dom';
 
 const Toggle = styled.div`
-  width: 156px;
-  height: 78px;
+  width: 105px;
+  height: 53px;
   margin-left: auto;
   margin-top: 50px;
   margin-bottom: 50px;
@@ -24,8 +24,8 @@ const Toggle = styled.div`
   transition: background-color 250ms linear;
   &:before {
     content: '';
-    height: 66px;
-    width: 66px;
+    height: 44px;
+    width: 44px;
     background-color: white;
     border-radius: 50%;
     margin: 0 5px;
@@ -33,7 +33,7 @@ const Toggle = styled.div`
     align-items: center;
     justify-content: center;
     position: absolute;
-    left: ${(props) => (props.isOn === true ? '80px' : '0')};
+    left: ${(props) => (props.isOn === true ? '50px' : '0')};
     transition: left 250ms linear;
   }
 `;

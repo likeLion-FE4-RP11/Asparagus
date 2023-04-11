@@ -72,11 +72,12 @@ const HoverContainer = styled.div`
 `;
 
 const HoverScript = styled.p`
-  word-break: keep-all;
-  font-size: 35px;
-  font-weight: 700;
+  word-wrap: break-word;
+  font-size: 20px;
+  font-weight: 600;
   text-align: center;
   color: #ffffff;
+  padding: 15px;
 `;
 
 // variants 적용

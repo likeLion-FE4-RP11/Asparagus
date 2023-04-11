@@ -9,9 +9,9 @@ import { useParams } from 'react-router-dom';
 
 const LikeBtn = styled.span`
   color: #f9fbfd;
-  font-size: 43px;
+  font-size: 25px;
   font-style: normal;
-  padding-left: 15px;
+  padding-left: 5px;
 `;
 
 const LikeButtonArea = styled.button`
@@ -28,6 +28,7 @@ const LikeButtonArea = styled.button`
   img {
     z-index: 1000;
     filter: brightness(100%);
+    scale: 70%;
   }
 `;
 const sample_user_uid = 'EHSFq6SN4UfSAyGTw6UH';
@@ -35,7 +36,7 @@ const sample_category_uid = {
   Daily: 'HWon7XsmCqht8pum7PZf',
   Travel: 'J5QsZE01c9QkdO1yzuVB',
   Food: 'ARtP9pAr025AGEpyWqXT',
-  Hobby: 'skbzLrlxEL9f1BNlHyWt',
+  Hobby: 'TY0ro64wH7RnUlVtW1ZG',
 };
 
 export function LikeButton() {
