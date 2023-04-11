@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 
 export const CategoryContainer = styled.div`
   position: relative;
+  margin-bottom: 50px;
 `;
 
 export const CategoryStyle = styled.div`
@@ -9,6 +10,7 @@ export const CategoryStyle = styled.div`
   background: #f2e9e4;
   position: absolute;
   top: 0;
+  /* width: 100%; */
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   height: 80%;

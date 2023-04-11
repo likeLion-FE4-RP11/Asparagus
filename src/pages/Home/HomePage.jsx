@@ -119,14 +119,15 @@ export default function HomePage() {
         <Category />
         <S.CategoryStyle />
       </S.CategoryContainer>
-      <div>
+      <S.CategoryContainer>
         <CategoryTitle title={'R E C E N T\u00A0\u00A0\u00A0 I M A G E'} />
         <S.MainSection>
           <SeeMoreImg src={imgArr[0]} />
           <SeeMoreImg src={imgArr[1]} />
           <SeeMoreImg src={imgArr[2]} />
         </S.MainSection>
-      </div>
+        <S.CategoryStyle />
+      </S.CategoryContainer>
       <SeeMoreButton
         onClick={() => {
           setVisible(!visible);
