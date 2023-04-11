@@ -114,29 +114,31 @@ export default function HomePage() {
   return (
     <>
       <MainSwiper />
-      <CategoryTitle title={'C A T E G O R Y'} />
-      <Category />
-      <CategoryTitle title={'R E C E N T\u00A0\u00A0\u00A0 I M A G E'} />
-
-      <S.MainSection>
-        <SeeMoreImg src={imgArr[0]} />
-        <SeeMoreImg src={imgArr[1]} />
-        <SeeMoreImg src={imgArr[2]} />
-      </S.MainSection>
-
+      <S.CategoryContainer>
+        <CategoryTitle title={'C A T E G O R Y'} />
+        <Category />
+        <S.CategoryStyle />
+      </S.CategoryContainer>
+      <S.CategoryContainer>
+        <CategoryTitle title={'R E C E N T\u00A0\u00A0\u00A0 I M A G E'} />
+        <S.MainSection>
+          <SeeMoreImg src={imgArr[0]} />
+          <SeeMoreImg src={imgArr[1]} />
+          <SeeMoreImg src={imgArr[2]} />
+        </S.MainSection>
+        <S.CategoryStyle />
+      </S.CategoryContainer>
       <SeeMoreButton
         onClick={() => {
           setVisible(!visible);
         }}
         style={{ marginTop: '160px', marginBottom: '90px' }}
       ></SeeMoreButton>
-
       <S.SeeMoreSection>
         {visible && moreImgArr
           ? moreImgArr.map((url, index) => <SeeMoreImg key={index} src={url} />)
           : null}
       </S.SeeMoreSection>
-
       <TopButton />
     </>
   );

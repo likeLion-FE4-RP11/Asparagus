@@ -13,6 +13,7 @@ export const FromInputContainer = styled.div`
 
 export const InputLabel = styled.label`
   margin-top: 10px;
+  font-size: 1.8rem;
   font-weight: 250;
   /* transition: all 0.2s ease-out; */
 `;
@@ -22,6 +23,6 @@ export const FormImage = styled.img``;
 export const FormInputContent = styled.input`
   padding: 1rem;
   border-radius: 10px;
-  width: clamp(340px, 40vw, 500px);
+  width: 100%;
   /* transition: all 0.2s ease-out; */
 `;

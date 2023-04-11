@@ -2,15 +2,24 @@ import { Nav } from '@/components/index';
 import styled from 'styled-components/macro';
 import { useTheme } from 'styled-components/macro';
 import { Link } from 'react-router-dom';
-import LogoIcon from '@/assets/LogoIcon';
+import { LogoIcon } from '@/assets/LogoIcon';
 
 const HeaderSection = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 180px;
-  height: 200px;
+  padding: 0 10rem;
+  height: 10rem;
   background: #f2e9e4;
+  @media (max-width: 768px) {
+    padding: 0 5vw;
+  }
+`;
+
+const HeaderLogoLink = styled(Link)`
+  display: flex;
+  height: 10rem;
+  width: 10rem;
 `;
 
 export function Header() {
@@ -22,9 +31,9 @@ export function Header() {
   return (
     <HeaderSection className="header">
       <h1>
-        <Link to={'/'}>
+        <HeaderLogoLink to={'/'}>
           <LogoIcon fill={'black'} />
-        </Link>
+        </HeaderLogoLink>
       </h1>
       <Nav />
     </HeaderSection>
