@@ -13,20 +13,34 @@ export const NavList = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: 180px;
+  justify-content: flex-end;
+  gap: 30px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
 `;
 
 export const NavListAncor = styled(NavLink)`
   text-decoration: none;
-  font-size: 37.9px;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 600;
+  @media (max-width: 768px) {
+    font-size: 13px;
+    font-weight: 400;
+  }
 `;
 
 export const NavButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
-  font-size: 37.9px;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding: 0;
+  @media (max-width: 768px) {
+    font-size: 13px;
+    font-weight: 400;
+  }
 `;

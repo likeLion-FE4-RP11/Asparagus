@@ -18,7 +18,6 @@ const StyledSwiperSlide = styled(SwiperSlide)`
   align-items: center;
   text-align: center;
   font-size: 18px;
-  background: red;
 `;
 const StyledSwiperSlideImg = styled.img`
   display: block;

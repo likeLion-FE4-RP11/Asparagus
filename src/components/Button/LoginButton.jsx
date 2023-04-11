@@ -6,7 +6,7 @@ const ButtonStyle = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 521px;
+  width: clamp(340px, 40vw, 500px);
   height: 65px;
   user-select: none;
   cursor: pointer;
@@ -44,8 +44,6 @@ export function LoginButton({ disabled, children, ...restProps }) {
     </ButtonStyle>
   );
 }
-
-
 
 /* Props -------------------------------------------------------------------- */
 

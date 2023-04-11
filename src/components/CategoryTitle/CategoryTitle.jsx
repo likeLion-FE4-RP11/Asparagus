@@ -2,14 +2,14 @@ import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
 
 const CategoryTitleContainer = styled.div`
-  background: #f2e9e4;
-  text-align: center;
   display: block;
-  padding: 0;
+  padding: 50px 0;
+  text-align: center;
+  margin-top: 200px;
   width: 100%;
-  height: 474px;
-  position: relative;
-  z-index: 1;
+  @media (max-width: 768px) {
+    padding: 25px 0;
+  }
 `;
 
 const CategoryContents = styled.h3`
@@ -17,7 +17,6 @@ const CategoryContents = styled.h3`
   /* display: inline-block; */
   font-size: 2rem;
   font-weight: 500;
-  line-height: 160px;
 `;
 
 export function CategoryTitle({ title }) {

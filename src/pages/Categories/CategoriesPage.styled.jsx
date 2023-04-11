@@ -57,31 +57,30 @@ export const FourthContainet = styled.section`
 
 export const categoryMainContainer = styled(ImageContainer)`
   position: relative;
+  width: 100%;
   img {
     filter: brightness(70%);
   }
 `;
 
 export const testContainer = styled.div`
-  width: 87px;
-  height: 87px;
+  width: 60px;
+  height: 60px;
   position: absolute;
-  top: 103px;
-  left: 329px;
+  top: 125px;
+  left: 250px;
 
   z-index: 10;
   img {
-    width: 100%;
-    height: 100%;
     filter: brightness(100%);
   }
 `;
 
 export const ImageTitle = styled.h2`
   position: absolute;
-  font-size: 4.375rem;
+  font-size: 45px;
   font-weight: 700;
-  top: 103px;
+  top: 120px;
   left: 103px;
   color: ${(props) => props.color};
   z-index: 10;
@@ -99,7 +98,7 @@ export const ChangeInput = styled.input`
 `;
 
 export const BaseText = styled.h3`
-  font-size: 3.125rem;
+  font-size: 30px;
   font-weight: 600;
   position: absolute;
   top: 200px;
@@ -116,9 +115,13 @@ export const Themebutton = styled.div`
   align-items: center;
   cursor: pointer;
   position: relative;
+  scale: 80%;
   img {
     position: absolute;
-    right: 190px;
-    bottom: 60px;
+    right: 20px;
+    bottom: 68px;
+    @media screen and (max-width: 940px) {
+      right: 90px;
+    }
   }
 `;

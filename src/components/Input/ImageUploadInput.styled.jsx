@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 export const UploadSection = styled.section`
   margin: 0 auto;
   width: 100%;
-  height: 50vh;
+  height: 31.25rem;
   border: 2px dashed black;
   display: flex;
   flex-flow: column nowrap;
@@ -40,12 +40,12 @@ export const DescriptionContainer = styled.div`
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 1.875rem;
 `;
 
 export const UploadLogo = styled.img`
-  width: 75px;
-  height: 75px;
+  width: 3.75rem;
+  height: 3.75rem;
 `;
 
 export const Description = styled.p`
