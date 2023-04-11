@@ -6,11 +6,11 @@ import { getColor } from '@/theme/utils';
 const TextArea = styled.textarea`
   background-color: ${(props) => props.bgColor};
   width: 100%;
-  height: 500px;
+  height: 31.25rem;
   font-weight: 400;
   font-size: 1.8rem;
-  line-height: 160px;
-  padding: 0 0 0 53px;
+  line-height: 10rem;
+  padding: 0 0 0 3.3125rem;
   &::placeholder {
     color: ${(props) => props.color};
   }
@@ -21,12 +21,6 @@ export const DescriptionInput = forwardRef(function DescriptionInput(_, ref) {
 
   const handleInputChange = (e) => {
     ref.current.value = e.target.value;
-  };
-
-  const submit = async () => {
-    // fetch, axios
-    console.log(ref.current);
-    // const result = await fetch('POST', '주소');
   };
 
   return (
