@@ -12,7 +12,6 @@ const Toggle = styled.div`
   width: 105px;
   height: 53px;
   margin-left: auto;
-  margin-top: 50px;
   margin-bottom: 50px;
   border-radius: 50px;
   display: flex;

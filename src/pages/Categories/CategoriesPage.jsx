@@ -126,14 +126,16 @@ export default function CategoriesPage() {
     <ThemeContext.Provider>
       <ThemeProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
         <GlobalStyles />
-        <ToggleButton category_uid={category_uid} />
-        <S.Themebutton onClick={() => themeTogggler()}>
-          {theme === 'dark' ? (
-            <img src={Dark} alt="다크모드 활성화" />
-          ) : (
-            <img src={Light} alt="라이트모드 활성화" />
-          )}
-        </S.Themebutton>
+        <S.Subnav>
+          <S.Themebutton onClick={() => themeTogggler()}>
+            {theme === 'dark' ? (
+              <img src={Dark} alt="다크모드 활성화" />
+            ) : (
+              <img src={Light} alt="라이트모드 활성화" />
+            )}
+          </S.Themebutton>
+          <ToggleButton category_uid={category_uid} />
+        </S.Subnav>
         <S.categoryMainContainer
           width={'1557px'}
           height={'769px'}

@@ -69,7 +69,6 @@ export const testContainer = styled.div`
   position: absolute;
   top: 125px;
   left: 250px;
-
   z-index: 10;
   img {
     filter: brightness(100%);
@@ -112,16 +111,17 @@ export const BaseText = styled.h3`
 `;
 
 export const Themebutton = styled.div`
-  align-items: center;
   cursor: pointer;
-  position: relative;
-  scale: 80%;
   img {
-    position: absolute;
-    right: 20px;
-    bottom: 68px;
-    @media screen and (max-width: 940px) {
-      right: 90px;
-    }
+    width: 70px;
+    height: 70px;
+    padding-right: 20px;
+    padding-bottom: 20px;
   }
+`;
+
+export const Subnav = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 50px;
 `;

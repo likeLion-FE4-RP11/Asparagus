@@ -9,6 +9,9 @@ export const FooterArea = styled.footer`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 800px) {
+    text-align: center;
+  }
 `;
 
 export const Info = styled.section`
