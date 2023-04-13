@@ -1,4 +1,3 @@
-import { A11yHidden } from '@/components';
 import { forwardRef, useId } from 'react';
 import styled from 'styled-components/macro';
 import { getColor } from '@/theme/utils';
@@ -25,9 +24,6 @@ export const DescriptionInput = forwardRef(function DescriptionInput(_, ref) {
 
   return (
     <section style={{ width: '100%' }}>
-      <A11yHidden as="label" htmlFor={id}>
-        이미지 설명 입력란
-      </A11yHidden>
       <TextArea
         placeholder="please write image description"
         type="text"

@@ -1,4 +1,3 @@
-import { A11yHidden } from '@/components/index';
 import { useRef, forwardRef, useId } from 'react';
 import ImageUploadIcon from '@/assets/imageUpload-icon.svg';
 import { getColor, getFontSize } from '@/theme/utils';
@@ -27,7 +26,7 @@ export const ImageUploadInput = forwardRef(function UploadInput(
     >
       {file ? (
         <S.PreviewImage>
-          <img src={preview} alt="미리보기 이미지" />
+          <img src={preview} alt="미리보기" />
           <p>{file.name}</p>
         </S.PreviewImage>
       ) : (
@@ -41,10 +40,6 @@ export const ImageUploadInput = forwardRef(function UploadInput(
           </S.Description>
         </S.DescriptionContainer>
       )}
-
-      <A11yHidden as="label" htmlFor={id}>
-        이미지 파일 업로드
-      </A11yHidden>
       <S.Input ref={fileInputRef} type="file" id={id} onChange={onFileDrop} />
     </S.UploadSection>
   );
