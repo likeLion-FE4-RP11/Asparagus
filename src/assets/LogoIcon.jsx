@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 
-export function LogoIcon({ fill }) {
+export function LogoIcon({ fill, ariaLabel }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-10 -25 160 160"
       fill="none"
+      aria-label={ariaLabel}
     >
       <path
         fill={fill}

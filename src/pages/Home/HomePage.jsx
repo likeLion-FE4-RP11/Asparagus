@@ -122,9 +122,12 @@ export default function HomePage() {
       <S.CategoryContainer>
         <CategoryTitle title={'R E C E N T\u00A0\u00A0\u00A0 I M A G E'} />
         <S.MainSection>
-          <SeeMoreImg src={imgArr[0]} />
-          <SeeMoreImg src={imgArr[1]} />
-          <SeeMoreImg src={imgArr[2]} />
+          <SeeMoreImg src={imgArr[0]} alt="태양이 저무는 구름사진(기본값)" />
+          <SeeMoreImg src={imgArr[1]} alt="배네치아의 호수전경(기본값)" />
+          <SeeMoreImg
+            src={imgArr[2]}
+            alt="검은 손과 발이 표현된 기하학적인 그림(기본값)"
+          />
         </S.MainSection>
         <S.CategoryStyle />
       </S.CategoryContainer>

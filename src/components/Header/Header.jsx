@@ -1,4 +1,4 @@
-import { Nav } from '@/components/index';
+import { A11yHidden, Nav } from '@/components/index';
 import styled from 'styled-components/macro';
 import { useTheme } from 'styled-components/macro';
 import { Link } from 'react-router-dom';
@@ -24,17 +24,13 @@ const HeaderLogoLink = styled(Link)`
 
 export function Header() {
   const theme = useTheme();
-  // 지금은 페이지에서만 관리되고 있음. 전역상태관리가 필요.
-  // 1. 사이드이펙트 처리 -> useEffect를 사용해서 테마정보를 가져와야 한다.
-  // 2. 테마를 글로벌 스테이트로 옮기는 것
   console.log(theme);
   return (
     <HeaderSection className="header">
-      <h1>
-        <HeaderLogoLink to={'/'}>
-          <LogoIcon fill={'black'} />
-        </HeaderLogoLink>
-      </h1>
+      <HeaderLogoLink to={'/'} title="메인페이지">
+        <A11yHidden as="h1">I's gallery 홈페이지</A11yHidden>
+        <LogoIcon fill={'black'} ariaLabel="HomePage" />
+      </HeaderLogoLink>
       <Nav />
     </HeaderSection>
   );

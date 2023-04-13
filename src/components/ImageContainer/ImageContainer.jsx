@@ -44,7 +44,7 @@ export function ImageContainer({
 
 ImageContainer.defaultProps = {
   src: testImg,
-  alt: '테스트 이미지',
+  alt: '기본값',
 };
 
 ImageContainer.propTypes = {
