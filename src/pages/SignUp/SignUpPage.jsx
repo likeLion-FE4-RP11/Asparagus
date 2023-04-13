@@ -1,14 +1,14 @@
-import MainImage from '@/assets/SignUp_main.jpg';
-import * as S from './SignUpPage.styled';
-import { getFontSize } from '@/theme/utils';
-import { writeBatchCategoryList } from '@/utils/utils';
-import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { CheckBox, LoadingSpinner, SignUpFormInput } from '@/components';
-import { useSignUp } from '@/firebase/auth';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { useCreateAuthUser } from '@/firebase/firestore';
+import { writeBatchCategoryList } from '@/utils/utils';
+import { Link, useNavigate } from 'react-router-dom';
+import MainImage from '@/assets/SignUp_main.jpg';
 import { toast, Toaster } from 'react-hot-toast';
+import { useSignUp } from '@/firebase/auth';
+import { getFontSize } from '@/theme/utils';
+import * as S from './SignUpPage.styled';
 
 const initialFormState = {
   name: '',
@@ -144,9 +144,11 @@ export default function SignUpPage() {
         <>
           <S.HalfImageContainer>
             <S.ImageLogo>
-              <Link to="/">I`s gallery</Link>
+              <Link to="/" aria-label="메인 홈페이지로 이동">
+                I`s gallery
+              </Link>
             </S.ImageLogo>
-            <S.SignUpMainImage src={MainImage} alt="회원가입 메인 이미지" />
+            <S.SignUpMainImage src={MainImage} alt="회원가입 페이지 메인" />
           </S.HalfImageContainer>
           <S.SignUpContent>
             <S.Header fontSize={getFontSize('2xl')}>Create an account</S.Header>
