@@ -10,7 +10,7 @@ export const Container = styled.section`
   width: 300px;
 `;
 
-export const Header = styled.section`
+export const Header = styled.h2`
   display: flex;
   align-items: center;
   height: 65px;
@@ -34,14 +34,14 @@ export const Button = styled.button`
   }
 `;
 
-export const ContentsWrapper = styled.section`
+export const ContentsWrapper = styled.div`
   height: 0;
   width: 100%;
   overflow: hidden;
   transition: height 0.35s ease;
 `;
 
-export const Contents = styled.section`
+export const Contents = styled.div`
   font-size: 20px;
   padding: 0 25px;
 

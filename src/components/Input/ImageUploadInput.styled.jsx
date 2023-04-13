@@ -17,7 +17,7 @@ export const UploadSection = styled.section`
   }
 
   &:focus-within {
-    box-shadow: 0 0 10px 3px rgba(10, 255, 225, 0.4);
+    box-shadow: 0 0 10px 3px rgba(147, 8, 246, 0.556);
   }
 `;
 
