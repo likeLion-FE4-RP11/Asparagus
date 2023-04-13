@@ -10,7 +10,7 @@ export const Container = styled.section`
   width: 300px;
 `;
 
-export const Header = styled.h2`
+export const Header = styled.h3`
   display: flex;
   align-items: center;
   height: 65px;

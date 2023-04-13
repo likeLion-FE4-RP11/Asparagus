@@ -9,6 +9,7 @@ import {
   DeleteButton,
   DescriptionInput,
   SeeMoreButton,
+  A11yHidden,
 } from '@/components';
 import { useUploadFiles } from '@/firebase/storage';
 import { useAuthUser } from '@/contexts/AuthUser';
@@ -99,6 +100,7 @@ export default function UploadPage() {
 
   return (
     <S.FlexContainer>
+      <A11yHidden as="h2">업로드 페이지</A11yHidden>
       <Toaster
         toastOptions={{
           duration: 5000,

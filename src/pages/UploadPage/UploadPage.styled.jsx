@@ -8,7 +8,7 @@ export const FlexContainer = styled.section`
   justify-content: center;
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h3`
   width: 100%;
   font-size: ${(props) => props.fontSize};
   font-weight: 700;
