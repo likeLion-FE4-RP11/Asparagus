@@ -26,9 +26,14 @@ const LikeButtonArea = styled.button`
   background-color: transparent;
   border: none;
   img {
+    scale: 70%;
     z-index: 1000;
     filter: brightness(100%);
-    scale: 70%;
+  }
+  @media screen and (max-width: 850px) {
+    left: 75px;
+    bottom: 50px;
+    scale: 65%;
   }
 `;
 const sample_user_uid = 'EHSFq6SN4UfSAyGTw6UH';

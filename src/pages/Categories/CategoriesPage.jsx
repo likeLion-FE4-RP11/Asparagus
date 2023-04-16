@@ -140,6 +140,7 @@ export default function CategoriesPage() {
           width={'1557px'}
           height={'769px'}
           src={imgArr[0]}
+          alt={descriptionArr[0]}
         >
           <S.ImageTitle color={getColor('white')}>{category}</S.ImageTitle>
           <S.testContainer>
@@ -170,6 +171,7 @@ export default function CategoriesPage() {
             description={descriptionArr[1]}
             datasetKey={imgIdArr[1]}
             src={imgArr[1]}
+            alt={descriptionArr[1]}
           />
           <UseHover
             width={'632'}
@@ -177,6 +179,7 @@ export default function CategoriesPage() {
             description={descriptionArr[2]}
             datasetKey={imgIdArr[2]}
             src={imgArr[2]}
+            alt={descriptionArr[2]}
           />
         </S.FirstContainer>
         <S.SecondContainer>
@@ -186,6 +189,7 @@ export default function CategoriesPage() {
             description={descriptionArr[3]}
             datasetKey={imgIdArr[3]}
             src={imgArr[3]}
+            alt={descriptionArr[3]}
           />
           <UseHover
             width={'900'}
@@ -193,6 +197,7 @@ export default function CategoriesPage() {
             description={descriptionArr[4]}
             datasetKey={imgIdArr[4]}
             src={imgArr[4]}
+            alt={descriptionArr[4]}
           />
         </S.SecondContainer>
         <DesignParagraph>
@@ -205,6 +210,7 @@ export default function CategoriesPage() {
             description={descriptionArr[5]}
             datasetKey={imgIdArr[5]}
             src={imgArr[5]}
+            alt={descriptionArr[5]}
           />
           <UseHover
             width={'430'}
@@ -212,6 +218,7 @@ export default function CategoriesPage() {
             description={descriptionArr[6]}
             datasetKey={imgIdArr[6]}
             src={imgArr[6]}
+            alt={descriptionArr[6]}
           />
         </S.ThirdContainet>
         <S.FourthContainet>
@@ -221,6 +228,7 @@ export default function CategoriesPage() {
             description={descriptionArr[7]}
             datasetKey={imgIdArr[7]}
             src={imgArr[7]}
+            alt={descriptionArr[7]}
           />
           <UseHover
             width={'789'}
@@ -228,6 +236,7 @@ export default function CategoriesPage() {
             description={descriptionArr[8]}
             datasetKey={imgIdArr[8]}
             src={imgArr[8]}
+            alt={descriptionArr[8]}
           />
         </S.FourthContainet>
         <TopButton />

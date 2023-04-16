@@ -12,6 +12,7 @@ export function UseHover({
   description,
   src,
   datasetKey,
+  alt,
   ...props
 }) {
   const [visible, setVisible] = useState(false);
@@ -31,6 +32,7 @@ export function UseHover({
     <HoverContainer
       width={width}
       height={height}
+      alt={alt}
       onClick={() => {
         setVisible(!visible);
       }}
@@ -55,7 +57,12 @@ export function UseHover({
       >
         <HoverScript>{description}</HoverScript>
       </motion.div>
-      <ImageContainer width={width} height={height} src={src}></ImageContainer>
+      <ImageContainer
+        width={width}
+        height={height}
+        src={src}
+        alt={alt}
+      ></ImageContainer>
       {visible && (
         <DeleteButton onClick={handleDeleteImgData} style={DeleteButtonStyle} />
       )}
@@ -103,4 +110,5 @@ UseHover.propTypes = {
   description: PropTypes.string,
   src: PropTypes.string,
   datasetKey: PropTypes.string,
+  alt: PropTypes.string,
 };

@@ -67,11 +67,16 @@ export const testContainer = styled.div`
   width: 60px;
   height: 60px;
   position: absolute;
-  top: 125px;
+  top: 130px;
   left: 250px;
   z-index: 10;
   img {
     filter: brightness(100%);
+  }
+  @media screen and (max-width: 850px) {
+    top: 60px;
+    left: 190px;
+    scale: 70%;
   }
 `;
 
@@ -83,6 +88,10 @@ export const ImageTitle = styled.h2`
   left: 103px;
   color: ${(props) => props.color};
   z-index: 10;
+  @media screen and (max-width: 850px) {
+    font-size: 32px;
+    top: 67px;
+  }
 `;
 
 // export const ImageLogo = styled.img`
@@ -105,18 +114,26 @@ export const BaseText = styled.h3`
   bottom: 0px;
   color: ${(props) => props.color};
   z-index: 10;
-  @media screen and (max-width: 1000px) {
-    bottom: -75px;
+  @media screen and (max-width: 850px) {
+    font-size: 20px;
+    top: 120px;
   }
 `;
 
 export const Themebutton = styled.div`
   cursor: pointer;
   img {
-    width: 70px;
-    height: 70px;
-    padding-right: 20px;
-    padding-bottom: 20px;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+  }
+  @media screen and (max-width: 850px) {
+    img {
+      width: 35px;
+      height: 35px;
+      margin-top: 10px;
+      margin-right: 0px;
+    }
   }
 `;
 
@@ -124,4 +141,7 @@ export const Subnav = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 50px;
+  @media screen and (max-width: 850px) {
+    margin-top: 30px;
+  }
 `;

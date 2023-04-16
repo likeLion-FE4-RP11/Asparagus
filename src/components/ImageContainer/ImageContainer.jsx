@@ -31,11 +31,11 @@ export function ImageContainer({
   ...restProps
 }) {
   return (
-    <SrcImageBox width={width} height={height} {...restProps}>
+    <SrcImageBox max-width={width} max-height={height} {...restProps}>
       {src ? (
         <img src={src} alt={alt}></img>
       ) : (
-        <BaseImage width={width} height={height} />
+        <BaseImage max-width={width} max-height={height} />
       )}
       {children}
     </SrcImageBox>

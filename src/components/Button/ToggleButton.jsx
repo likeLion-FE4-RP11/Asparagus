@@ -21,6 +21,12 @@ const Toggle = styled.div`
   background-color: ${(props) =>
     props.isOn === true ? getColor('primary') : getColor('gray/200')};
   transition: background-color 250ms linear;
+
+  @media screen and (max-width: 850px) {
+    scale: 70%;
+    margin-bottom: 40px;
+  }
+
   &:before {
     content: '';
     height: 44px;
