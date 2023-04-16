@@ -17,6 +17,7 @@ import Light from '@/assets/Light.svg';
 import { useAuthUser } from '@/contexts/AuthUser';
 import { useParams } from 'react-router-dom';
 import { onChangeCategoryList } from '@/utils/utils';
+import { A11yHidden } from '@/components/index';
 import { db } from '@/firebase/firestore';
 import {
   collection,
@@ -127,7 +128,7 @@ export default function CategoriesPage() {
       <ThemeProvider theme={theme === 'light' ? LightTheme : DarkTheme}>
         <GlobalStyles />
         <S.Subnav>
-          <S.Themebutton onClick={() => themeTogggler()}>
+          <S.Themebutton tabIndex={0} onClick={() => themeTogggler()}>
             {theme === 'dark' ? (
               <img src={Dark} alt="다크모드 활성화" />
             ) : (
@@ -137,17 +138,24 @@ export default function CategoriesPage() {
           <ToggleButton category_uid={category_uid} />
         </S.Subnav>
         <S.categoryMainContainer
-          width={'1557px'}
-          height={'769px'}
+          max-width={'1557px'}
+          max-height={'769px'}
           src={imgArr[0]}
           alt={descriptionArr[0]}
         >
-          <S.ImageTitle color={getColor('white')}>{category}</S.ImageTitle>
-          <S.testContainer>
+          <A11yHidden as="h1">카테고리 페이지</A11yHidden>
+          <S.ImageTitle
+            aria-label="메인 카테고리 제목"
+            tabIndex={0}
+            color={getColor('white')}
+          >
+            {category}
+          </S.ImageTitle>
+          <S.testContainer tabIndex={0}>
             <img
               src={pencilImg}
               onDoubleClick={handleDoubleClick}
-              alt="대표 사진 내용 편집하기"
+              alt="메인 사진 내용 편집하기"
             />
           </S.testContainer>
 
@@ -159,9 +167,19 @@ export default function CategoriesPage() {
               onKeyDown={handleKeyDown}
             />
           ) : (
-            <S.BaseText color={getColor('white')}>{text}</S.BaseText>
+            <S.BaseText
+              aria-label="메인 카테고리 내용"
+              tabIndex={0}
+              color={getColor('white')}
+            >
+              {text}
+            </S.BaseText>
           )}
-          <LikeButton category_uid={category_uid} />
+          <LikeButton
+            aria-label="메인 사진의 좋아요 버튼 클릭 갯수"
+            tabIndex={0}
+            category_uid={category_uid}
+          />
         </S.categoryMainContainer>
 
         <S.FirstContainer>

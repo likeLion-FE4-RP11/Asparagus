@@ -99,14 +99,25 @@ export function ToggleButton() {
 
   return (
     <div>
-      <Button isOn={!isAllow} handle={handleToggle} />
+      <Button
+        aria-label="비공개로 설정합니다"
+        isOn={!isAllow}
+        handle={handleToggle}
+      />
       {!isAllow ? <Notification /> : ''}
     </div>
   );
 }
 
 export function Button({ isOn, handle }) {
-  return <Toggle isOn={isOn} onClick={handle} />;
+  return (
+    <Toggle
+      aria-label="공개 비공개를 설정하는 버튼입니다."
+      tabIndex={0}
+      isOn={isOn}
+      onClick={handle}
+    />
+  );
 }
 
 Button.propTypes = {

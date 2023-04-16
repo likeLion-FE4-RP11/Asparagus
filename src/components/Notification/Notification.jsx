@@ -16,6 +16,7 @@ export function Notification() {
   return modal
     ? createPortal(
         <S.NotificationWrap
+          aria-label="비공개 잠금 화면"
           ref={outside}
           onClick={(e) => {
             {

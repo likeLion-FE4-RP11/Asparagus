@@ -14,7 +14,7 @@ const ParagraphSection = styled.section`
   }
 `;
 
-const Paragraph = styled.p`
+const Paragraph = styled.h3`
   color: ${(props) => props.theme.fontColor};
   white-space: nomal;
   line-height: 1.7;
@@ -25,7 +25,7 @@ const Paragraph = styled.p`
 export function DesignParagraph({ children }) {
   return (
     <ParagraphSection>
-      <Paragraph>{children}</Paragraph>
+      <Paragraph tabIndex={0}>{children}</Paragraph>
     </ParagraphSection>
   );
 }
